@@ -6,7 +6,7 @@ import Defender from "../components/Defender.js";
 import CalcOutputWrapper from "../components/CalcOutputWrapper.js";
 
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import reducer from "../reducers/reducer.js";
 
 export default function Index() {
@@ -47,9 +47,9 @@ export default function Index() {
 
     // <body>
 
-    const store = createStore(
+    const store = configureStore({
         reducer
-    )
+    })
 
     return (
         <>
