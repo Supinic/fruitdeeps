@@ -8,8 +8,7 @@ import { AttackerAttackStyles } from './AttackerAttackStyles.js';
 import Player from '../lib/Player.js';
 
 export class Attacker extends Component {
-
-    render() {
+    render () {
         const player = this.props.player
         console.log('attacker', player)
         return (

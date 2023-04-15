@@ -1,16 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    //whatever config you have
-    //...
-    webpack(config) {
-      config.module.rules.push({
-        test: /\.svg$/i,
-        issuer: /\.[jt]sx?$/,
-        use: ["@svgr/webpack"],
-      });
+	// whatever config you have
+	// ...
+	webpack (config) {
+		config.module.rules.push({
+			test: /\.svg$/i,
+			issuer: /\.[jt]sx?$/,
+			use: ["@svgr/webpack"]
+		});
   
-      return config;
-    },
-  };
+		return config;
+	}
+};
   
-  module.exports = nextConfig;
+module.exports = nextConfig;

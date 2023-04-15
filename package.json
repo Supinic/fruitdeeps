@@ -5,7 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --dir ."
+    "lint": "eslint --fix ./"
   },
   "dependencies": {
     "@svgr/webpack": "^6.3.1",

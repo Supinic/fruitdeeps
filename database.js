@@ -1,12 +1,12 @@
 import mysql from "mysql";
-import pass from './passwords.js'
+import pass from "./passwords.js";
 
-var con = mysql.createConnection({
+const con = mysql.createConnection({
 	host: "localhost",
 	user: pass.username,
 	password: pass.password,
 	port: pass.port,
-	multipleStatements: true,
+	multipleStatements: true
 });
 
 con.connect();
