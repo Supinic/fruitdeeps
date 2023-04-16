@@ -34,4 +34,4 @@ yarn-error.log*
 
 /public/assets/items.json
 /public/assets/npcs.json
-/public/assets/item_images/*
+/public/assets/item_images/*.png
