@@ -4,10 +4,8 @@
     "es2020": true,
     "node": true
   },
-  "extends": ["plugin:@next/next/recommended", "eslint:recommended"],
-  "plugins": [
-    "unicorn"
-  ],
+  "extends": ["plugin:@next/next/recommended", "plugin:react/recommended", "eslint:recommended"],
+  "plugins": ["unicorn"],
   "rules": {
     "array-bracket-newline": ["warn", "consistent"],
     "array-bracket-spacing": ["warn", "never"],
