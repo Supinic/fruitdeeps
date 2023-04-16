@@ -1,34 +1,74 @@
 import React, { Component } from "react";
-import Image from "next/image";
-import { BonusRow } from "./BonusRow.js";
+import PropTypes from "prop-types";
+// import Image from "next/image";
+
+import { MonsterProperty } from "./types/MonsterProperty.js";
 
 const attributeList = [
-    "dragon",
-    "fiery",
-    "spectral",
-    "undead",
-    "kalphite",
-    "vampyre",
-    "demon",
-    "shade",
-    "leafy",
-    "penance",
-    "xerician"
+	"dragon",
+	"fiery",
+	"spectral",
+	"undead",
+	"kalphite",
+	"vampyre",
+	"demon",
+	"shade",
+	"leafy",
+	"penance",
+	"xerician"
 ];
 
-const MonsterStat = (props) => {
-	return (<input type="number" className="input-invisible" min="1" value={props.value} data-stat={props.stat}
-	               onChange={props.onChange}/>);
+const MonsterStat = (props) => (
+	<input
+		type="number"
+		className="input-invisible"
+		min="1"
+		value={props.value}
+		data-stat={props.stat}
+		onChange={props.onChange}
+	/>
+);
+
+MonsterStat.propTypes = {
+	value: PropTypes.number,
+	stat: PropTypes.string,
+	onChange: PropTypes.func
 };
 
-const MonsterBonus = props => {
-	return (<td className={(props.value > 0 ? "color-3 " : props.value < 0 ? "color-1" : "color-grey")}>
-			<input type="number" className="input-invisible align-right" min="0" value={props.value}
-			       data-stat={props.stat} onChange={props.onChange}/>
-		</td>);
+const MonsterBonus = (props) => {
+	let colourClassName = "color-grey";
+	if (props.value > 0) {
+		colourClassName = "color-3";
+	}
+	else if (props.value < 0) {
+		colourClassName = "color-1";
+	}
+
+	return (
+		<td className={colourClassName}>
+			<input
+				type="number"
+				className="input-invisible align-right"
+				min="0"
+				value={props.value}
+				data-stat={props.stat} onChange={props.onChange}/>
+		</td>
+	);
+};
+
+MonsterBonus.propTypes = {
+	value: PropTypes.number,
+	stat: PropTypes.string,
+	onChange: PropTypes.func
 };
 
 export class DefenderTableDisplay extends Component {
+	static propTypes = {
+		monster: MonsterProperty,
+		setMonster: PropTypes.func,
+		setMonsterStat: PropTypes.func
+	};
+
 	constructor (props) {
 		super(props);
 		this.handleChange = this.handleChange.bind(this);
@@ -38,23 +78,23 @@ export class DefenderTableDisplay extends Component {
 
 	handleChange (e) {
 		e.persist();
-		let stat = e.target.getAttribute("data-stat");
-		let value = e.target.value;
+		const stat = e.target.getAttribute("data-stat");
+		const value = e.target.value;
 		this.props.setMonsterStat(stat, value);
 	}
 
 	changeInvocation (e) {
 		e.persist();
-		let value = parseInt(e.target.value) || 0;
-		let newMonster = JSON.parse(JSON.stringify(this.props.monster));
+		const value = parseInt(e.target.value) || 0;
+		const newMonster = JSON.parse(JSON.stringify(this.props.monster));
 		newMonster.invocation = value;
 		this.props.setMonster(newMonster);
 	}
 
 	toggleAttribute (e) {
 		e.persist();
-		let attribute = e.target.value;
-		let monster = this.props.monster;
+		const attribute = e.target.value;
+		const monster = this.props.monster;
 		let newMonster = {};
 		newMonster = Object.assign(newMonster, monster);
 
@@ -69,105 +109,168 @@ export class DefenderTableDisplay extends Component {
 	}
 
 	render () {
-		return (<div className="flex-container-vertical">
+		const attributeButtons = attributeList.map((attribute, index) => (
+			<button
+				key={index}
+				value={attribute}
+				onClick={this.toggleAttribute}
+				className={(this.props.monster.attributes.includes(attribute)) ? "selected" : ""}
+			>
+				{attribute}
+			</button>
+		));
+
+		let invocationSection;
+		if (typeof this.props.monster.invocation === "number") {
+			invocationSection = (
+				<div>
+					<h3>Invocation</h3>
+					<div className="flex-valign">
+						<input
+							type="number"
+							min="0"
+							max="600"
+							value={this.props.monster.invocation}
+							step="5"
+							id="invocationInput"
+							onChange={this.changeInvocation}
+							className="input-invisible"
+						/>
+						<input
+							type="range"
+							min="0"
+							max="600"
+							value={this.props.monster.invocation}
+							step="5"
+							id="invocationSlider"
+							className="slider"
+							onChange={this.changeInvocation}
+						/>
+					</div>
+				</div>
+			);
+		}
+
+		return (
+			<div className="flex-container-vertical">
 				<div>
 					<h3>Stats</h3>
 					<table className="stats-table">
-						<tr>
-							<td>
-								<div className="stat-wrap">
-									<img src="/assets/svg/combat_icon.svg"/>
-									{this.props.monster.combat}
-								</div>
-							</td>
-							<td>
-								<div className="stat-wrap">
-									<img src="/assets/svg/hitpoints_icon.svg"/>
+						<tbody>
+							<tr>
+								<td>
+									<div className="stat-wrap">
+										<img alt="combat" src="/assets/svg/combat_icon.svg"/>
+										{this.props.monster.combat}
+									</div>
+								</td>
+								<td>
+									<div className="stat-wrap">
+										<img alt="hitpoints" src="/assets/svg/hitpoints_icon.svg"/>
 
-									<MonsterStat value={this.props.monster.stats.hitpoints} stat="hitpoints"
-									             onChange={this.handleChange}/>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div className="stat-wrap">
-									<img src="/assets/svg/defence_icon.svg"/>
-									<MonsterStat value={this.props.monster.stats.def} stat="def"
-									             onChange={this.handleChange}/>
-								</div>
-							</td>
-							<td>
-								<div className="stat-wrap">
-									<img src="/assets/svg/magic_icon.svg"/>
-									<MonsterStat value={this.props.monster.stats.mage} stat="mage"
-									             onChange={this.handleChange}/>
-								</div>
-							</td>
-						</tr>
+										<MonsterStat
+											value={this.props.monster.stats.hitpoints}
+											stat="hitpoints"
+											onChange={this.handleChange}
+										/>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div className="stat-wrap">
+										<img alt="defence" src="/assets/svg/defence_icon.svg"/>
+										<MonsterStat
+											value={this.props.monster.stats.def}
+											stat="def"
+											onChange={this.handleChange}
+										/>
+									</div>
+								</td>
+								<td>
+									<div className="stat-wrap">
+										<img alt="magic" src="/assets/svg/magic_icon.svg"/>
+										<MonsterStat
+											value={this.props.monster.stats.mage}
+											stat="mage"
+											onChange={this.handleChange}
+										/>
+									</div>
+								</td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 				<div>
 					<h3>Attack Bonus</h3>
 					<table className="bonus-table">
-						<tr>
-							<td>
+						<tbody>
+							<tr>
+								<td>
 								Magic
-							</td>
-							<MonsterBonus value={this.props.monster.stats.amagic} stat="amagic"
-							              onChange={this.handleChange}/>
-						</tr>
+								</td>
+								<MonsterBonus
+									value={this.props.monster.stats.amagic}
+									stat="amagic"
+									onChange={this.handleChange}
+								/>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 				<div>
 					<h3>Defence bonus</h3>
 					<table className="bonus-table">
-						<tr>
-							<td>Stab</td>
-							<MonsterBonus value={this.props.monster.stats.dstab} stat="dstab"
-							              onChange={this.handleChange}/>
-						</tr>
-						<tr>
-							<td>Slash</td>
-							<MonsterBonus value={this.props.monster.stats.dslash} stat="dslash"
-							              onChange={this.handleChange}/>
-						</tr>
-						<tr>
-							<td>Crush</td>
-							<MonsterBonus value={this.props.monster.stats.dcrush} stat="dcrush"
-							              onChange={this.handleChange}/>
-						</tr>
-						<tr>
-							<td>Magic</td>
-							<MonsterBonus value={this.props.monster.stats.dmagic} stat="dmagic"
-							              onChange={this.handleChange}/>
-						</tr>
-						<tr>
-							<td>Range</td>
-							<MonsterBonus value={this.props.monster.stats.drange} stat="drange"
-							              onChange={this.handleChange}/>
-						</tr>
-
+						<tbody>
+							<tr>
+								<td>Stab</td>
+								<MonsterBonus
+									value={this.props.monster.stats.dstab}
+									stat="dstab"
+									onChange={this.handleChange}
+								/>
+							</tr>
+							<tr>
+								<td>Slash</td>
+								<MonsterBonus
+									value={this.props.monster.stats.dslash}
+									stat="dslash"
+									onChange={this.handleChange}
+								/>
+							</tr>
+							<tr>
+								<td>Crush</td>
+								<MonsterBonus
+									value={this.props.monster.stats.dcrush}
+									stat="dcrush"
+									onChange={this.handleChange}
+								/>
+							</tr>
+							<tr>
+								<td>Magic</td>
+								<MonsterBonus
+									value={this.props.monster.stats.dmagic}
+									stat="dmagic"
+									onChange={this.handleChange}
+								/>
+							</tr>
+							<tr>
+								<td>Range</td>
+								<MonsterBonus
+									value={this.props.monster.stats.drange}
+									stat="drange"
+									onChange={this.handleChange}
+								/>
+							</tr>
+						</tbody>
 					</table>
 				</div>
-
 				<div>
 					<h3>Attributes</h3>
-					{attributeList.map((attribute, i) => <button key={i} value={attribute}
-					                                             onClick={this.toggleAttribute}
-					                                             className={this.props.monster.attributes.includes(attribute)
-						                                             ? "selected"
-						                                             : ""}>{attribute}</button>)}
+					{attributeButtons}
 				</div>
-				{"invocation" in this.props.monster ? <div>
-					<h3>Invocation</h3>
-					<div className="flex-valign"><input type="number" min="0" max="600"
-					                                    value={this.props.monster.invocation} step="5"
-					                                    id="invocationInput" onChange={this.changeInvocation}
-					                                    className="input-invisible"></input>
-						<input type="range" min="0" max="600" value={this.props.monster.invocation} step="5"
-						       id="invocationSlider" className="slider" onChange={this.changeInvocation}></input></div>
-				</div> : ""}
-			</div>);
+				{invocationSection}
+			</div>
+		);
 	}
 }

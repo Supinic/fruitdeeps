@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { AutofillSearchInput } from "./AutofillSearchInput.js";
 import SearchFilter from "../lib/itemFinder.js";
-import Image from "next/image";
+// import Image from "next/image";
 
 export class EquipmentSelect extends AutofillSearchInput {
 	constructor (props) {
@@ -67,7 +67,7 @@ export class EquipmentSelect extends AutofillSearchInput {
 	}
 
 	selectItem (item) {
-		let player = this.props.player;
+		const player = this.props.player;
 		player.equip(item);
 		this.props.setPlayer(player.minimize());
 	}
@@ -86,34 +86,31 @@ export class EquipmentSelect extends AutofillSearchInput {
 				ref = this.upRef;
 			}
 
-			return (<li
-				key={i}
-				value={i}
-				onClick={(e) => {
-					this.selectItem(this.state.searchList[e.target.value]);
-				}}
-				onBlur={this.setItemBlur}
-				onFocus={(e) => {
-					this.setHighlightIndex(e);
-					this.setItemFocus();
-				}}
-				onMouseOver={this.handleHover}
-				className={this.state.highlightIndex === i ? "auto-complete-selected" : ""}
-				ref={ref}
-				tabIndex="0"
-			>
-				{item.name}
+			return (
+				<li
+					key={i}
+					value={i}
+					onClick={(e) => {
+						this.selectItem(this.state.searchList[e.target.value]);
+					}}
+					onBlur={this.setItemBlur}
+					onFocus={(e) => {
+						this.setHighlightIndex(e);
+						this.setItemFocus();
+					}}
+					onMouseOver={this.handleHover}
+					className={this.state.highlightIndex === i ? "auto-complete-selected" : ""}
+					ref={ref}
+					tabIndex="0"
+				>
+					{item.name}
 
-				<span className={this.state.highlightIndex === i ? "" : "hidden"}> ↵</span>
-				<span style={{
-					float: "right",
-					color: "#aaa"
-				}}>
-
-                        <img alt="" style={{ maxHeight: "1em" }} src={"/assets/item_images/" + item.id + ".png"}/>
-
-                    </span>
-			</li>);
+					<span className={this.state.highlightIndex === i ? "" : "hidden"}> ↵</span>
+					<span style={{ float: "right", color: "#aaa" }}>
+						<img alt="" style={{ maxHeight: "1em" }} src={`/assets/item_images/${item.id}.png`}/>
+					</span>
+				</li>
+			);
 		});
 	}
 }

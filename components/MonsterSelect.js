@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import { AutofillSearchInput } from "./AutofillSearchInput.js";
-import npcFilter from "../lib/npcFilter.js";
 import npcFinder from "../lib/npcSpecificFinder.js";
 
 export class MonsterSelect extends AutofillSearchInput {
@@ -23,10 +22,10 @@ export class MonsterSelect extends AutofillSearchInput {
 					list: []
 				}
 			});
+
 			fetch("/assets/npcs.json")
 				.then((response) => response.json())
 				.then((data) => {
-					console.log(data);
 					this.setState({
 						data: {
 							initialLoad: true,
@@ -45,7 +44,7 @@ export class MonsterSelect extends AutofillSearchInput {
 				callback(xhr.response);
 			}
 		};
-		xhr.open("GET", this.monsterUrl + "?name=" + name);
+		xhr.open("GET", `${this.monsterUrl}?name=${name}`);
 		xhr.send();
 	}
 
@@ -71,22 +70,17 @@ export class MonsterSelect extends AutofillSearchInput {
 	handleChange (e) {
 		const inputValue = e.target.value;
 		this.setState({ inputText: inputValue });
-		if (inputValue.length >= 3) {
-			npcFilter(inputValue, this.state.data.list)
-				.then(({
-					query,
-					list
-				}) => {
-					console.log(query, list);
-					if (query === inputValue) {
-						console.log("list", list);
-						this.setState({
-							searchList: list,
-							highlightIndex: 0,
-							loading: false
-						});
-					}
-				});
+
+		if (inputValue.length >= 2) {
+			const lower = inputValue.toLowerCase();
+			const monsterList = this.state.data.list.filter((monster) => monster.name.toLowerCase().includes(lower));
+			const uniqueNameList = Array.from(new Set(monsterList.map((monster) => monster.name)));
+
+			this.setState({
+				searchList: uniqueNameList,
+				highlightIndex: 0,
+				loading: false
+			});
 		}
 		else {
 			this.setState({
@@ -110,25 +104,28 @@ export class MonsterSelect extends AutofillSearchInput {
 			else if (i === ((((this.state.highlightIndex - 1) % listLen) + listLen) % listLen)) {
 				ref = this.upRef;
 			}
-			return (<li
-				key={i}
-				value={i}
-				onClick={(e) => {
-					this.selectItem(this.state.searchList[e.target.value]);
-				}}
-				onBlur={this.setItemBlur}
-				onFocus={(e) => {
-					this.setHighlightIndex(e);
-					this.setItemFocus();
-				}}
-				onMouseOver={this.handleHover}
-				className={this.state.highlightIndex === i ? "auto-complete-selected" : ""}
-				ref={ref}
-				tabIndex="0"
-			>
-				{item}
-				<span className={this.state.highlightIndex === i ? "" : "hidden"}> ↵</span>
-			</li>);
+
+			return (
+				<li
+					key={i}
+					value={i}
+					onClick={(e) => {
+						this.selectItem(this.state.searchList[e.target.value]);
+					}}
+					onBlur={this.setItemBlur}
+					onFocus={(e) => {
+						this.setHighlightIndex(e);
+						this.setItemFocus();
+					}}
+					onMouseOver={this.handleHover}
+					className={this.state.highlightIndex === i ? "auto-complete-selected" : ""}
+					ref={ref}
+					tabIndex="0"
+				>
+					{item}
+					<span className={this.state.highlightIndex === i ? "" : "hidden"}> ↵</span>
+				</li>
+			);
 		});
 	}
 }

@@ -1,27 +1,43 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Image from "next/image";
-import { Attacker } from "./Attacker.js";
+import PropTypes from "prop-types";
+// import Image from "next/image";
 
+import { Attacker } from "./Attacker.js";
 import Player from "../lib/Player.js";
 
+const MAXIMUM_PLAYER_SET_AMOUNT = 10;
+
 class AttackerSwitcherInner extends Component {
+	static propTypes = {
+		player: PropTypes.instanceOf(Player),
+		playerList: PropTypes.arrayOf(PropTypes.instanceOf(Player)),
+		addPlayer: PropTypes.func,
+		deletePlayer: PropTypes.func,
+		setPlayer: PropTypes.func
+	};
+
 	constructor (props) {
 		super(props);
+
 		this.state = {
 			playerSelected: 0,
 			deleteMode: false
 		};
+
 		this.clone = this.clone.bind(this);
 	}
 
 	buttons () {
-		return this.props.playerList.map((player, i) => <button key={i} className={this.state.playerSelected === i
-			? "selected"
-			: ""} onClick={() => this.setState({
-			playerSelected: i,
-			deleteMode: false
-		})}>Set {i + 1}</button>);
+		return this.props.playerList.map((player, i) => (
+			<button
+				key={i}
+				className={(this.state.playerSelected === i) ? "selected" : ""}
+				onClick={() => this.setState({ playerSelected: i, deleteMode: false })}
+			>
+				Set {i + 1}
+			</button>
+		));
 	}
 
 	clone () {
@@ -30,13 +46,60 @@ class AttackerSwitcherInner extends Component {
 	}
 
 	render () {
-		let i = this.state.playerSelected;
+		const i = this.state.playerSelected;
 		const player = new Player(this.props.playerList[i]);
 
-		return (<div className="flex-container-vertical">
+		let highlightSectionElement;
+		if (this.state.deleteMode) {
+			highlightSectionElement = (
+				<div style={{ marginBottom: "0.5em" }}>
+					<span className="sub-text">Delete?</span>
+					<button
+						className="seamless"
+						onClick={() => {
+							this.props.deletePlayer(this.state.playerSelected);
+							this.setState({
+								deleteMode: false,
+								playerSelected: 0
+							});
+						}}>yes
+					</button>
+				|
+					<button className="seamless" onClick={() => this.setState({ deleteMode: false })}>no</button>
+				</div>);
+		}
+		else {
+			let deleteButton;
+			if (this.props.playerList.length > 1) {
+				deleteButton = (
+					<button className="seamless" onClick={() => this.setState({ deleteMode: true })}>Delete</button>
+				);
+			}
+
+			let separator;
+			if (this.props.playerList.length > 1 && this.props.playerList.length < MAXIMUM_PLAYER_SET_AMOUNT) {
+				separator = "|";
+			}
+
+			let cloneButton;
+			if (this.props.playerList.length > 1 && this.props.playerList.length < MAXIMUM_PLAYER_SET_AMOUNT) {
+				cloneButton = <button className="seamless" onClick={this.clone}>Clone</button>;
+			}
+
+			highlightSectionElement = (
+				<div style={{ marginBottom: "0.5em" }}>
+					{deleteButton}
+					{separator}
+					{cloneButton}
+				</div>
+			);
+		}
+
+		return (
+			<div className="flex-container-vertical">
 				<div className="flex-container-vertical">
 					<h2 className="flex-valign">
-						<img style={{ height: "0.75em" }} src="/assets/svg/attack_icon.svg"/>
+						<img alt="Attack" style={{ height: "0.75em" }} src="/assets/svg/attack_icon.svg"/>
 						<span className="space-left">Set {i + 1}</span>
 					</h2>
 
@@ -46,42 +109,38 @@ class AttackerSwitcherInner extends Component {
 					/>
 				</div>
 				<div className="highlight-section">
-					{this.state.deleteMode ? (<div style={{ marginBottom: "0.5em" }}>
-						<span className="sub-text">Delete?</span>
-						<button className="seamless" onClick={() => {
-							this.props.deletePlayer(this.state.playerSelected);
-							this.setState({
-								deleteMode: false,
-								playerSelected: 0
-							});
-						}}>yes
-						</button>
-						|
-						<button className="seamless" onClick={() => this.setState({ deleteMode: false })}>no</button>
-					</div>) : (<div style={{ marginBottom: "0.5em" }}>
-						{this.props.playerList.length > 1 && <button className="seamless"
-						                                             onClick={() => this.setState({ deleteMode: true })}>Delete</button>}{this.props.playerList.length > 1 && this.props.playerList.length < 4 && "|"}{this.props.playerList.length < 4 &&
-						<button className="seamless" onClick={this.clone}>Clone</button>}
-					</div>)}
+					{highlightSectionElement}
 					<div>
 						{this.buttons()}
-						{this.props.playerList.length < 4
-							? <button className="seamless" onClick={this.props.addPlayer}>Add set</button>
-							: null}
+						{
+							(this.props.playerList.length < MAXIMUM_PLAYER_SET_AMOUNT)
+								? <button className="seamless" onClick={this.props.addPlayer}>Add set</button>
+								: null
+						}
 					</div>
 				</div>
-			</div>);
+			</div>
+		);
 	}
 }
 
 class AttackerSwitcher extends Component {
+	static propTypes = {
+		playerList: PropTypes.arrayOf(PropTypes.instanceOf(Player)),
+		addPlayer: PropTypes.func,
+		deletePlayer: PropTypes.func,
+		setPlayer: PropTypes.func
+	};
+
 	render () {
-		return (<AttackerSwitcherInner
+		return (
+			<AttackerSwitcherInner
 				playerList={this.props.playerList}
 				setPlayer={this.props.setPlayer}
 				addPlayer={this.props.addPlayer}
 				deletePlayer={this.props.deletePlayer}
-			/>);
+			/>
+		);
 	}
 }
 
@@ -93,25 +152,9 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
 	return {
-
-		setPlayer: (i) => {
-			return (player) => dispatch({
-				type: "SET_PLAYER",
-				player: player,
-				index: i
-			});
-		},
-
-		addPlayer: () => {
-			dispatch({ type: "ADD_NEW_PLAYER" });
-		},
-
-		deletePlayer: (i) => {
-			dispatch({
-				type: "DELETE_PLAYER",
-				index: i
-			});
-		}
+		setPlayer: (i) => (player) => dispatch({ type: "SET_PLAYER", player, index: i }),
+		addPlayer: () => dispatch({ type: "ADD_NEW_PLAYER" }),
+		deletePlayer: (i) => dispatch({ type: "DELETE_PLAYER", index: i })
 	};
 }
 

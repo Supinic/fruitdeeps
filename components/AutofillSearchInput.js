@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import Image from "next/image";
-import SearchFilter from "../lib/itemFinder.js";
+// import Image from "next/image";
+// import SearchFilter from "../lib/itemFinder.js";
+
 import Spinner from "../public/assets/spinner.svg";
 
-//state.inputtext can prbably be class attribute
+// state.inputtext can probably be class attribute
 
 export class AutofillSearchInput extends Component {
 	constructor (props) {
 		super(props);
+
 		this.state = {
 			searchList: [],
 			loading: false,
@@ -38,19 +40,18 @@ export class AutofillSearchInput extends Component {
 	}
 
 	componentDidMount () {
-		document.addEventListener("keydown", this.keyaction);
+		globalThis.document.addEventListener("keydown", this.keyaction);
 	}
 
 	componentWillUnmount () {
-		document.removeEventListener("keydown", this.keyaction);
+		globalThis.document.removeEventListener("keydown", this.keyaction);
 	}
 
 	keyaction (e) {
-		console.log(e);
 		if (!this.state.isFocused && !this.state.isItemFocused) {
 			return;
 		}
-		const listLen = this.state.searchList.length;
+
 		if (e.key === "ArrowDown") {
 			e.preventDefault();
 			this.downRef.current.focus();
@@ -81,7 +82,6 @@ export class AutofillSearchInput extends Component {
 
 	setFocus () {
 		this.setState({ isFocused: true });
-
 	}
 
 	setBlur () {
@@ -97,6 +97,7 @@ export class AutofillSearchInput extends Component {
 	}
 
 	getList (searchText, callback) {
+		console.log("Getting list");
 		const xhr = new XMLHttpRequest();
 
 		xhr.onload = () => {
@@ -104,66 +105,65 @@ export class AutofillSearchInput extends Component {
 				callback(xhr.response);
 			}
 		};
-		xhr.open("GET", this.url + "?like=" + searchText);
+		xhr.open("GET", `${this.url}?like=${searchText}`);
 		xhr.send();
 	}
 
-
-	handleChange (e) {
-		// var inputValue = e.target.value
-		// this.setState({ inputText: inputValue })
-		// if (inputValue.length >= 3) {
-		//     SearchFilter(inputValue, this.state.data.list)
-		//     .then(({query, list}) => {
-		//         console.log(query, list)
-		//         if(query === inputValue){
-		//             console.log('list', list)
-		//             this.setState({
-		//                 searchList: list,
-		//                 highlightIndex: 0,
-		//                 loading: false
-		//             })
-		//         }
-		//     })
-		// } else {
-		//     this.setState({ searchList: [], highlightIndex: 0, loading: false })
-		// }
-
-		//stub
-	}
+	handleChange () {}
 
 	handleHover (e) {
-		let inputValue = e.target.value;
+		const inputValue = e.target.value;
 		this.inputRef.current.focus();
 		this.setState({ highlightIndex: inputValue });
 	}
 
 	render () {
 		const results = this.results();
-		const ol = (
-			<ol className={"auto-complete-results" + ((this.state.searchList.length > 0 && (this.state.isFocused || this.state.isItemFocused))
-				? ""
-				: " input-hidden-hack")}>
-				{results}
-			</ol>);
-
 		if (this.state.data.loading) {
-			return (<div className="auto-complete-container">
+			return (
+				<div className="auto-complete-container">
 					<input className="auto-complete-input" placeholder="Loading data..." disabled/>
 					<span className="loading-spinner"><Spinner/></span>
-				</div>);
+				</div>
+			);
 		}
 
-		return (<div className="auto-complete-container">
-				<input className="auto-complete-input" onChange={this.handleChange} onFocus={this.setFocus}
-				       placeholder={this.placeholder} onBlur={this.setBlur} ref={this.inputRef}/>
-				{ol}
-				{this.state.loading && (<span className="loading-spinner"><img alt="" src="../public/assets/spinner.svg"
-				                                                               style={{
-					                                                               height: "1em",
-					                                                               width: "auto"
-				                                                               }}/></span>)}
-				{(!this.state.loading && this.state.isItemFocused) && (<span className="escape-notif">esc</span>)}
-			</div>);
+		let listElementClass = "auto-complete-results";
+		if (this.state.searchList.length === 0 || (!this.state.isFocused && !this.state.isItemFocused)) {
+			listElementClass += " input-hidden-hack";
+		}
+
+		let loadingSpinner;
+		if (this.state.loading) {
+			loadingSpinner = (
+				<span className="loading-spinner">
+					<img
+						alt="Loading..."
+						src="../public/assets/spinner.svg"
+						style={{ height: "1em", width: "auto" }}/>
+				</span>
+			);
+		}
+
+		let escapeNotification;
+		if (!this.state.loading && this.state.isItemFocused) {
+			escapeNotification = <span className="escape-notif">esc</span>;
+		}
+
+		return (
+			<div className="auto-complete-container">
+				<input
+					className="auto-complete-input"
+					onChange={this.handleChange}
+					onFocus={this.setFocus}
+					placeholder={this.placeholder}
+					onBlur={this.setBlur}
+					ref={this.inputRef}
+				/>
+				<ol className={listElementClass}>{results}</ol>
+				{loadingSpinner}
+				{escapeNotification}
+			</div>
+		);
 	}
 }

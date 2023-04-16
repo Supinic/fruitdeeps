@@ -1,10 +1,15 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export class BonusRow extends Component {
+	static propTypes = {
+		percent: PropTypes.boolean,
+		bonusValue: PropTypes.number,
+		bonusName: PropTypes.string
+	};
+
 	constructor (props) {
-		if (!("percent" in props)) {
-			props.percent = false;
-		}
+		props.percent ??= false;
 		super(props);
 	}
 
@@ -19,13 +24,17 @@ export class BonusRow extends Component {
 		else {
 			colorClass = "color-3";
 		}
-		//<!--span className={this.props.bonusValue > 0 ? "" : "hidden"}>+</span-->
-		return (<tr>
+		// <!--span className={this.props.bonusValue > 0 ? "" : "hidden"}>+</span-->
+
+		const spanClass = (this.props.percent) ? "" : "hidden";
+		return (
+			<tr>
 				<td>{this.props.bonusName}</td>
 				<td className={colorClass}>
-
-					{this.props.bonusValue}<span className={this.props.percent ? "" : "hidden"}>%</span>
+					{this.props.bonusValue}
+					<span className={spanClass}>%</span>
 				</td>
-			</tr>);
+			</tr>
+		);
 	}
 }

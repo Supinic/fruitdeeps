@@ -2,13 +2,14 @@
   "env": {
     "es6": true,
     "es2020": true,
-    "node": true
+    "node": true,
+    "worker": true
   },
-  "extends": ["plugin:@next/next/recommended", "eslint:recommended"],
-  "plugins": [
-    "unicorn"
-  ],
+  "extends": ["plugin:@next/next/recommended", "plugin:react/recommended", "eslint:recommended"],
+  "plugins": ["unicorn"],
   "rules": {
+    "@next/next/no-img-element": "off",
+
     "array-bracket-newline": ["warn", "consistent"],
     "array-bracket-spacing": ["warn", "never"],
     "array-element-newline": ["warn", "consistent"],
@@ -180,8 +181,9 @@
   },
   "parser": "@babel/eslint-parser",
   "parserOptions": {
-  "requireConfigFile": false,
-   "babelOptions": {
+    "ecmaversion": "latest",
+    "requireConfigFile": false,
+    "babelOptions": {
       "presets": [
         "@babel/preset-react"
       ]

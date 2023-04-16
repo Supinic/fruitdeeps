@@ -1,7 +1,15 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+
 import { PrayerBook } from "../lib/PrayerBook.js";
+import Player from "../lib/Player.js";
 
 export class AttackerPrayers extends Component {
+	static propTypes = {
+		player: PropTypes.instanceOf(Player),
+		setPlayer: PropTypes.func
+	};
+
 	constructor (props) {
 		super(props);
 		this.handleTogglePrayer = this.handleTogglePrayer.bind(this);
@@ -30,104 +38,58 @@ export class AttackerPrayers extends Component {
 	}
 
 	render () {
+		const result = {};
 		const prayerList = new PrayerBook().prayerList();
-		const meleeList = [...prayerList.attack, ...prayerList.strength, ...prayerList.melee];
+		const prayerTypes = Object.keys(prayerList);
 
-		//Clean this up. VERY REPETITIVE
-		const attack = prayerList.attack.map((prayer, i) => {
-			return (<div key={i}>
-				<input
-					type="checkbox"
-					name="attack"
-					id={"attack-" + i}
-					checked={this.props.player.prayers.includes(prayer)}
-					onChange={this.handleTogglePrayer}
-					value={prayer}
-				/>
-				<label htmlFor={"attack-" + i}>{prayer}</label>
-			</div>);
-		});
+		for (const prayerType of prayerTypes) {
+			const prayers = prayerList[prayerType];
+			result[prayerType] = prayers.map((prayer, index) => (
+				<div key={index}>
+					<input
+						type="checkbox"
+						name={prayerType}
+						id={`${prayerType}-${index}`}
+						checked={this.props.player.prayers.includes(prayer)}
+						onChange={this.handleTogglePrayer}
+						value={prayer}
+					/>
+					{prayer}
+				</div>
+			));
+		}
 
-		const strength = prayerList.strength.map((prayer, i) => {
-			return (<div key={i}>
-				<input
-					type="checkbox"
-					name="strength"
-					id={"strength-" + i}
-					checked={this.props.player.prayers.includes(prayer)}
-					onChange={this.handleTogglePrayer}
-					value={prayer}
-				/>
-				<label htmlFor={"strength-" + i}>{prayer}</label>
-			</div>);
-		});
-
-		const melee = prayerList.melee.map((prayer, i) => {
-			return (<div key={i}>
-				<input
-					type="checkbox"
-					name="melee"
-					id={"melee-" + i}
-					checked={this.props.player.prayers.includes(prayer)}
-					onChange={this.handleTogglePrayer}
-					value={prayer}
-				/>
-				<label htmlFor={"melee-" + i}>{prayer}</label>
-			</div>);
-		});
-
-		const ranged = prayerList.ranged.map((prayer, i) => {
-			return (<div key={i}>
-				<input
-					type="checkbox"
-					name="ranged"
-					id={"ranged-" + i}
-					checked={this.props.player.prayers.includes(prayer)}
-					onChange={this.handleTogglePrayer}
-					value={prayer}
-				/>
-				<label htmlFor={"ranged-" + i}>{prayer}</label>
-			</div>);
-		});
-
-		const magic = prayerList.magic.map((prayer, i) => {
-			return (<div key={i}>
-				<input
-					type="checkbox"
-					name="magic"
-					id={"magic-" + i}
-					checked={this.props.player.prayers.includes(prayer)}
-					onChange={this.handleTogglePrayer}
-					value={prayer}
-				/>
-				<label htmlFor={"magic-" + i}>{prayer}</label>
-			</div>);
-		});
-
-		return (<div className="highlight-section flex-container-vertical">
-			<div>
-				<h3>Melee:</h3>
-				{attack}
+		return (
+			<div className="highlight-section flex-container-vertical">
+				<div>
+					<h3>Melee:</h3>
+					{result.attack}
+				</div>
+				<div>
+					{result.strength}
+				</div>
+				<div>
+					{result.melee}
+				</div>
+				<div>
+					<h3>Ranged:</h3>
+					{result.ranged}
+				</div>
+				<div>
+					<h3>Magic:</h3>
+					{result.magic}
+				</div>
+				<div>
+					<input
+						type="checkbox"
+						name="clear-prayers"
+						id="clear-prayers"
+						checked={this.props.player.prayers.length === 0}
+						onChange={this.handleClearPrayer}
+					/>
+					<label htmlFor="clear-prayers">No Prayer</label>
+				</div>
 			</div>
-			<div>
-				{strength}
-			</div>
-			<div>
-				{melee}
-			</div>
-			<div>
-				<h3>Ranged:</h3>
-				{ranged}
-			</div>
-			<div>
-				<h3>Magic:</h3>
-				{magic}
-			</div>
-			<div>
-				<input type="checkbox" name="clear-prayers" id="clear-prayers"
-				       checked={this.props.player.prayers.length === 0} onChange={this.handleClearPrayer}/><label
-				htmlFor="clear-prayers">No Prayer</label>
-			</div>
-		</div>);
+		);
 	}
 }
