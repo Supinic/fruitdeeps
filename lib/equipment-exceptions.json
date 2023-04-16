@@ -8,5 +8,15 @@
       "Thrown",
       "Chinchompas"
     ]
-  }
+  },
+  "unconventionalWeaponAttackStyles": [
+    {
+      "name": "Abyssal bludgeon",
+      "attackStyles": [
+        { "name": "Pound", "type": "Crush", "style": "Aggressive" },
+        { "name": "Pummel", "type": "Crush", "style": "Aggressive" },
+        { "name": "Block", "type": "Crush", "style": "Aggressive" }
+      ]
+    }
+  ]
 }
