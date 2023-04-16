@@ -4,7 +4,7 @@
     "es2020": true,
     "node": true
   },
-  "extends": "eslint:recommended",
+  "extends": ["plugin:@next/next/recommended", "eslint:recommended"],
   "plugins": [
     "unicorn"
   ],
@@ -180,10 +180,11 @@
   },
   "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaVersion": 2021,
-    "requireConfigFile": false
-  },
-  "globals": {
-    "sb": "readonly"
+  "requireConfigFile": false,
+   "babelOptions": {
+      "presets": [
+        "@babel/preset-react"
+      ]
+    }
   }
 }
