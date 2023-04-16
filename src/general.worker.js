@@ -1,8 +1,6 @@
-import { OverhitSwitcher } from "../lib/dps/overhit/OverhitSwitcher.js";
-
-import { TtkOptimization } from "../lib/dps/overhit/TtkOptimization.js";
-
 import { DpsDefence } from "../lib/dps/overhit/DpsDefence.js";
+import { OverhitSwitcher } from "../lib/dps/overhit/OverhitSwitcher.js";
+import { TtkOptimization } from "../lib/dps/overhit/TtkOptimization.js";
 
 self.addEventListener("message", (e) => {
 	if (e.data.type === "Overhit") {
