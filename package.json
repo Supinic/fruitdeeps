@@ -5,7 +5,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --fix ./"
+    "lint": "eslint --fix ./",
+    "fetch-items": "node importstuff/itempopulate.mjs"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -13,7 +14,6 @@
     "@zeit/next-workers": "^1.0.1-canary.1",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
-    "image-data-uri": "^2.0.1",
     "knex": "^2.4.2",
     "next": "latest",
     "node-sass": "^8.0.0",
