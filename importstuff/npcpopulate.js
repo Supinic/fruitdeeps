@@ -5,8 +5,6 @@ import fs from "fs";
 import csv from "csv-parser";
 // import api from "../lib/api.js"
 
-// import con from "../database/connection.js";
-
 const bonuslist = [
 	"hitpoints",
 	"att",

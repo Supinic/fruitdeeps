@@ -1,15 +1,8 @@
-// const https = require("https");
-
-// const ImageDataURI = require("image-data-uri");
-
 import https from "https";
 // import api from '../lib/api.js'
 import ImageDataURI from "image-data-uri";
 import fs from "fs";
 
-// const db = require("../server/database.js");
-
-import con from "../database/connection.js";
 const categoryTable = {
 	chinchompas: "Chinchompas",
 	slash_sword: "Slash Sword",
