@@ -2,7 +2,8 @@
   "env": {
     "es6": true,
     "es2020": true,
-    "node": true
+    "node": true,
+    "worker": true
   },
   "extends": ["plugin:@next/next/recommended", "plugin:react/recommended", "eslint:recommended"],
   "plugins": ["unicorn"],
@@ -178,8 +179,9 @@
   },
   "parser": "@babel/eslint-parser",
   "parserOptions": {
-  "requireConfigFile": false,
-   "babelOptions": {
+    "ecmaversion": "latest",
+    "requireConfigFile": false,
+    "babelOptions": {
       "presets": [
         "@babel/preset-react"
       ]
