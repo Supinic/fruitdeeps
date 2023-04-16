@@ -1,6 +1,5 @@
 import React from "react";
 import { AutofillSearchInput } from "./AutofillSearchInput.js";
-import npcFinder from "../lib/npcSpecificFinder.js";
 
 export class MonsterSelect extends AutofillSearchInput {
 	constructor (props) {
@@ -48,23 +47,9 @@ export class MonsterSelect extends AutofillSearchInput {
 		xhr.send();
 	}
 
-	selectItem (item) {
-		npcFinder(item, this.state.data.list)
-			.then(({
-				query,
-				list
-			}) => {
-				if (item !== query) {
-					return;
-				}
-				this.props.setMonList(list);
-			});
-		// this.getMonsterList(item, (res) => {
-		//     if (item != this.monsterName) {
-		//         return
-		//     }
-		// this.props.setMonList(JSON.parse(res))
-		// })
+	selectItem (query) {
+		const filteredList = this.state.data.list.filter(item => item.name === query);
+		this.props.setMonList(filteredList);
 	}
 
 	handleChange (e) {
