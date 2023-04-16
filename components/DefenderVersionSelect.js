@@ -1,6 +1,16 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+
+import { MonsterProperty } from "./types/MonsterProperty.js";
 
 export class DefenderVersionSelect extends Component {
+	static propTypes = {
+		monster: MonsterProperty,
+		monList: PropTypes.arrayOf(MonsterProperty),
+		setMonster: PropTypes.func,
+		setMonsterStat: PropTypes.func
+	};
+
 	constructor (props) {
 		super(props);
 		this.clickHandler = this.clickHandler.bind(this);
@@ -11,9 +21,9 @@ export class DefenderVersionSelect extends Component {
 	}
 
 	render () {
-		const versions = this.props.monList.map((listItem, i) => {
-			return <option key={i} value={i}>{listItem.version || (i + 1)}</option>;
-		});
+		const versions = this.props.monList.map((listItem, i) => (
+			<option key={i} value={i}>{listItem.version || (i + 1)}</option>
+		));
 
 		if (this.props.monList.length < 5) {
 			return (

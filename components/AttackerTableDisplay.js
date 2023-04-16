@@ -1,16 +1,20 @@
 import React, { Component, useState } from "react";
-import { BonusRow } from "./BonusRow.js";
+import PropTypes from "prop-types";
+
+import Player from "../lib/Player.js";
 
 const BonusSelectRow = (props) => {
-	let customBonus = props.player.customBonuses[props.bonusIndex];
+	const customBonus = props.player.customBonuses[props.bonusIndex];
 	let asterisk = null;
 	if (customBonus !== 0) {
-		asterisk = (<span
+		asterisk = (
+			<span
 				className={customBonus < 0 ? "color-2" : "color-3"}
 				title="Custom additive modifier active"
 			>
                 *
-            </span>);
+			</span>
+		);
 	}
 
 	let colorClass = "color-grey";
@@ -22,28 +26,38 @@ const BonusSelectRow = (props) => {
 	}
 
 	let percent = <pre className="hidden"> %</pre>;
-	if ("percent" in props && props.percent) {
+	if (props.percent) {
 		percent = <pre> %</pre>;
 	}
 
-	return (<tr>
+	return (
+		<tr>
 			<td className="single-line">
 				{props.bonusName}
 				{asterisk}
 			</td>
 			<td className={colorClass}>
-                <span className="stat-wrap">
-                    <input
-	                    type="number"
-	                    onChange={props.onChange}
-	                    value={props.player.bonuses[props.bonusIndex]}
-	                    data-bonus={props.bonusIndex}
-	                    className="input-invisible align-right"
-                    />
-	                {percent}
-                </span>
+				<span className="stat-wrap">
+					<input
+						type="number"
+						onChange={props.onChange}
+						value={props.player.bonuses[props.bonusIndex]}
+						data-bonus={props.bonusIndex}
+						className="input-invisible align-right"
+					/>
+					{percent}
+				</span>
 			</td>
-		</tr>);
+		</tr>
+	);
+};
+
+BonusSelectRow.propTypes = {
+	player: PropTypes.instanceOf(Player),
+	percent: PropTypes.boolean,
+	bonusName: PropTypes.string,
+	bonusIndex: PropTypes.number,
+	onChange: PropTypes.func
 };
 
 const BonusSwitcher = (props) => {
@@ -54,44 +68,56 @@ const BonusSwitcher = (props) => {
 		{" "}
 		<button className={type === "def" ? "selected" : ""}
 
-		        onClick={() => setType("def")}>Defence bonus
+			onClick={() => setType("def")}>Defence bonus
 		</button>
 		<table className="bonus-table">
-			<BonusSelectRow
-				onChange={props.handleSetBonus}
-				bonusName="Stab"
-				bonusIndex={type === "atk" ? 0 : 5}
-				player={props.player}
-			/>
-			<BonusSelectRow
-				onChange={props.handleSetBonus}
-				bonusName="Slash"
-				bonusIndex={type === "atk" ? 1 : 6}
-				player={props.player}
-			/>
-			<BonusSelectRow
-				onChange={props.handleSetBonus}
-				bonusName="Crush"
-				bonusIndex={type === "atk" ? 2 : 7}
-				player={props.player}
-			/>
-			<BonusSelectRow
-				onChange={props.handleSetBonus}
-				bonusName="Magic"
-				bonusIndex={type === "atk" ? 3 : 8}
-				player={props.player}
-			/>
-			<BonusSelectRow
-				onChange={props.handleSetBonus}
-				bonusName="Range"
-				bonusIndex={type === "atk" ? 4 : 9}
-				player={props.player}
-			/>
+			<tbody>
+				<BonusSelectRow
+					onChange={props.handleSetBonus}
+					bonusName="Stab"
+					bonusIndex={type === "atk" ? 0 : 5}
+					player={props.player}
+				/>
+				<BonusSelectRow
+					onChange={props.handleSetBonus}
+					bonusName="Slash"
+					bonusIndex={type === "atk" ? 1 : 6}
+					player={props.player}
+				/>
+				<BonusSelectRow
+					onChange={props.handleSetBonus}
+					bonusName="Crush"
+					bonusIndex={type === "atk" ? 2 : 7}
+					player={props.player}
+				/>
+				<BonusSelectRow
+					onChange={props.handleSetBonus}
+					bonusName="Magic"
+					bonusIndex={type === "atk" ? 3 : 8}
+					player={props.player}
+				/>
+				<BonusSelectRow
+					onChange={props.handleSetBonus}
+					bonusName="Range"
+					bonusIndex={type === "atk" ? 4 : 9}
+					player={props.player}
+				/>
+			</tbody>
 		</table>
 	</div>;
 };
 
+BonusSwitcher.propTypes = {
+	player: PropTypes.instanceOf(Player),
+	handleSetBonus: PropTypes.func
+};
+
 export class AttackerTableDisplay extends Component {
+	static propTypes = {
+		player: PropTypes.instanceOf(Player),
+		setPlayer: PropTypes.func
+	};
+
 	constructor (props) {
 		super(props);
 		this.handleSetBonus = this.handleSetBonus.bind(this);
@@ -126,7 +152,7 @@ export class AttackerTableDisplay extends Component {
 	}
 
 	render () {
-		var player = this.props.player;
+		const player = this.props.player;
 		let customSum = 0;
 		for (let i = 0; i < this.props.player.customBonuses.length; i++) {
 			customSum += Math.abs(this.props.player.customBonuses[i]);
@@ -135,85 +161,93 @@ export class AttackerTableDisplay extends Component {
 		let clearButton = null;
 		if (customSum > 0 || player.misc.manualSpeed > 0) {
 			clearButton = (<div>
-					<button onClick={this.handleClearBonus}>
+				<button onClick={this.handleClearBonus}>
 						Clear custom bonuses
-					</button>
-				</div>);
+				</button>
+			</div>);
 		}
 
-		return (<div className="flex-child flex-container-vertical">
+		return (
+			<div className="flex-child flex-container-vertical">
 				<BonusSwitcher handleSetBonus={this.handleSetBonus} player={player}/>
 				<div>
 					<h3>Other bonuses</h3>
 					<table className="bonus-table">
-						<BonusSelectRow
-							onChange={this.handleSetBonus}
-							bonusName="Melee Strength"
-							bonusIndex="10"
-							player={player}
-						/>
-						<BonusSelectRow
-							onChange={this.handleSetBonus}
-							bonusName="Ranged Strength"
-							bonusIndex="11"
-							player={player}
-						/>
-						<BonusSelectRow
-							onChange={this.handleSetBonus}
-							bonusName="Magic Damage"
-							bonusIndex="12"
-							player={player}
-							percent={true}
-						/>
-						<BonusSelectRow
-							onChange={this.handleSetBonus}
-							bonusName="Prayer"
-							bonusIndex="13"
-							player={player}
-						/>
+						<tbody>
+							<BonusSelectRow
+								onChange={this.handleSetBonus}
+								bonusName="Melee Strength"
+								bonusIndex="10"
+								player={player}
+							/>
+							<BonusSelectRow
+								onChange={this.handleSetBonus}
+								bonusName="Ranged Strength"
+								bonusIndex="11"
+								player={player}
+							/>
+							<BonusSelectRow
+								onChange={this.handleSetBonus}
+								bonusName="Magic Damage"
+								bonusIndex="12"
+								player={player}
+								percent={true}
+							/>
+							<BonusSelectRow
+								onChange={this.handleSetBonus}
+								bonusName="Prayer"
+								bonusIndex="13"
+								player={player}
+							/>
+						</tbody>
 					</table>
 				</div>
 				<div>
 					<h3>Weapon</h3>
 					<table className="bonus-table">
-						{player.equipment.weapon.name ? (<tr>
-								<td>Name:</td>
-								<td className="color-grey">
-									{player.equipment.weapon.name}
-								</td>
-							</tr>) : ("")}
+						<tbody>
+							{player.equipment.weapon.name
+								? (<tr>
+									<td>Name:</td>
+									<td className="color-grey">
+										{player.equipment.weapon.name}
+									</td>
+								</tr>)
+								: ("")}
 
-						<tr>
-							<td>Category</td>
-							<td className="color-grey">
-								{player.equipment.weapon.category}
-							</td>
-						</tr>
-						<tr>
-							<td>Base speed</td>
-							<td className="color-grey">
-								{player.equipment.weapon.speed}
-							</td>
-						</tr>
-						<tr>
-							<td className="single-line">
+							<tr>
+								<td>Category</td>
+								<td className="color-grey">
+									{player.equipment.weapon.category}
+								</td>
+							</tr>
+							<tr>
+								<td>Base speed</td>
+								<td className="color-grey">
+									{player.equipment.weapon.speed}
+								</td>
+							</tr>
+							<tr>
+								<td className="single-line">
 								Manual speed
-								{player.misc.manualSpeed > 0 ? (<span className="color-grey">*</span>) : ("")}
-							</td>
-							<td
-								className="color-grey"
-								onChange={this.handleSetSpeed}
-							>
-								<input
-									type="number"
-									value={player.misc.manualSpeed}
-									className="input-invisible align-right"
-								/>
-							</td>
-						</tr>
+									{player.misc.manualSpeed > 0 ? (<span className="color-grey">*</span>) : ("")}
+								</td>
+								<td
+									className="color-grey"
+									onChange={this.handleSetSpeed}
+								>
+									<input
+										type="number"
+										value={player.misc.manualSpeed}
+										className="input-invisible align-right"
+									/>
+								</td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 				{clearButton}
-			</div>);
+			</div>
+		);
 	}
 }

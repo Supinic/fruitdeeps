@@ -1,16 +1,19 @@
 import React, { Component } from "react";
-import { BonusRow } from "./BonusRow.js";
+import PropTypes from "prop-types";
 import {
 	LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, ResponsiveContainer
 } from "recharts";
-// import { Worker } from 'worker_threads';
-// import Worker from 'worker-loader!../lib/workers/Worker.js';
 
-// const worker = new Worker(new URL("../src/general.worker.js", import.meta.url));
+import { CalcsProperty } from "./types/CalcsProperty.js";
+import { StateProperty } from "./types/StateProperty.js";
 
-const colors = ["#9eff74", "#74c7ff", "#ff8274", "#eeeeee"];
+const colors = ["#9EFF74", "#74C7FF", "#FF8274", "#EEEEEE", "#D574FF", "#FFAC74", "#74F1FF"];
 
 export class CalcOutputOptimizationGraph extends Component {
+	static propTypes = {
+		calcsList: PropTypes.arrayOf(CalcsProperty),
+		state: StateProperty
+	};
 
 	constructor (props) {
 		super(props);
@@ -45,21 +48,20 @@ export class CalcOutputOptimizationGraph extends Component {
 		if (typeof window === "undefined") {
 			return;
 		}
+
 		this.optWorker.terminate();
 		this.optWorker = new Worker(new URL("../src/general.worker.js", import.meta.url));
-
-
-		this.optWorker.onmessage = function (event) {
-		};
+		this.optWorker.onmessage = function () {};
 
 		this.optWorker.addEventListener("message", (event) => {
-			if ("graphData" in event.data) {
+			if (event.data.graphData) {
 				this.setState({
 					data: event.data.graphData,
 					id: this.generateId()
 				});
 			}
 		});
+
 		this.optWorker.postMessage({
 			state: this.props.state,
 			calcsList: this.props.calcsList,
@@ -72,15 +74,19 @@ export class CalcOutputOptimizationGraph extends Component {
 		if (this.state.id !== this.generateId()) {
 			this.handleWorker();
 		}
-		const lines = this.props.calcsList.map((calcs, i) => (<Line
+		const lines = this.props.calcsList.map((calcs, i) => (
+			<Line
 				key={i}
 				type="monotone"
 				dot={false}
-				dataKey={"Set " + (i + 1)}
+				dataKey={`Set ${i + 1}`}
 				stroke={colors[i % 4]}
 				strokeWidth={3}
-			/>));
-		return (<div>
+			/>
+		));
+
+		return (
+			<div>
 				<h3
 					style={{
 						display: "flex",
@@ -94,33 +100,29 @@ export class CalcOutputOptimizationGraph extends Component {
 						style={{ display: "inline-flex" }}
 						data-tooltip-left="Continuous attacking assumes the player immediately switches to a new monster after killing the current one"
 					>
-                        <label
-	                        className="sub-text"
-	                        htmlFor="continuousToggle"
-	                        style={{
-		                        marginRight: "0.5em",
-		                        display: "inline-block"
-	                        }}
-                        >
-                            Continuous
-                        </label>
-                        <label className="toggle-control" htmlFor="continuousToggle">
-                            <input
-	                            type="checkbox"
-	                            id="continuousToggle"
-	                            checked={this.state.continuous}
-	                            onClick={this.toggleContinuous}
-                            />
-                            <span className="control"></span>
-                        </label>
-                    </span>
+						<label
+							className="sub-text"
+							htmlFor="continuousToggle"
+							style={{
+								marginRight: "0.5em",
+								display: "inline-block"
+							}}
+						>
+							Continuous
+						</label>
+						<label className="toggle-control" htmlFor="continuousToggle">
+							<input
+								type="checkbox"
+								id="continuousToggle"
+								checked={this.state.continuous}
+								onClick={this.toggleContinuous}
+							/>
+							<span className="control"></span>
+						</label>
+					</span>
 				</h3>
 				<div className="highlight-section flex-container-vertical">
-					<div
-						width="100%"
-						height="10em"
-						style={{ position: "relative" }}
-					>
+					<div style={{ position: "relative" }}>
 						<ResponsiveContainer width="100%" height={200}>
 							<LineChart
 								data={this.state.data[this.state.continuous ? 1 : 0]}
@@ -169,7 +171,8 @@ export class CalcOutputOptimizationGraph extends Component {
 						</ResponsiveContainer>
 					</div>
 				</div>
-			</div>);
-		//<Label value="Pages of my website" offset={0} position="insideBottom" />
+			</div>
+		);
+		// <Label value="Pages of my website" offset={0} position="insideBottom" />
 	}
 }

@@ -1,21 +1,33 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import { AttackerMisc } from "./AttackerMisc.js";
+import Player from "../lib/Player.js";
 
-const Tier3relic = (props) => {
-	return (<div>
-			<input
-				type="checkbox"
-				id={props.relicName + "-select"}
-				checked={props.player.misc.tier3relic === props.relicName}
-				value={props.relicName}
-				onChange={props.setRelic}
-			/>
-			<label htmlFor={props.relicName + "-select"}>{props.relicName}</label>
-		</div>);
+const Tier3relic = (props) => (<div>
+	<input
+		type="checkbox"
+		id={`${props.relicName}-select`}
+		checked={props.player.misc.tier3relic === props.relicName}
+		value={props.relicName}
+		onChange={props.setRelic}
+	/>
+	<label htmlFor={`${props.relicName}-select`}>{props.relicName}</label>
+</div>);
+
+Tier3relic.propTypes = {
+	player: PropTypes.instanceOf(Player),
+	relicName: PropTypes.string,
+	setRelic: PropTypes.func
 };
 
 export class AttackerRelics extends Component {
+	static propTypes = {
+		player: PropTypes.instanceOf(Player),
+		setPlayer: PropTypes.func,
+		slotname: PropTypes.string
+	};
+
 	constructor (props) {
 		super(props);
 		this.importRef = React.createRef();
@@ -50,24 +62,24 @@ export class AttackerRelics extends Component {
 
 	render () {
 		return (<div className="highlight-section flex-container-vertical">
-				<AttackerMisc player={this.props.player} setMisc={this.setMisc.bind(this)}/>
+			<AttackerMisc player={this.props.player} setMisc={this.setMisc.bind(this)}/>
+			<div>
+				<h3>Relics</h3>
 				<div>
-					<h3>Relics</h3>
-					<div>
-						<Tier3relic player={this.props.player} relicName="Quick Shot" setRelic={this.setT3Relic}/>
-						<Tier3relic player={this.props.player} relicName="Fluid Strike" setRelic={this.setT3Relic}/>
-						<Tier3relic player={this.props.player} relicName="Double Cast" setRelic={this.setT3Relic}/>
-					</div>
-					<div>
-						<input
-							type="checkbox"
-							id={"t6-select"}
-							checked={this.props.player.misc.tier6relic}
-							onChange={this.toggleT6Relic}
-						/>
-						<label htmlFor={"t6-select"}>Tier 6</label>
-					</div>
+					<Tier3relic player={this.props.player} relicName="Quick Shot" setRelic={this.setT3Relic}/>
+					<Tier3relic player={this.props.player} relicName="Fluid Strike" setRelic={this.setT3Relic}/>
+					<Tier3relic player={this.props.player} relicName="Double Cast" setRelic={this.setT3Relic}/>
 				</div>
-			</div>);
+				<div>
+					<input
+						type="checkbox"
+						id={"t6-select"}
+						checked={this.props.player.misc.tier6relic}
+						onChange={this.toggleT6Relic}
+					/>
+					<label htmlFor={"t6-select"}>Tier 6</label>
+				</div>
+			</div>
+		</div>);
 	}
 }

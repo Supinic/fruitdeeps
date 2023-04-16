@@ -1,15 +1,21 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+
+import Player from "../lib/Player.js";
 import { SpellBook } from "../lib/SpellBook.js";
 
-//this spell code is a mess. Condensing 42 spells down to just a few UI options. Abomination
+// this spell code is a mess. Condensing 42 spells down to just a few UI options. Abomination
 
 export class AttackerSpells extends Component {
+	static propTypes = {
+		player: PropTypes.instanceOf(Player),
+		setPlayer: PropTypes.func
+	};
+
 	constructor (props) {
 		super(props);
 		const spellBook = new SpellBook().tierObject(this.props.player.spell).spellBook;
-		this.state = {
-			spellBook: spellBook
-		};
+		this.state = { spellBook };
 
 		this.handleChangeBook = this.handleChangeBook.bind(this);
 		this.handleSetElement = this.handleSetElement.bind(this);
@@ -35,22 +41,22 @@ export class AttackerSpells extends Component {
 		const spellObj = new SpellBook().tierObject(this.props.player.spell);
 		console.log(e.target.value);
 		console.log(spellObj);
-		//this is really ugly!!!
+		// this is really ugly!!!
 		if (e.target.checked) {
 			if (["Wind", "Water", "Earth", "Fire"].includes(e.target.value)) {
 				if (spellObj.spellBook !== "standard" || this.props.player.spell === null) {
-					this.setSpell(e.target.value + " Strike");
+					this.setSpell(`${e.target.value} Strike`);
 				}
 				else {
-					this.setSpell(e.target.value + " " + spellObj.tier);
+					this.setSpell(`${e.target.value} ${spellObj.tier}`);
 				}
 			}
 			else if (["Smoke", "Shadow", "Blood", "Ice"].includes(e.target.value)) {
 				if (spellObj.spellBook !== "ancient") {
-					this.setSpell(e.target.value + " Rush");
+					this.setSpell(`${e.target.value} Rush`);
 				}
 				else {
-					this.setSpell(e.target.value + " " + spellObj.tier);
+					this.setSpell(`${e.target.value} ${spellObj.tier}`);
 				}
 			}
 		}
@@ -60,22 +66,22 @@ export class AttackerSpells extends Component {
 		const spellObj = new SpellBook().tierObject(this.props.player.spell);
 		console.log(e.target.value);
 		console.log(spellObj);
-		//this is really ugly too!!!
+		// this is really ugly too!!!
 		if (e.target.checked) {
 			if (["Strike", "Bolt", "Blast", "Wave", "Surge"].includes(e.target.value)) {
 				if (spellObj.spellBook !== "standard" || this.props.player.spell === null) {
-					this.setSpell("Wind " + e.target.value);
+					this.setSpell(`Wind ${e.target.value}`);
 				}
 				else {
-					this.setSpell(spellObj.element + " " + e.target.value);
+					this.setSpell(`${spellObj.element} ${e.target.value}`);
 				}
 			}
 			else if (["Rush", "Burst", "Blitz", "Barrage"].includes(e.target.value)) {
 				if (spellObj.spellBook !== "ancient") {
-					this.setSpell("Smoke " + e.target.value);
+					this.setSpell(`Smoke ${e.target.value}`);
 				}
 				else {
-					this.setSpell(spellObj.element + " " + e.target.value);
+					this.setSpell(`${spellObj.element} ${e.target.value}`);
 				}
 			}
 		}
@@ -109,69 +115,79 @@ export class AttackerSpells extends Component {
 	render () {
 		const spellObj = new SpellBook().tierObject(this.props.player.spell);
 
-		const spellSelect = ["standard", "ancient", "special"].map((bookType, i) => {
-			return (<div key={i}>
-				<input
-					type="radio"
-					name="spellbook-select"
-					id={"spellbook-select-" + bookType}
-					onChange={this.handleChangeBook}
-					value={bookType}
-					checked={this.state.spellBook === bookType}
-				/>
-				<label htmlFor={"spellbook-select-" + bookType}>
-					{bookType.charAt(0)
-						.toUpperCase() + bookType.slice(1)}
-				</label>
-			</div>);
-		});
+		const spellSelect = ["standard", "ancient", "special"].map((bookType, i) => (<div key={i}>
+			<input
+				type="radio"
+				name="spellbook-select"
+				id={`spellbook-select-${bookType}`}
+				onChange={this.handleChangeBook}
+				value={bookType}
+				checked={this.state.spellBook === bookType}
+			/>
+			<label htmlFor={`spellbook-select-${bookType}`}>
+				{bookType.charAt(0)
+					.toUpperCase() + bookType.slice(1)}
+			</label>
+		</div>));
 
-		let standardElements = ["Wind", "Water", "Earth", "Fire"].map((element, i) => {
-			return (<div key={i}>
-				<input type="radio" id={"element-" + element} checked={spellObj.element === element} value={element}
-				       onChange={this.handleSetElement}/>
-				<label htmlFor={"element-" + element}>{element}</label>
-			</div>);
-		});
+		let standardElements = ["Wind", "Water", "Earth", "Fire"].map((element, i) => (<div key={i}>
+			<input
+				type="radio"
+				id={`element-${element}`}
+				checked={spellObj.element === element}
+				value={element}
+				onChange={this.handleSetElement}
+			/>
+			<label htmlFor={`element-${element}`}>{element}</label>
+		</div>));
 
 		standardElements = (<div>
 			<h3>Elements</h3>
 			{standardElements}
 		</div>);
 
-		let standardTiers = ["Strike", "Bolt", "Blast", "Wave", "Surge"].map((tier, i) => {
-			return (<div key={i}>
-				<input type="radio" id={"tier-" + tier} checked={spellObj.tier === tier} value={tier}
-				       onChange={this.handleSetTier}/>
-				<label htmlFor={"tier-" + tier}>{tier}</label>
-			</div>);
-		});
+		let standardTiers = ["Strike", "Bolt", "Blast", "Wave", "Surge"].map((tier, i) => (<div key={i}>
+			<input
+				type="radio"
+				id={`tier-${tier}`}
+				checked={spellObj.tier === tier}
+				value={tier}
+				onChange={this.handleSetTier}
+			/>
+			<label htmlFor={`tier-${tier}`}>{tier}</label>
+		</div>));
 
 		standardTiers = (<div>
 			<h3>Tiers</h3>
 			{standardTiers}
 		</div>);
 
-		let ancientElements = ["Smoke", "Shadow", "Blood", "Ice"].map((element, i) => {
-			return (<div key={i}>
-				<input type="radio" id={"element-" + element} checked={spellObj.element === element} value={element}
-				       onChange={this.handleSetElement}/>
-				<label htmlFor={"element-" + element}>{element}</label>
-			</div>);
-		});
+		let ancientElements = ["Smoke", "Shadow", "Blood", "Ice"].map((element, i) => (<div key={i}>
+			<input
+				type="radio"
+				id={`element-${element}`}
+				checked={spellObj.element === element}
+				value={element}
+				onChange={this.handleSetElement}
+			/>
+			<label htmlFor={`element-${element}`}>{element}</label>
+		</div>));
 
 		ancientElements = (<div>
 			<h3>Elements</h3>
 			{ancientElements}
 		</div>);
 
-		let ancientTiers = ["Rush", "Burst", "Blitz", "Barrage"].map((tier, i) => {
-			return (<div key={i}>
-				<input type="radio" id={"tier-" + tier} checked={spellObj.tier === tier} value={tier}
-				       onChange={this.handleSetTier}/>
-				<label htmlFor={"tier-" + tier}>{tier}</label>
-			</div>);
-		});
+		let ancientTiers = ["Rush", "Burst", "Blitz", "Barrage"].map((tier, i) => (<div key={i}>
+			<input
+				type="radio"
+				id={`tier-${tier}`}
+				checked={spellObj.tier === tier}
+				value={tier}
+				onChange={this.handleSetTier}
+			/>
+			<label htmlFor={`tier-${tier}`}>{tier}</label>
+		</div>));
 
 		ancientTiers = (<div>
 			<h3>Tiers</h3>
@@ -180,13 +196,16 @@ export class AttackerSpells extends Component {
 
 		let specialMenu = [
 			"Iban Blast", "Magic Dart", "Saradomin Strike", "Flames of Zamorak", "Claws of Guthix"
-		].map((spell, i) => {
-			return (<div key={i}>
-				<input type="radio" id={"special-spell-" + spell} checked={spellObj.special === spell} value={spell}
-				       onChange={this.handleSpecialSpell}/>
-				<label htmlFor={"special-spell-" + spell}>{spell}</label>
-			</div>);
-		});
+		].map((spell, i) => (<div key={i}>
+			<input
+				type="radio"
+				id={`special-spell-${spell}`}
+				checked={spellObj.special === spell}
+				value={spell}
+				onChange={this.handleSpecialSpell}
+			/>
+			<label htmlFor={`special-spell-${spell}`}>{spell}</label>
+		</div>));
 
 		specialMenu = (<div>
 			<h3>Spells</h3>
@@ -194,8 +213,13 @@ export class AttackerSpells extends Component {
 		</div>);
 
 		const charge = (<div>
-			<input type="checkbox" id="select-toggle-charge" checked={this.props.player.misc.charge}
-			       onChange={this.toggleCharge.bind(this)}/><label htmlFor="select-toggle-charge">Charge</label>
+			<input
+				type="checkbox"
+				id="select-toggle-charge"
+				checked={this.props.player.misc.charge}
+				onChange={this.toggleCharge.bind(this)}
+			/>
+			<label htmlFor="select-toggle-charge">Charge</label>
 		</div>);
 
 		return (<div className="highlight-section flex-container-vertical">
@@ -210,8 +234,13 @@ export class AttackerSpells extends Component {
 			{this.state.spellBook === "special" ? specialMenu : ""}
 			{this.state.spellBook === "special" ? charge : ""}
 			<div>
-				<input type="radio" id="select-no-spells" checked={this.props.player.spell === null}
-				       onChange={this.handleClearSpell}/><label htmlFor="select-no-spells">No Spells</label>
+				<input
+					type="radio"
+					id="select-no-spells"
+					checked={this.props.player.spell === null}
+					onChange={this.handleClearSpell}
+				/>
+				<label htmlFor="select-no-spells">No Spells</label>
 			</div>
 		</div>);
 	}

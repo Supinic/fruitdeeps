@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import { BonusRow } from "./BonusRow.js";
+import PropTypes from "prop-types";
+
+import { CalcsProperty } from "./types/CalcsProperty.js";
 
 function hpLimit (dmg, hp) {
 	if (dmg <= hp) {
 		return dmg;
 	}
 	else {
-		return <span>{hp}<span className="sub-text"> {"(" + dmg + ")"}</span></span>;
+		return <span>{hp}<span className="sub-text"> {`(${dmg})`}</span></span>;
 	}
 }
 
@@ -16,30 +18,39 @@ function secondsToHms (d) {
 	const m = Math.floor(d % 3600 / 60);
 	const s = (d % 3600 % 60).toFixed(1);
 
-	const hDisplay = h > 0 ? h + "h " : "";
-	const mDisplay = m > 0 ? m + "m " : "";
-	const sDisplay = s > 0 ? s + "s" : "";
+	const hDisplay = h > 0 ? `${h}h ` : "";
+	const mDisplay = m > 0 ? `${m}m ` : "";
+	const sDisplay = s > 0 ? `${s}s` : "";
 	return hDisplay + mDisplay + sDisplay;
 }
 
 const decimals = 3;
 
 class OutputTable extends Component {
-	constructor (props) {
-		super(props);
-	}
+	static propTypes = {
+		name: PropTypes.string,
+		rows: PropTypes.arrayOf(PropTypes.element)
+	};
 
 	render () {
 		return (<div>
-				<span className="color-grey">{this.props.name}</span>
-				<table className="bonus-table">
+			<span className="color-grey">{this.props.name}</span>
+			<table className="bonus-table">
+				<tbody>
 					{this.props.rows}
-				</table>
-			</div>);
+				</tbody>
+			</table>
+		</div>);
 	}
 }
 
 export class CalcOutputNumbers extends Component {
+	static propTypes = {
+		calcs: CalcsProperty,
+		ttk: PropTypes.number,
+		spec: PropTypes.boolean
+	};
+
 	constructor (props) {
 		super(props);
 		this.attack = this.attack.bind(this);
@@ -65,18 +76,21 @@ export class CalcOutputNumbers extends Component {
 		}
 
 		const rows = [];
-		rows.push(<tr>
-			<td>Type</td>
-			<td className={color}>{this.props.calcs.attackType}</td>
-		</tr>);
-		rows.push(<tr>
-			<td>Style</td>
-			<td>{this.props.calcs.attackStyle}</td>
-		</tr>);
-		rows.push(<tr>
-			<td>Speed</td>
-			<td>{this.props.calcs.attackSpeed}</td>
-		</tr>);
+		rows.push(
+			<tr>
+				<td>Type</td>
+				<td className={color}>{this.props.calcs.attackType}</td>
+			</tr>,
+			<tr>
+				<td>Style</td>
+				<td>{this.props.calcs.attackStyle}</td>
+			</tr>,
+			<tr>
+				<td>Speed</td>
+				<td>{this.props.calcs.attackSpeed}</td>
+			</tr>
+		);
+
 		return <OutputTable name="Attack" rows={rows}/>;
 	}
 
@@ -89,10 +103,9 @@ export class CalcOutputNumbers extends Component {
 			<td>{hpLimit(this.props.calcs.maxHit, hp)}</td>
 		</tr>);
 
-		//for scythe and darkbow
+		// for scythe and darkbow
 		if (this.props.calcs.maxList.length > 1) {
 			for (let i = 0; i < this.props.calcs.maxList.length; i++) {
-				let maxOutput = this;
 				rows.push(<tr>
 					<td>Max hit <span className="sub-text">(hit {i + 1})</span></td>
 					<td>{hpLimit(this.props.calcs.maxList[i], hp)}</td>
@@ -100,7 +113,7 @@ export class CalcOutputNumbers extends Component {
 			}
 		}
 
-		if ("maxHitSpec" in this.props.calcs) {
+		if (typeof this.props.calcs.maxHitSpec === "number") {
 			rows.push(<tr>
 				<td>Max hit <span className="sub-text">(proc)</span></td>
 				<td>{hpLimit(this.props.calcs.maxHitSpec, hp)}</td>
@@ -113,26 +126,27 @@ export class CalcOutputNumbers extends Component {
 		</tr>);
 
 		return <OutputTable name="Damage" rows={rows}/>;
-
 	}
 
 	accuracy () {
 		const rows = [];
-		rows.push(<tr>
-			<td>Raw</td>
-			<td>{(this.props.calcs.rawAcc * 100).toFixed(decimals - 1) + "%"}</td>
-		</tr>);
+		rows.push(
+			<tr>
+				<td>Raw</td>
+				<td>{`${(this.props.calcs.rawAcc * 100).toFixed(decimals - 1)}%`}</td>
+			</tr>
+		);
 
-		if ("specAcc" in this.props.calcs) {
+		if (typeof this.props.calcs.specAcc === "number") {
 			rows.push(<tr>
 				<td><span className="sub-text">(with proc)</span></td>
-				<td>{(this.props.calcs.specAcc * 100).toFixed(decimals - 1) + "%"}</td>
+				<td>{`${(this.props.calcs.specAcc * 100).toFixed(decimals - 1)}%`}</td>
 			</tr>);
 		}
 
 		rows.push(<tr>
 			<td>p(dmg {">"} 0)</td>
-			<td className="color-1">{(this.props.calcs.acc1plus * 100).toFixed(decimals - 1) + "%"}</td>
+			<td className="color-1">{`${(this.props.calcs.acc1plus * 100).toFixed(decimals - 1)}%`}</td>
 		</tr>);
 
 		return <OutputTable name="Accuracy" rows={rows}/>;
@@ -157,70 +171,77 @@ export class CalcOutputNumbers extends Component {
 			<td>{this.props.calcs.dps.toFixed(decimals)}</td>
 		</tr>);
 
-		if ("overhit" in this.props) {
-			console.log(this.props.overhit);
-		}
+		// if ("overhit" in this.props) {
+		// 	console.log(this.props.overhit);
+		// }
 
 		if (!this.props.spec) {
-			rows.push(<tr>
-				<td>Overhit</td>
-				<td className="color-1">{this.props.ttk !== null ? overhitDps.toFixed(decimals) : "..."}</td>
-			</tr>);
-
-			rows.push(<tr>
-				<td>Overhit <span className="sub-text">(cont.)</span></td>
-				<td className="color-1">{this.props.ttk !== null ? overhitCont.toFixed(decimals) : "..."}</td>
-			</tr>);
+			rows.push(
+				<tr>
+					<td>Overhit</td>
+					<td className="color-1">{this.props.ttk !== null ? overhitDps.toFixed(decimals) : "..."}</td>
+				</tr>,
+				<tr>
+					<td>Overhit <span className="sub-text">(cont.)</span></td>
+					<td className="color-1">{this.props.ttk !== null ? overhitCont.toFixed(decimals) : "..."}</td>
+				</tr>
+			);
 		}
 
 		return <OutputTable name="Dps" rows={rows}/>;
 	}
 
 	ttk () {
-		const contTtk = this.props.ttk;
 		const ttk = this.props.ttk - this.props.calcs.attackSpeed;
-
 		const rows = [];
 
-		rows.push(<tr>
-			<td>Seconds</td>
-			<td>{this.props.ttk !== null ? <span>{secondsToHms(ttk * 0.6)} <span
-				className="sub-text"> (+{secondsToHms(this.props.calcs.attackSpeed * 0.6)})</span></span> : "..."}</td>
-		</tr>);
-
-		// rows.push(
-		//     <tr>
-		//         <td>Seconds <span className='sub-text'>(cont.)</span></td>
-		//         <td>{this.props.ttk !== null ? secondsToHms(contTtk * 0.6) : '...'}</td>
-		//     </tr>
-		// )
-
-
-		rows.push(<tr>
-			<td>Ticks</td>
-			<td className="color-1">{this.props.ttk !== null
-				? (<span>{ttk.toFixed(2)} <span className="sub-text"> (+{this.props.calcs.attackSpeed})</span></span>)
-				: "..."}</td>
-		</tr>);
-
-		// rows.push(
-		//     <tr>
-		//         <td>Ticks <span className='sub-text'>(cont.)</span></td>
-		//         <td className='color-1'>{this.props.ttk !== null ? contTtk.toFixed(decimals) : '...'}</td>
-		//     </tr>
-		// )
+		rows.push(
+			<tr>
+				<td>Seconds</td>
+				<td>{
+					(this.props.ttk !== null)
+						? (
+							<span>{secondsToHms(ttk * 0.6)}
+								<span className="sub-text">
+								(+{secondsToHms(this.props.calcs.attackSpeed * 0.6)})
+								</span>
+							</span>
+						)
+						: "..."
+				}
+				</td>
+			</tr>,
+			<tr>
+				<td>Ticks</td>
+				<td className="color-1">
+					{
+						(this.props.ttk !== null)
+							? (
+								<span>{ttk.toFixed(2)}
+									<span className="sub-text">
+										(+{this.props.calcs.attackSpeed})
+									</span>
+								</span>
+							)
+							: "..."
+					}
+				</td>
+			</tr>
+		);
 
 		return <OutputTable name="Time to kill" rows={rows}/>;
 	}
 
 	special () {
-		let calcs = this.props.calcs;
+		const calcs = this.props.calcs;
 		if (!(calcs.eHealing > 0 || calcs.eDefReduction > 0 || calcs.ePrayer > 0)) {
 			return null;
 		}
+
 		return (<div>
-				<span className="color-grey">Special</span>
-				<table className="bonus-table">
+			<span className="color-grey">Special</span>
+			<table className="bonus-table">
+				<tbody>
 					{calcs.eHealing > 0 && <tr>
 						<td>Expected healing</td>
 						<td>{calcs.eHealing.toFixed(3)}</td>
@@ -233,25 +254,25 @@ export class CalcOutputNumbers extends Component {
 						<td>Expected def reduction</td>
 						<td>{calcs.eDefReduction.toFixed(3)}</td>
 					</tr>}
-
-				</table>
-			</div>);
+				</tbody>
+			</table>
+		</div>);
 	}
 
 	render () {
 		return (<div className="flex-container flex-child">
-				<div className="flex-child flex-container-vertical">
-					{this.attack()}
-					{this.damage()}
-					{this.accuracy()}
+			<div className="flex-child flex-container-vertical">
+				{this.attack()}
+				{this.damage()}
+				{this.accuracy()}
+			</div>
+			<div className="flex-child">
+				<div className="highlight-section flex-container-vertical">
+					{this.dps()}
+					{this.props.spec || this.ttk()}
+					{this.special()}
 				</div>
-				<div className="flex-child">
-					<div className="highlight-section flex-container-vertical">
-						{this.dps()}
-						{this.props.spec || this.ttk()}
-						{this.special()}
-					</div>
-				</div>
-			</div>);
+			</div>
+		</div>);
 	}
 }
