@@ -54,6 +54,7 @@ export class AttackerPrayers extends Component {
 						onChange={this.handleTogglePrayer}
 						value={prayer}
 					/>
+					{prayer}
 				</div>
 			));
 		}
