@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 
 // @TODO fill this in
-
-// this.attackStyleSelected = 1;
 //
 // 		Object.assign(this, attributes);
 //
@@ -45,6 +43,7 @@ import PropTypes from "prop-types";
 
 
 const definition = {
+	attackStyleSelected: PropTypes.number,
 // 		boostList = [];
 // 		prayers = [];
 // 		equipment = {};

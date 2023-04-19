@@ -127,7 +127,7 @@ class AttackerSwitcherInner extends Component {
 
 class AttackerSwitcher extends Component {
 	static propTypes = {
-		playerList: PropTypes.arrayOf(PropTypes.instanceOf(Player)),
+		playerList: PropTypes.arrayOf(PlayerDataProperty),
 		addPlayer: PropTypes.func,
 		deletePlayer: PropTypes.func,
 		setPlayer: PropTypes.func

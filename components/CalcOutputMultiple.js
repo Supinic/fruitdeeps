@@ -79,7 +79,6 @@ export class CalcOutputMultiple extends Component {
 
 	render () {
 		const playerList = this.props.state.playerList;
-
 		this.stateInputs = playerList.map((player) => ({
 			player,
 			monster: this.props.state.monster
@@ -119,7 +118,7 @@ export class CalcOutputMultiple extends Component {
 		for (let i = 0; i < playerList.length; i++) {
 			if (i % 2 === 0) {
 				outputBlocks.push(
-					<div className="flex-container top-level">
+					<div key={i} className="flex-container top-level">
 						{dps[i]}
 						{i < dps.length ? dps[i + 1] : null}
 					</div>

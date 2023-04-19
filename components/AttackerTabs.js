@@ -12,9 +12,9 @@ import { AttackerRelics } from "./AttackerRelics.js";
 
 class Tab extends Component {
 	static propTypes = {
-		tab: PropTypes.number,
+		tab: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 		setTab: PropTypes.func,
-		tabSelected: PropTypes.oneOf(PropTypes.number, PropTypes.string),
+		tabSelected: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 		imgSrc: PropTypes.string
 	};
 

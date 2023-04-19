@@ -4,7 +4,7 @@ import {
 	LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, ResponsiveContainer, ReferenceLine
 } from "recharts";
 
-import { CalcsProperty } from "./types/MonsterProperty.js";
+import { CalcsProperty } from "./types/CalcsProperty.js";
 import { StateProperty } from "./types/StateProperty.js";
 
 // import Worker from 'worker-loader!../lib/workers/Worker.js';
@@ -54,8 +54,7 @@ export class DpsOverDefenceGraph extends Component {
 		this.optWorker.onmessage = function () {};
 
 		this.optWorker.addEventListener("message", (event) => {
-			if ("graphData" in event.data) {
-				console.log("lol", event.data.graphData);
+			if (event.data.graphData) {
 				this.setState({
 					data: event.data.graphData,
 					id: this.generateId()
@@ -75,15 +74,17 @@ export class DpsOverDefenceGraph extends Component {
 			this.handleWorker();
 		}
 
-		const lines = this.props.calcsList.map((calcs, i) => (<Line
-			key={i}
-			isAnimationActive={false}
-			type="monotone"
-			dot={false}
-			dataKey={`Set ${i + 1}`}
-			stroke={colors[i % 4]}
-			strokeWidth={3}
-		/>));
+		const lines = this.props.calcsList.map((calcs, i) => (
+			<Line
+				key={i}
+				isAnimationActive={false}
+				type="monotone"
+				dot={false}
+				dataKey={`Set ${i + 1}`}
+				stroke={colors[i % 4]}
+				strokeWidth={3}
+			/>
+		));
 
 		const dwhLines = [];
 		const def = this.props.state.monster.stats.def;
@@ -93,6 +94,7 @@ export class DpsOverDefenceGraph extends Component {
 				dwhDef = dwhDef - Math.trunc((dwhDef * 3) / 10);
 				dwhLines.push(
 					<ReferenceLine
+						key={i}
 						x={dwhDef}
 						stroke="#ff8274"
 						style={{ strokeDasharray: "15,10" }}
@@ -116,6 +118,7 @@ export class DpsOverDefenceGraph extends Component {
 
 		dwhLines.push(
 			<ReferenceLine
+				key="last"
 				x={Math.max(def - Math.floor(def / 10) - 1, 0)}
 				stroke="#eeeeee"
 				style={{ strokeDasharray: "15,10" }}
@@ -162,6 +165,7 @@ export class DpsOverDefenceGraph extends Component {
 							htmlFor="dpsOverDefenceToggle"
 						>
 							<input
+								readOnly
 								type="checkbox"
 								id="dpsOverDefenceToggle"
 								checked={this.state.expand}
