@@ -14,7 +14,7 @@ class Tab extends Component {
 	static propTypes = {
 		tab: PropTypes.number,
 		setTab: PropTypes.func,
-		tabSelected: PropTypes.number,
+		tabSelected: PropTypes.oneOf(PropTypes.number, PropTypes.string),
 		imgSrc: PropTypes.string
 	};
 
