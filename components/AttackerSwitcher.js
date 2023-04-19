@@ -5,13 +5,14 @@ import PropTypes from "prop-types";
 
 import { Attacker } from "./Attacker.js";
 import Player from "../lib/Player.js";
+import { PlayerDataProperty } from "./types/PlayerDataProperty.js";
 
 const MAXIMUM_PLAYER_SET_AMOUNT = 10;
 
 class AttackerSwitcherInner extends Component {
 	static propTypes = {
 		player: PropTypes.instanceOf(Player),
-		playerList: PropTypes.arrayOf(PropTypes.instanceOf(Player)),
+		playerList: PropTypes.arrayOf(PlayerDataProperty),
 		addPlayer: PropTypes.func,
 		deletePlayer: PropTypes.func,
 		setPlayer: PropTypes.func
