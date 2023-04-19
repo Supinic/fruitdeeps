@@ -118,7 +118,7 @@ export class CalcOutput extends Component {
 						</span>
 
 					</div>
-					<div style={{ width: "100%", height: "10em", position: "relative" }}>
+					<div style={{ position: "relative" }}>
 						<ResponsiveContainer width="100%" height={graphHeight}>
 							<BarChart
 								width={500}
