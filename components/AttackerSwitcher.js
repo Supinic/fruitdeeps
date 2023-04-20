@@ -83,7 +83,7 @@ class AttackerSwitcherInner extends Component {
 			}
 
 			let cloneButton;
-			if (this.props.playerList.length > 1 && this.props.playerList.length < MAXIMUM_PLAYER_SET_AMOUNT) {
+			if (this.props.playerList.length < MAXIMUM_PLAYER_SET_AMOUNT) {
 				cloneButton = <button className="seamless" onClick={this.clone}>Clone</button>;
 			}
 
