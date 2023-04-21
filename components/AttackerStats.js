@@ -95,7 +95,6 @@ export class AttackerStats extends Component {
 	}
 
 	checkboxChange (e) {
-		console.log(e.target.checked, e.target.value);
 		const player = this.props.player;
 		if (e.target.checked) {
 			player.addBoost(e.target.value);
@@ -103,6 +102,7 @@ export class AttackerStats extends Component {
 		else {
 			player.removeBoost(e.target.value);
 		}
+
 		this.props.setPlayer(player.minimize());
 	}
 

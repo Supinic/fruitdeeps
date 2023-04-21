@@ -97,14 +97,13 @@ export class AutofillSearchInput extends Component {
 	}
 
 	getList (searchText, callback) {
-		console.log("Getting list");
 		const xhr = new XMLHttpRequest();
-
 		xhr.onload = () => {
 			if (xhr.status >= 200 && xhr.status < 300 && searchText === this.state.inputText) {
 				callback(xhr.response);
 			}
 		};
+
 		xhr.open("GET", `${this.url}?like=${searchText}`);
 		xhr.send();
 	}

@@ -15,7 +15,6 @@ export class Attacker extends Component {
 
 	render () {
 		const player = this.props.player;
-		console.log("attacker", player);
 		return (
 			<div className="flex-container">
 				<div className="flex-child flex-container-vertical">
