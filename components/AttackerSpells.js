@@ -32,16 +32,12 @@ export class AttackerSpells extends Component {
 
 	handleChangeBook (e) {
 		if (e.target.checked) {
-			console.log(e.target.value);
 			this.setState({ spellBook: e.target.value });
 		}
 	}
 
 	handleSetElement (e) {
 		const spellObj = new SpellBook().tierObject(this.props.player.spell);
-		console.log(e.target.value);
-		console.log(spellObj);
-		// this is really ugly!!!
 		if (e.target.checked) {
 			if (["Wind", "Water", "Earth", "Fire"].includes(e.target.value)) {
 				if (spellObj.spellBook !== "standard" || this.props.player.spell === null) {
@@ -64,9 +60,6 @@ export class AttackerSpells extends Component {
 
 	handleSetTier (e) {
 		const spellObj = new SpellBook().tierObject(this.props.player.spell);
-		console.log(e.target.value);
-		console.log(spellObj);
-		// this is really ugly too!!!
 		if (e.target.checked) {
 			if (["Strike", "Bolt", "Blast", "Wave", "Surge"].includes(e.target.value)) {
 				if (spellObj.spellBook !== "standard" || this.props.player.spell === null) {
@@ -109,12 +102,12 @@ export class AttackerSpells extends Component {
 		else {
 			player.setMisc("charge", true);
 		}
+
 		this.props.setPlayer(player.minimize());
 	}
 
 	render () {
 		const spellObj = new SpellBook().tierObject(this.props.player.spell);
-
 		const spellSelect = ["standard", "ancient", "special"].map((bookType, i) => (<div key={i}>
 			<input
 				type="radio"

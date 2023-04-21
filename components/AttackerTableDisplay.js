@@ -138,7 +138,7 @@ export class AttackerTableDisplay extends Component {
 
 	handleSetBonus (e) {
 		e.persist();
-		console.log(e.target.value);
+
 		const player = this.props.player;
 		player.setBonusCustom(parseInt(e.target.getAttribute("data-bonus")), parseInt(e.target.value));
 		this.props.setPlayer(player.minimize());

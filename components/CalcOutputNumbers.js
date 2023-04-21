@@ -177,8 +177,6 @@ export class CalcOutputNumbers extends Component {
 		const overhitDps = hp / ttk / 0.6;
 		const overhitCont = hp / contTtk / 0.6;
 
-		console.log("ttk output", ttk, hp, this.props.calcs.attackSpeed, overhitDps, overhitCont);
-
 		rows.push(
 			<tr key="raw-dps">
 				<td>Raw {this.props.calcs.flags.includes("Enchanted ruby bolts") ? momentary : null}</td>

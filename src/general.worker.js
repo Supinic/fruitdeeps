@@ -13,16 +13,17 @@ self.addEventListener("message", (e) => {
 	else if (e.data.type === "Optimization") {
 		const calcsList = e.data.calcsList;
 		const state = e.data.state;
-		console.log("opt data", e);
+
 		const ttkOpt = new TtkOptimization(state, calcsList);
 		const output = ttkOpt.output();
-		console.log(output);
+
 		self.postMessage(output);
 	}
 	else if (e.data.type === "DpsDefence") {
 		const calcsList = e.data.calcsList;
 		const state = e.data.state;
 		const dpsDef = new DpsDefence(state, calcsList);
+
 		self.postMessage(dpsDef.output());
 	}
 });
