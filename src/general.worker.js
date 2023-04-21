@@ -1,12 +1,12 @@
 import { DpsDefence } from "../lib/dps/overhit/DpsDefence.js";
-import { OverhitSwitcher } from "../lib/dps/overhit/OverhitSwitcher.js";
+import { Overhit } from "../lib/dps/overhit/Overhit.js";
 import { TtkOptimization } from "../lib/dps/overhit/TtkOptimization.js";
 
 self.addEventListener("message", (e) => {
 	if (e.data.type === "Overhit") {
 		const calcs = e.data.calcs;
 		const state = e.data.state;
-		const overhit = OverhitSwitcher(state, calcs);
+		const overhit = new Overhit(state, calcs);
 
 		self.postMessage({ overhit: overhit.output() });
 	}
