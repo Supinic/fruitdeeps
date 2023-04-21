@@ -1,6 +1,13 @@
 import api from "../lib/api.js";
 
-const blowp = { name: "Toxic blowpipe",slot: "2h",bonuses: [0,0,0,0,30,0,0,0,0,0,0,20,0,0],id: 12926,category: "Thrown",speed: 3 };
+const blowp = {
+	name: "Toxic blowpipe",
+	slot: "2h",
+	bonuses: [0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 0, 20, 0, 0],
+	id: 12926,
+	category: "Thrown",
+	speed: 3
+};
 
 const darts = {
 	Bronze: 1,
@@ -28,7 +35,9 @@ const customs = [
 ];
 
 for (const item of customs) {
-	api.addItem(item).then(() => {console.log("finished", item.name);});
+	api.addItem(item).then(() => {
+		console.log("finished", item.name);
+	});
 }
 
 for (const type of Object.keys(darts)) {
@@ -37,5 +46,7 @@ for (const type of Object.keys(darts)) {
 	item.name = `${blowp.name} (${type})`;
 	item.bonuses[11] += darts[type];
 
-	api.addItem(item).then(() => {console.log("finished", item);});
+	api.addItem(item).then(() => {
+		console.log("finished", item);
+	});
 }

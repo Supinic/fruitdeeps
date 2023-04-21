@@ -33,14 +33,16 @@ class OutputTable extends Component {
 	};
 
 	render () {
-		return (<div>
-			<span className="color-grey">{this.props.name}</span>
-			<table className="bonus-table">
-				<tbody>
-					{this.props.rows}
-				</tbody>
-			</table>
-		</div>);
+		return (
+			<div>
+				<span className="color-grey">{this.props.name}</span>
+				<table className="bonus-table">
+					<tbody>
+						{this.props.rows}
+					</tbody>
+				</table>
+			</div>
+		);
 	}
 }
 
@@ -48,7 +50,7 @@ export class CalcOutputNumbers extends Component {
 	static propTypes = {
 		calcs: CalcsProperty,
 		ttk: PropTypes.number,
-		spec: PropTypes.boolean
+		spec: PropTypes.bool
 	};
 
 	constructor (props) {
@@ -75,21 +77,20 @@ export class CalcOutputNumbers extends Component {
 				break;
 		}
 
-		const rows = [];
-		rows.push(
-			<tr>
+		const rows = [
+			<tr key="attack-type">
 				<td>Type</td>
 				<td className={color}>{this.props.calcs.attackType}</td>
 			</tr>,
-			<tr>
+			<tr key="attack-style">
 				<td>Style</td>
 				<td>{this.props.calcs.attackStyle}</td>
 			</tr>,
-			<tr>
+			<tr key={"attack-speed"}>
 				<td>Speed</td>
 				<td>{this.props.calcs.attackSpeed}</td>
 			</tr>
-		);
+		];
 
 		return <OutputTable name="Attack" rows={rows}/>;
 	}
@@ -98,32 +99,40 @@ export class CalcOutputNumbers extends Component {
 		const rows = [];
 		const hp = this.props.calcs.npcHp;
 
-		rows.push(<tr>
-			<td>Max hit</td>
-			<td>{hpLimit(this.props.calcs.maxHit, hp)}</td>
-		</tr>);
+		rows.push(
+			<tr key="max-hit">
+				<td>Max hit</td>
+				<td>{hpLimit(this.props.calcs.maxHit, hp)}</td>
+			</tr>
+		);
 
 		// for scythe and darkbow
 		if (this.props.calcs.maxList.length > 1) {
 			for (let i = 0; i < this.props.calcs.maxList.length; i++) {
-				rows.push(<tr>
-					<td>Max hit <span className="sub-text">(hit {i + 1})</span></td>
-					<td>{hpLimit(this.props.calcs.maxList[i], hp)}</td>
-				</tr>);
+				rows.push(
+					<tr key="max-list">
+						<td>Max hit <span className="sub-text">(hit {i + 1})</span></td>
+						<td>{hpLimit(this.props.calcs.maxList[i], hp)}</td>
+					</tr>
+				);
 			}
 		}
 
 		if (typeof this.props.calcs.maxHitSpec === "number") {
-			rows.push(<tr>
-				<td>Max hit <span className="sub-text">(proc)</span></td>
-				<td>{hpLimit(this.props.calcs.maxHitSpec, hp)}</td>
-			</tr>);
+			rows.push(
+				<tr key="max-hit-spec">
+					<td>Max hit <span className="sub-text">(proc)</span></td>
+					<td>{hpLimit(this.props.calcs.maxHitSpec, hp)}</td>
+				</tr>
+			);
 		}
 
-		rows.push(<tr>
-			<td>Expected</td>
-			<td>{this.props.calcs.eDmg.toFixed(2)}</td>
-		</tr>);
+		rows.push(
+			<tr key="expected-damage">
+				<td>Expected</td>
+				<td>{this.props.calcs.eDmg.toFixed(2)}</td>
+			</tr>
+		);
 
 		return <OutputTable name="Damage" rows={rows}/>;
 	}
@@ -131,23 +140,27 @@ export class CalcOutputNumbers extends Component {
 	accuracy () {
 		const rows = [];
 		rows.push(
-			<tr>
+			<tr key="raw-accuracy">
 				<td>Raw</td>
 				<td>{`${(this.props.calcs.rawAcc * 100).toFixed(decimals - 1)}%`}</td>
 			</tr>
 		);
 
 		if (typeof this.props.calcs.specAcc === "number") {
-			rows.push(<tr>
-				<td><span className="sub-text">(with proc)</span></td>
-				<td>{`${(this.props.calcs.specAcc * 100).toFixed(decimals - 1)}%`}</td>
-			</tr>);
+			rows.push(
+				<tr key="proc-accuracy">
+					<td><span className="sub-text">(with proc)</span></td>
+					<td>{`${(this.props.calcs.specAcc * 100).toFixed(decimals - 1)}%`}</td>
+				</tr>
+			);
 		}
 
-		rows.push(<tr>
-			<td>p(dmg {">"} 0)</td>
-			<td className="color-1">{`${(this.props.calcs.acc1plus * 100).toFixed(decimals - 1)}%`}</td>
-		</tr>);
+		rows.push(
+			<tr key="nonzero-accuracy">
+				<td>p(dmg {">"} 0)</td>
+				<td className="color-1">{`${(this.props.calcs.acc1plus * 100).toFixed(decimals - 1)}%`}</td>
+			</tr>
+		);
 
 		return <OutputTable name="Accuracy" rows={rows}/>;
 	}
@@ -166,22 +179,20 @@ export class CalcOutputNumbers extends Component {
 
 		console.log("ttk output", ttk, hp, this.props.calcs.attackSpeed, overhitDps, overhitCont);
 
-		rows.push(<tr>
-			<td>Raw {this.props.calcs.flags.includes("Enchanted ruby bolts") ? momentary : null}</td>
-			<td>{this.props.calcs.dps.toFixed(decimals)}</td>
-		</tr>);
-
-		// if ("overhit" in this.props) {
-		// 	console.log(this.props.overhit);
-		// }
+		rows.push(
+			<tr key="raw-dps">
+				<td>Raw {this.props.calcs.flags.includes("Enchanted ruby bolts") ? momentary : null}</td>
+				<td>{this.props.calcs.dps.toFixed(decimals)}</td>
+			</tr>
+		);
 
 		if (!this.props.spec) {
 			rows.push(
-				<tr>
+				<tr key="overhit-dps">
 					<td>Overhit</td>
 					<td className="color-1">{this.props.ttk !== null ? overhitDps.toFixed(decimals) : "..."}</td>
 				</tr>,
-				<tr>
+				<tr key="overhit-cont-dps">
 					<td>Overhit <span className="sub-text">(cont.)</span></td>
 					<td className="color-1">{this.props.ttk !== null ? overhitCont.toFixed(decimals) : "..."}</td>
 				</tr>
@@ -196,7 +207,7 @@ export class CalcOutputNumbers extends Component {
 		const rows = [];
 
 		rows.push(
-			<tr>
+			<tr key="seconds">
 				<td>Seconds</td>
 				<td>{
 					(this.props.ttk !== null)
@@ -211,7 +222,7 @@ export class CalcOutputNumbers extends Component {
 				}
 				</td>
 			</tr>,
-			<tr>
+			<tr key="ticks">
 				<td>Ticks</td>
 				<td className="color-1">
 					{

@@ -5,6 +5,11 @@
     "node": true,
     "worker": true
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "extends": ["plugin:@next/next/recommended", "plugin:react/recommended", "eslint:recommended"],
   "plugins": ["unicorn"],
   "rules": {

@@ -1,6 +1,6 @@
 import React from "react";
 import { AutofillSearchInput } from "./AutofillSearchInput.js";
-import SearchFilter from "../lib/itemFinder.js";
+import searchFilter from "../lib/itemFinder.js";
 // import Image from "next/image";
 
 export class EquipmentSelect extends AutofillSearchInput {
@@ -14,6 +14,7 @@ export class EquipmentSelect extends AutofillSearchInput {
 
 	componentDidMount () {
 		super.componentDidMount();
+
 		if (!this.state.data.initialLoad) {
 			this.setState({
 				data: {
@@ -22,10 +23,10 @@ export class EquipmentSelect extends AutofillSearchInput {
 					list: []
 				}
 			});
+
 			fetch("/assets/items.json")
 				.then((response) => response.json())
 				.then((data) => {
-					console.log(data);
 					this.setState({
 						data: {
 							initialLoad: true,
@@ -40,22 +41,14 @@ export class EquipmentSelect extends AutofillSearchInput {
 	handleChange (e) {
 		const inputValue = e.target.value;
 		this.setState({ inputText: inputValue });
-		if (inputValue.length >= 3) {
-			SearchFilter(inputValue, this.state.data.list)
-				.then(({
-					query,
-					list
-				}) => {
-					console.log(query, list);
-					if (query === inputValue) {
-						console.log("list", list);
-						this.setState({
-							searchList: list,
-							highlightIndex: 0,
-							loading: false
-						});
-					}
-				});
+
+		if (inputValue.length >= 2) {
+			const list = searchFilter(inputValue, this.state.data.list);
+			this.setState({
+				searchList: list,
+				highlightIndex: 0,
+				loading: false
+			});
 		}
 		else {
 			this.setState({

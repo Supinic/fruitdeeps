@@ -112,13 +112,13 @@ export class CalcOutput extends Component {
 						<span style={{ display: "inline-flex" }}>
 							<span className="sub-text" style={{ marginRight: "0.5em", display: "inline-block" }}>Expand</span>
 							<label className="toggle-control" style={{ float: "right" }}>
-								<input type="checkbox" checked={this.state.expand} onClick={this.toggleExpand}/>
+								<input readOnly type="checkbox" checked={this.state.expand} onClick={this.toggleExpand}/>
 								<span className="control"></span>
 							</label>
 						</span>
 
 					</div>
-					<div style={{ width: "100%", height: "10em", position: "relative" }}>
+					<div style={{ position: "relative" }}>
 						<ResponsiveContainer width="100%" height={graphHeight}>
 							<BarChart
 								width={500}

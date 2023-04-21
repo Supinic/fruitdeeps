@@ -112,6 +112,7 @@ export class CalcOutputOptimizationGraph extends Component {
 						</label>
 						<label className="toggle-control" htmlFor="continuousToggle">
 							<input
+								readOnly
 								type="checkbox"
 								id="continuousToggle"
 								checked={this.state.continuous}

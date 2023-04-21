@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export class BonusRow extends Component {
 	static propTypes = {
-		percent: PropTypes.boolean,
+		percent: PropTypes.bool,
 		bonusValue: PropTypes.number,
 		bonusName: PropTypes.string
 	};

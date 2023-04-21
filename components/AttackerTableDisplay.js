@@ -54,9 +54,9 @@ const BonusSelectRow = (props) => {
 
 BonusSelectRow.propTypes = {
 	player: PropTypes.instanceOf(Player),
-	percent: PropTypes.boolean,
+	percent: PropTypes.bool,
 	bonusName: PropTypes.string,
-	bonusIndex: PropTypes.number,
+	bonusIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	onChange: PropTypes.func
 };
 
@@ -237,6 +237,7 @@ export class AttackerTableDisplay extends Component {
 									onChange={this.handleSetSpeed}
 								>
 									<input
+										readOnly
 										type="number"
 										value={player.misc.manualSpeed}
 										className="input-invisible align-right"
