@@ -93,6 +93,7 @@ export class DefenderTableDisplay extends Component {
 
 	toggleAttribute (e) {
 		e.persist();
+
 		const attribute = e.target.value;
 		const monster = this.props.monster;
 		let newMonster = {};
@@ -104,7 +105,7 @@ export class DefenderTableDisplay extends Component {
 		else {
 			newMonster.attributes.push(attribute);
 		}
-		console.log(newMonster.attributes, attribute);
+
 		this.props.setMonster(newMonster);
 	}
 

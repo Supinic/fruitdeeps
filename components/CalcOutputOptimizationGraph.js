@@ -34,7 +34,6 @@ export class CalcOutputOptimizationGraph extends Component {
 
 	toggleContinuous () {
 		this.setState({ continuous: !this.state.continuous });
-		console.log(this.state);
 	}
 
 	generateId () {

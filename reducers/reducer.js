@@ -106,8 +106,9 @@ function reducer (state = defaultState, action) {
 			if (action.stat === "hitpoints" && value === 0) {
 				value = 1;
 			}
+
 			monster.stats[action.stat] = value;
-			console.log("monster set stat", monster);
+
 			return {
 				...state, monster
 			};

@@ -65,7 +65,7 @@ export class CalcOutputTtkChart extends Component {
 			});
 			useableData.push(dataPoint);
 		});
-		console.log("use", useableData);
+
 		return (<div width="100%" height="10em">
 				<ResponsiveContainer width="100%" height={400}>
 					<LineChart
