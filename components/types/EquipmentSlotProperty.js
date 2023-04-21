@@ -17,4 +17,4 @@ const WeaponEquipmentProperty = PropTypes.shape({
 	speed: PropTypes.number
 });
 
-export const EquipmentSlotProperty = PropTypes.oneOf([GenericEquipmentProperty, WeaponEquipmentProperty]);
+export const EquipmentSlotProperty = PropTypes.oneOfType([GenericEquipmentProperty, WeaponEquipmentProperty]);
