@@ -1,67 +1,36 @@
 import PropTypes from "prop-types";
 
-// @TODO fill this in
-//
-// 		Object.assign(this, attributes);
-//
-// 		this.equipment = {};
-//
-// 		for (const slot of slots) {
-// 			if (slot !== "2h") {
-// 				this.equipment[slot] = { ...nullItem, slot };
-// 			}
-// 		}
-//
-// 		this.equipment.weapon = unarmed;
-//
-// 		this.equipment = {
-// 			...this.equipment, ...attributes.equipment
-// 		};
-//
-// 		this.stats = {};
-// 		for (const stat of stats) {
-// 			this.stats[stat] = 99;
-// 		}
-//
-// 		this.stats = {
-// 			...this.stats, ...attributes.stats
-// 		};
-//
-// 		this.misc = {
-// 			onTask: true,
-// 			wilderness: true,
-// 			currentHitpoints: 99,
-// 			kandarinHard: true,
-// 			charge: false,
-// 			tier3relic: null,
-// 			tier6relic: false,
-// 			mining: 99,
-// 			baRank: 5,
-// 			manualSpeed: 0,
-// 			...attributes.misc
-// 		};
-
+import { BonusesProperty } from "./BonusesProperty.js";
+import { EquipmentSlotProperty } from "./EquipmentSlotProperty.js";
 
 const definition = {
 	attackStyleSelected: PropTypes.number,
-// 		boostList = [];
-// 		prayers = [];
-// 		equipment = {};
-// 		spell: PropTypes.string;
-// 		customBonuses = new Array(14).fill(0);
-// 	stats: PropTypes.arrayOf(PropTypes.number),
-
-// 			onTask: true,
-// 			wilderness: true,
-// 			currentHitpoints: 99,
-// 			kandarinHard: true,
-// 			charge: false,
-// 			tier3relic: null,
-// 			tier6relic: false,
-// 			mining: 99,
-// 			baRank: 5,
-// 			manualSpeed: 0,
-// 			...attributes.misc
+	boostList: PropTypes.arrayOf(PropTypes.string),
+	customBonuses: BonusesProperty,
+	equipment: PropTypes.objectOf(EquipmentSlotProperty),
+	misc: PropTypes.shape({
+		onTask: PropTypes.bool,
+		wilderness: PropTypes.bool,
+		currentHitpoints: PropTypes.number,
+		kandarinHard: PropTypes.bool,
+		charge: PropTypes.bool,
+		tier3relic: PropTypes.bool,
+		tier6relic: PropTypes.bool,
+		mining: PropTypes.number,
+		baRank: PropTypes.number,
+		manualSpeed: PropTypes.number
+	}),
+	spell: PropTypes.string,
+	prayerList: PropTypes.arrayOf(PropTypes.string),
+	stats: PropTypes.shape({
+		attack: PropTypes.number,
+		strength: PropTypes.number,
+		ranged: PropTypes.number,
+		magic: PropTypes.number,
+		hitpoints: PropTypes.number,
+		prayer: PropTypes.number,
+		defence: PropTypes.number
+	})
 };
 
 export const PlayerDataProperty = PropTypes.shape(definition);

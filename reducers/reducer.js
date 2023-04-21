@@ -52,7 +52,6 @@ const toaNpcs = [
 	"Akkha's Shadow"
 ];
 
-
 const defaultState = {
 	playerList: [], monster: Newtroost
 };
@@ -63,12 +62,6 @@ for (let i = 0; i < 2; i++) {
 
 function reducer (state = defaultState, action) {
 	const newState = { ...state };
-	// Variable `player` is unused?
-	// let player = {};
-	// if ("index" in action) {
-	// 	player = new Player(newState.playerList[action.index]);
-	// }
-
 	switch (action.type) {
 		case "SET_PLAYER": {
 			newState.playerList = [...newState.playerList];
