@@ -17,7 +17,7 @@ import {
 
 import { CalcsProperty } from "./types/CalcsProperty.js";
 import { CalcOutputNumbers } from "./CalcOutputNumbers.js";
-import { Flags } from "../lib/dps/Flags.js";
+import { descriptions as flagDescriptions } from "../game-data/flags.json";
 
 const toPercent = (decimal, fixed = 2) => `${(decimal * 100).toFixed(fixed)}%`;
 
@@ -54,9 +54,8 @@ export class CalcOutput extends Component {
 			likelihood: likelihood.toFixed(4)
 		}));
 
-		const flags = new Flags();
 		const badges = calcs.flags.map((flag, i) => (
-			<span key={i} className="info-badge" data-tooltip={flags.description(flag)}>{flag}</span>)
+			<span key={i} className="info-badge" data-tooltip={flagDescriptions[flag]}>{flag}</span>)
 		);
 
 		let marginSides = 5;
