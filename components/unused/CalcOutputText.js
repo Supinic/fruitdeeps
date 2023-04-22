@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Flags } from "../../lib/dps/Flags.js";
 
 import { CalcsProperty } from "../types/CalcsProperty.js";
+import { descriptions as flagDescriptions } from "../../game-data/flags.json";
 
 export class CalcOutputText extends Component {
 	static propTypes = {
@@ -9,11 +9,10 @@ export class CalcOutputText extends Component {
 	};
 
 	render () {
-		const flags = new Flags();
 		const flagTable = this.props.calcs.flags.map((flag, index) => (
 			<tr key={index}>
 				<td>{flag}</td>
-				<td className="color-grey">{flags.description(flag)}</td>
+				<td className="color-grey">{flagDescriptions[flag]}</td>
 			</tr>
 		));
 
