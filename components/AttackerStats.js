@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import Player from "../lib/Player.js";
-import { PotionDrinker } from "../lib/PotionDrinker.js";
+import { list as boostList } from "../lib/Boosts.js";
 // import Image from "next/image";
 
 class StatPicker extends Component {
@@ -118,10 +118,7 @@ export class AttackerStats extends Component {
 	}
 
 	render () {
-		const drinker = new PotionDrinker();
-		const boosts = drinker.boostList();
-
-		const potionInput = boosts.map((boost, i) => (
+		const potionInput = boostList.map((boost, i) => (
 			<button
 				key={i}
 				value={boost}
