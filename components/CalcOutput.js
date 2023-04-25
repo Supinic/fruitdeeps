@@ -14,25 +14,34 @@ import {
 	// ReferenceLine,
 	// Label
 } from "recharts";
-
 import { CalcsProperty } from "./types/CalcsProperty.js";
+import { StateProperty } from "./types/StateProperty.js";
 import { CalcOutputNumbers } from "./CalcOutputNumbers.js";
-import { descriptions as flagDescriptions } from "../game-data/flags.json";
+import flagDescriptions from "../game-data/flags.json";
 
 const toPercent = (decimal, fixed = 2) => `${(decimal * 100).toFixed(fixed)}%`;
 
+// Calc output handles a web-worker that calculates over-hit dps in parallel to the main thread
 export class CalcOutput extends Component {
 	static propTypes = {
 		calcs: CalcsProperty,
-		ttk: PropTypes.number
+		ttk: PropTypes.number,
+		state: PropTypes.object,
+		dpsState: StateProperty
 	};
 
 	constructor (props) {
 		super(props);
+
+		this.dpsState = props.dpsState;
+
+		// this.handleWorker = this.handleWorker.bind(this)
+		// this.generateId = this.generateId.bind(this)
 		this.state = {
 			expand: false,
 			spec: false
 		};
+
 		this.toggleExpand = this.toggleExpand.bind(this);
 	}
 
@@ -54,7 +63,9 @@ export class CalcOutput extends Component {
 			likelihood: likelihood.toFixed(4)
 		}));
 
-		const badges = calcs.flags.map((flag, i) => (
+		// @todo create a list of flag badges from conditional modifiers;
+		const calcFlags = [];
+		const badges = calcFlags.map((flag, i) => (
 			<span key={i} className="info-badge" data-tooltip={flagDescriptions[flag]}>{flag}</span>)
 		);
 
@@ -87,7 +98,7 @@ export class CalcOutput extends Component {
 		}
 
 		let badgeHolder;
-		if (calcs.flags.length > 0) {
+		if (calcFlags.length > 0) {
 			badgeHolder = <div className="info-badge-holder">{badges}</div>;
 		}
 
@@ -97,7 +108,7 @@ export class CalcOutput extends Component {
 				border: "1px dashed #666"
 			}}>
 				{specialAttackDiv}
-				<CalcOutputNumbers calcs={calcs} ttk={this.props.ttk} spec={specMode}/>
+				<CalcOutputNumbers dpsState={this.dpsState} calcs={calcs} ttk={this.props.ttk} spec={specMode}/>
 				<div>
 					<div className="color-grey" style={{
 						display: "flex",

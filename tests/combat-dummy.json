@@ -1,0 +1,26 @@
+{
+	"name": "Combat dummy",
+	"image": "Combat_dummy_(NPC).png",
+	"version": "",
+	"combat": 0,
+	"stats": {
+		"amagic": 0,
+		"arange": 0,
+		"att": 0,
+		"attbns": 0,
+		"dcrush": 0,
+		"def": 0,
+		"dmagic": 0,
+		"drange": 0,
+		"dslash": 0,
+		"dstab": 0,
+		"hitpoints": 100,
+		"mage": 0,
+		"mbns": 0,
+		"range": 0,
+		"rngbns": 0,
+		"str": 0,
+		"strbns": 0
+	},
+	"attributes": []
+}

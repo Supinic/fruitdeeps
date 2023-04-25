@@ -10,10 +10,12 @@
       "version": "detect"
     }
   },
-  "extends": ["plugin:@next/next/recommended", "plugin:react/recommended", "eslint:recommended"],
-  "plugins": ["unicorn"],
+  "extends": ["plugin:@next/next/recommended", "plugin:react/recommended", "plugin:mocha/recommended", "eslint:recommended"],
+  "plugins": ["unicorn", "eslint-plugin-mocha"],
   "rules": {
     "@next/next/no-img-element": "off",
+
+    "mocha/no-mocha-arrows": "off",
 
     "array-bracket-newline": ["warn", "consistent"],
     "array-bracket-spacing": ["warn", "never"],
@@ -191,6 +193,9 @@
     "babelOptions": {
       "presets": [
         "@babel/preset-react"
+      ],
+      "plugins": [
+        "@babel/syntax-import-assertions"
       ]
     }
   }

@@ -6,7 +6,7 @@ import { CalcOutput } from "./CalcOutput.js";
 import { CalcOutputOptimizationGraph } from "./CalcOutputOptimizationGraph.js";
 import { DpsOverDefenceGraph } from "./DpsOverDefenceGraph.js";
 import { Dps } from "../lib/dps/Dps.js";
-import { Overhit } from "../lib/dps/overhit/Overhit.js";
+import Player from "../lib/Player.js";
 
 export class CalcOutputMultiple extends Component {
 	static propTypes = {
@@ -22,6 +22,11 @@ export class CalcOutputMultiple extends Component {
 			ttk: { ttk: null }
 		}));
 
+		if (typeof window !== "undefined") {
+			this.workerList = playerList.map(() => new Worker(new URL("../lib/workers/general.worker.js", import.meta.url)));
+		}
+
+		// this.workerList = playerList.map(() =>  null);
 		this.stateInputs = [];
 
 		this.state = {
@@ -29,28 +34,48 @@ export class CalcOutputMultiple extends Component {
 			mounted: false
 		};
 
-		this.calculate = this.calculate.bind(this);
+		this.handleWorker = this.handleWorker.bind(this);
 	}
+
+	// componentDidMount(){
+	//     this.workerList = playerList.map(() =>  new Worker());
+	// }
 
 	generateId (stateInput) {
 		return JSON.stringify(stateInput);
 	}
 
-	calculate (calcs, i) {
+	handleWorker (calcs, i) {
 		if (typeof window === "undefined") {
 			return;
 		}
 
 		const id = this.generateId(this.stateInputs[i]);
-		const overhit = new Overhit(this.stateInputs[i], calcs);
-		const ttkManager = [...this.state.ttkManager];
 
-		ttkManager[i] = {
-			id,
-			ttk: overhit.output()
-		};
+		if (typeof this.workerList[i] !== "undefined") {
+			this.workerList[i].terminate();
+		}
 
-		this.setState({ ttkManager });
+		this.workerList[i] = new Worker(new URL("../lib/workers/general.worker.js", import.meta.url));
+
+		this.workerList[i].onmessage = function () {};
+
+		this.workerList[i].addEventListener("message", (event) => {
+			if (id === this.generateId(this.stateInputs[i])) {
+				const ttkManager = [...this.state.ttkManager];
+				ttkManager[i] = {
+					id,
+					ttk: event.data.overhit
+				};
+				this.setState({ ttkManager });
+			}
+		});
+
+		this.workerList[i].postMessage({
+			calcs,
+			state: this.stateInputs[i],
+			type: "Overhit"
+		});
 	}
 
 	render () {
@@ -67,12 +92,17 @@ export class CalcOutputMultiple extends Component {
 		// let showChart = true;
 		this.stateInputs.map((stateInput, i) => {
 			if (typeof this.state.ttkManager[i] === "undefined" || this.generateId(stateInput) !== this.state.ttkManager[i].id) {
-				this.calculate(calcsList[i], i);
+				this.handleWorker(calcsList[i], i);
 				// showChart = false;
 			}
 		});
 
 		const dps = playerList.map((player, i) => {
+			const playerDpsState = {
+				player: new Player(player),
+				monster: this.props.state.monster
+			};
+
 			const nottk = typeof this.state.ttkManager[i] !== "undefined" && this.generateId(this.stateInputs[i]) === this.state.ttkManager[i].id;
 			return (
 				<div key={i} className="flex-child">
@@ -84,6 +114,8 @@ export class CalcOutputMultiple extends Component {
 						</span>
 					</h2>
 					<CalcOutput
+						dpsState={playerDpsState}
+						state={this.props.state}
 						calcs={calcsList[i]}
 						ttk={nottk ? this.state.ttkManager[i].ttk.ttk : null}
 					/>

@@ -1,173 +1,171 @@
-{
-  "boosts": [
-    {
-      "name" : "Attack",
-      "effects": {
-        "attack": {
-          "multiplier": 1.10,
-          "flat": 3
-        }
-      }
-    },
-    {
-      "name" : "Super attack",
-      "effects": {
-        "attack": {
-          "multiplier": 1.15,
-          "flat": 5
-        }
-      }
-    },
-    {
-      "name" : "Strength",
-      "effects": {
-        "strength": {
-          "multiplier": 1.10,
-          "flat": 3
-        }
-      }
-    },
-    {
-      "name" : "Super strength",
-      "effects": {
-        "strength": {
-          "multiplier": 1.15,
-          "flat": 5
-        }
-      }
-    },
-    {
-      "name" : "Zamorak brew",
-      "effects": {
-        "attack": {
-          "multiplier": 1.20,
-          "flat": 2
-        },
-        "strength": {
-          "multiplier": 1.12,
-          "flat": 2
-        }
-      }
-    },
-    {
-      "name" : "Ranging",
-      "effects": {
-        "ranged": {
-          "multiplier": 1.10,
-          "flat": 4
-        }
-      }
-    },
-    {
-      "name" : "Super ranging",
-      "effects": {
-        "ranged": {
-          "multiplier": 1.15,
-          "flat": 5
-        }
-      }
-    },
-    {
-      "name" : "Magic",
-      "effects": {
-        "magic": {
-          "flat": 4
-        }
-      }
-    },
-    {
-      "name" : "Super magic",
-      "effects": {
-        "magic": {
-          "multiplier": 1.15,
-          "flat": 5
-        }
-      }
-    },
-    {
-      "name" : "Imbued heart",
-      "effects": {
-        "magic": {
-          "multiplier": 1.10,
-          "flat": 1
-        }
-      }
-    },
-    {
-      "name" : "Saturated heart",
-      "effects": {
-        "magic": {
-          "multiplier": 1.10,
-          "flat": 4
-        }
-      }
-    },
-    {
-      "name" : "Super combat",
-      "effects": {
-        "attack": {
-          "multiplier": 1.15,
-          "flat": 5
-        },
-        "strength": {
-          "multiplier": 1.15,
-          "flat": 5
-        },
-        "defence": {
-          "multiplier": 1.15,
-          "flat": 5
-        }
-      }
-    },
-    {
-      "name" : "Overload (+)",
-      "effects": {
-        "attack": {
-          "multiplier": 1.16,
-          "flat": 6
-        },
-        "strength": {
-          "multiplier": 1.16,
-          "flat": 6
-        },
-        "magiv": {
-          "multiplier": 1.16,
-          "flat": 6
-        },
-        "ranged": {
-          "multiplier": 1.16,
-          "flat": 6
-        },
-        "defence": {
-          "multiplier": 1.16,
-          "flat": 6
-        }
-      }
-    },
-    {
-      "name" : "Smelling salts",
-      "effects": {
-        "attack": {
-          "multiplier": 1.22,
-          "flat": 5
-        },
-        "strength": {
-          "multiplier": 1.22,
-          "flat": 5
-        },
-        "magiv": {
-          "multiplier": 1.22,
-          "flat": 5
-        },
-        "ranged": {
-          "multiplier": 1.22,
-          "flat": 5
-        },
-        "defence": {
-          "multiplier": 1.22,
-          "flat": 5
-        }
+[
+  {
+    "name": "Attack",
+    "effects": {
+      "attack": {
+        "multiplier": 1.10,
+        "flat": 3
       }
     }
-  ]
-}
+  },
+  {
+    "name": "Super attack",
+    "effects": {
+      "attack": {
+        "multiplier": 1.15,
+        "flat": 5
+      }
+    }
+  },
+  {
+    "name": "Strength",
+    "effects": {
+      "strength": {
+        "multiplier": 1.10,
+        "flat": 3
+      }
+    }
+  },
+  {
+    "name": "Super strength",
+    "effects": {
+      "strength": {
+        "multiplier": 1.15,
+        "flat": 5
+      }
+    }
+  },
+  {
+    "name": "Zamorak brew",
+    "effects": {
+      "attack": {
+        "multiplier": 1.20,
+        "flat": 2
+      },
+      "strength": {
+        "multiplier": 1.12,
+        "flat": 2
+      }
+    }
+  },
+  {
+    "name": "Ranging",
+    "effects": {
+      "ranged": {
+        "multiplier": 1.10,
+        "flat": 4
+      }
+    }
+  },
+  {
+    "name": "Super ranging",
+    "effects": {
+      "ranged": {
+        "multiplier": 1.15,
+        "flat": 5
+      }
+    }
+  },
+  {
+    "name": "Magic",
+    "effects": {
+      "magic": {
+        "flat": 4
+      }
+    }
+  },
+  {
+    "name": "Super magic",
+    "effects": {
+      "magic": {
+        "multiplier": 1.15,
+        "flat": 5
+      }
+    }
+  },
+  {
+    "name": "Imbued heart",
+    "effects": {
+      "magic": {
+        "multiplier": 1.10,
+        "flat": 1
+      }
+    }
+  },
+  {
+    "name": "Saturated heart",
+    "effects": {
+      "magic": {
+        "multiplier": 1.10,
+        "flat": 4
+      }
+    }
+  },
+  {
+    "name": "Super combat",
+    "effects": {
+      "attack": {
+        "multiplier": 1.15,
+        "flat": 5
+      },
+      "strength": {
+        "multiplier": 1.15,
+        "flat": 5
+      },
+      "defence": {
+        "multiplier": 1.15,
+        "flat": 5
+      }
+    }
+  },
+  {
+    "name": "Overload (+)",
+    "effects": {
+      "attack": {
+        "multiplier": 1.16,
+        "flat": 6
+      },
+      "strength": {
+        "multiplier": 1.16,
+        "flat": 6
+      },
+      "magiv": {
+        "multiplier": 1.16,
+        "flat": 6
+      },
+      "ranged": {
+        "multiplier": 1.16,
+        "flat": 6
+      },
+      "defence": {
+        "multiplier": 1.16,
+        "flat": 6
+      }
+    }
+  },
+  {
+    "name": "Smelling salts",
+    "effects": {
+      "attack": {
+        "multiplier": 1.22,
+        "flat": 5
+      },
+      "strength": {
+        "multiplier": 1.22,
+        "flat": 5
+      },
+      "magiv": {
+        "multiplier": 1.22,
+        "flat": 5
+      },
+      "ranged": {
+        "multiplier": 1.22,
+        "flat": 5
+      },
+      "defence": {
+        "multiplier": 1.22,
+        "flat": 5
+      }
+    }
+  }
+]

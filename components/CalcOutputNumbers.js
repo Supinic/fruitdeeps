@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { CalcsProperty } from "./types/CalcsProperty.js";
+import { StateProperty } from "./types/StateProperty.js";
+import { isApplied as areRubyBoltsApplied } from "../lib/dps/modifiers/bolts/ruby.js";
 
 function hpLimit (dmg, hp) {
 	if (dmg <= hp) {
@@ -50,11 +52,13 @@ export class CalcOutputNumbers extends Component {
 	static propTypes = {
 		calcs: CalcsProperty,
 		ttk: PropTypes.number,
-		spec: PropTypes.bool
+		spec: PropTypes.bool,
+		dpsState: StateProperty
 	};
 
 	constructor (props) {
 		super(props);
+
 		this.attack = this.attack.bind(this);
 		this.damage = this.damage.bind(this);
 		this.accuracy = this.accuracy.bind(this);
@@ -106,7 +110,7 @@ export class CalcOutputNumbers extends Component {
 			</tr>
 		);
 
-		// for scythe and darkbow
+		// For multi-hit weapons
 		if (this.props.calcs.maxList.length > 1) {
 			for (let i = 0; i < this.props.calcs.maxList.length; i++) {
 				rows.push(
@@ -173,13 +177,13 @@ export class CalcOutputNumbers extends Component {
 		const contTtk = this.props.ttk;
 		const ttk = this.props.ttk - this.props.calcs.attackSpeed;
 
-
 		const overhitDps = hp / ttk / 0.6;
 		const overhitCont = hp / contTtk / 0.6;
 
+		const rubyBoltsApplied = areRubyBoltsApplied(this.props.calcs, this.props.dpsState.player);
 		rows.push(
 			<tr key="raw-dps">
-				<td>Raw {this.props.calcs.flags.includes("Enchanted ruby bolts") ? momentary : null}</td>
+				<td>Raw {(rubyBoltsApplied) ? momentary : null}</td>
 				<td>{this.props.calcs.dps.toFixed(decimals)}</td>
 			</tr>
 		);
