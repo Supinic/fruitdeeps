@@ -6,6 +6,7 @@ import {
 
 import { CalcsProperty } from "./types/CalcsProperty.js";
 import { StateProperty } from "./types/StateProperty.js";
+import { DpsDefence } from "../lib/dps/overhit/DpsDefence.js";
 
 // import Worker from 'worker-loader!../lib/workers/Worker.js';
 const colors = ["#9EFF74", "#74C7FF", "#FF8274", "#EEEEEE", "#D574FF", "#FFAC74", "#74F1FF"];
@@ -18,9 +19,6 @@ export class DpsOverDefenceGraph extends Component {
 
 	constructor (props) {
 		super(props);
-		if (typeof window !== "undefined") {
-			this.optWorker = new Worker(new URL("../src/general.worker.js", import.meta.url));
-		}
 
 		this.state = {
 			data: [],
@@ -28,7 +26,7 @@ export class DpsOverDefenceGraph extends Component {
 			expand: false
 		};
 
-		this.handleWorker = this.handleWorker.bind(this);
+		this.calculate = this.calculate.bind(this);
 		this.generateId = this.generateId.bind(this);
 		this.toggleExpand = this.toggleExpand.bind(this);
 	}
@@ -44,34 +42,21 @@ export class DpsOverDefenceGraph extends Component {
 		this.setState({ expand: !this.state.expand });
 	}
 
-	handleWorker () {
+	calculate () {
 		if (typeof window === "undefined") {
 			return;
 		}
 
-		this.optWorker.terminate();
-		this.optWorker = new Worker(new URL("../lib/workers/general.worker.js", import.meta.url));
-		this.optWorker.onmessage = function () {};
-
-		this.optWorker.addEventListener("message", (event) => {
-			if (event.data.graphData) {
-				this.setState({
-					data: event.data.graphData,
-					id: this.generateId()
-				});
-			}
-		});
-
-		this.optWorker.postMessage({
-			state: this.props.state,
-			calcsList: this.props.calcsList,
-			type: "DpsDefence"
+		const def = new DpsDefence(this.props.state, this.props.calcsList);
+		this.setState({
+			data: def.output().graphData,
+			id: this.generateId()
 		});
 	}
 
 	render () {
 		if (this.state.id !== this.generateId()) {
-			this.handleWorker();
+			this.calculate();
 		}
 
 		const lines = this.props.calcsList.map((calcs, i) => (
