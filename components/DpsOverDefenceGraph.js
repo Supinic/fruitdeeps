@@ -8,7 +8,6 @@ import { CalcsProperty } from "./types/CalcsProperty.js";
 import { StateProperty } from "./types/StateProperty.js";
 import { DpsDefence } from "../lib/dps/overhit/DpsDefence.js";
 
-// import Worker from 'worker-loader!../lib/workers/Worker.js';
 const colors = ["#9EFF74", "#74C7FF", "#FF8274", "#EEEEEE", "#D574FF", "#FFAC74", "#74F1FF"];
 
 export class DpsOverDefenceGraph extends Component {

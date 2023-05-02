@@ -21,7 +21,6 @@ import { Flags } from "../lib/dps/Flags.js";
 
 const toPercent = (decimal, fixed = 2) => `${(decimal * 100).toFixed(fixed)}%`;
 
-// Calc output handles a web-worker that calculates over-hit dps in parallel to the main thread
 export class CalcOutput extends Component {
 	static propTypes = {
 		calcs: CalcsProperty,
@@ -30,8 +29,6 @@ export class CalcOutput extends Component {
 
 	constructor (props) {
 		super(props);
-		// this.handleWorker = this.handleWorker.bind(this)
-		// this.generateId = this.generateId.bind(this)
 		this.state = {
 			expand: false,
 			spec: false

@@ -22,7 +22,6 @@ export class CalcOutputMultiple extends Component {
 			ttk: { ttk: null }
 		}));
 
-		// this.workerList = playerList.map(() =>  null);
 		this.stateInputs = [];
 
 		this.state = {
@@ -32,10 +31,6 @@ export class CalcOutputMultiple extends Component {
 
 		this.calculate = this.calculate.bind(this);
 	}
-
-	// componentDidMount(){
-	//     this.workerList = playerList.map(() =>  new Worker());
-	// }
 
 	generateId (stateInput) {
 		return JSON.stringify(stateInput);

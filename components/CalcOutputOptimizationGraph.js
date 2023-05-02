@@ -18,9 +18,6 @@ export class CalcOutputOptimizationGraph extends Component {
 
 	constructor (props) {
 		super(props);
-		if (typeof window !== "undefined") {
-			this.optWorker = new Worker(new URL("../src/general.worker.js", import.meta.url));
-		}
 
 		this.state = {
 			data: [],
@@ -57,7 +54,6 @@ export class CalcOutputOptimizationGraph extends Component {
 	}
 
 	render () {
-		// const worker = new Worker(new URL("../src/general.worker.js", import.meta.url));
 		if (this.state.id !== this.generateId()) {
 			this.calculate();
 		}
