@@ -6,6 +6,7 @@ import { CalcOutput } from "./CalcOutput.js";
 import { CalcOutputOptimizationGraph } from "./CalcOutputOptimizationGraph.js";
 import { DpsOverDefenceGraph } from "./DpsOverDefenceGraph.js";
 import { Dps } from "../lib/dps/Dps.js";
+import { Overhit } from "../lib/dps/overhit/Overhit.js";
 
 export class CalcOutputMultiple extends Component {
 	static propTypes = {
@@ -21,11 +22,6 @@ export class CalcOutputMultiple extends Component {
 			ttk: { ttk: null }
 		}));
 
-		if (typeof window !== "undefined") {
-			this.workerList = playerList.map(() => new Worker(new URL("../lib/workers/general.worker.js", import.meta.url)));
-		}
-
-		// this.workerList = playerList.map(() =>  null);
 		this.stateInputs = [];
 
 		this.state = {
@@ -33,48 +29,28 @@ export class CalcOutputMultiple extends Component {
 			mounted: false
 		};
 
-		this.handleWorker = this.handleWorker.bind(this);
+		this.calculate = this.calculate.bind(this);
 	}
-
-	// componentDidMount(){
-	//     this.workerList = playerList.map(() =>  new Worker());
-	// }
 
 	generateId (stateInput) {
 		return JSON.stringify(stateInput);
 	}
 
-	handleWorker (calcs, i) {
+	calculate (calcs, i) {
 		if (typeof window === "undefined") {
 			return;
 		}
 
 		const id = this.generateId(this.stateInputs[i]);
+		const overhit = new Overhit(this.stateInputs[i], calcs);
+		const ttkManager = [...this.state.ttkManager];
 
-		if (typeof this.workerList[i] !== "undefined") {
-			this.workerList[i].terminate();
-		}
+		ttkManager[i] = {
+			id,
+			ttk: overhit.output()
+		};
 
-		this.workerList[i] = new Worker(new URL("../lib/workers/general.worker.js", import.meta.url));
-
-		this.workerList[i].onmessage = function () {};
-
-		this.workerList[i].addEventListener("message", (event) => {
-			if (id === this.generateId(this.stateInputs[i])) {
-				const ttkManager = [...this.state.ttkManager];
-				ttkManager[i] = {
-					id,
-					ttk: event.data.overhit
-				};
-				this.setState({ ttkManager });
-			}
-		});
-
-		this.workerList[i].postMessage({
-			calcs,
-			state: this.stateInputs[i],
-			type: "Overhit"
-		});
+		this.setState({ ttkManager });
 	}
 
 	render () {
@@ -91,7 +67,7 @@ export class CalcOutputMultiple extends Component {
 		// let showChart = true;
 		this.stateInputs.map((stateInput, i) => {
 			if (typeof this.state.ttkManager[i] === "undefined" || this.generateId(stateInput) !== this.state.ttkManager[i].id) {
-				this.handleWorker(calcsList[i], i);
+				this.calculate(calcsList[i], i);
 				// showChart = false;
 			}
 		});

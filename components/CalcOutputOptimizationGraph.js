@@ -6,6 +6,7 @@ import {
 
 import { CalcsProperty } from "./types/CalcsProperty.js";
 import { StateProperty } from "./types/StateProperty.js";
+import { TtkOptimization } from "../lib/dps/overhit/TtkOptimization.js";
 
 const colors = ["#9EFF74", "#74C7FF", "#FF8274", "#EEEEEE", "#D574FF", "#FFAC74", "#74F1FF"];
 
@@ -17,9 +18,6 @@ export class CalcOutputOptimizationGraph extends Component {
 
 	constructor (props) {
 		super(props);
-		if (typeof window !== "undefined") {
-			this.optWorker = new Worker(new URL("../src/general.worker.js", import.meta.url));
-		}
 
 		this.state = {
 			data: [],
@@ -27,7 +25,7 @@ export class CalcOutputOptimizationGraph extends Component {
 			continuous: true
 		};
 
-		this.handleWorker = this.handleWorker.bind(this);
+		this.calculate = this.calculate.bind(this);
 		this.generateId = this.generateId.bind(this);
 		this.toggleContinuous = this.toggleContinuous.bind(this);
 	}
@@ -43,35 +41,21 @@ export class CalcOutputOptimizationGraph extends Component {
 		});
 	}
 
-	handleWorker () {
+	calculate () {
 		if (typeof window === "undefined") {
 			return;
 		}
 
-		this.optWorker.terminate();
-		this.optWorker = new Worker(new URL("../src/general.worker.js", import.meta.url));
-		this.optWorker.onmessage = function () {};
-
-		this.optWorker.addEventListener("message", (event) => {
-			if (event.data.graphData) {
-				this.setState({
-					data: event.data.graphData,
-					id: this.generateId()
-				});
-			}
-		});
-
-		this.optWorker.postMessage({
-			state: this.props.state,
-			calcsList: this.props.calcsList,
-			type: "Optimization"
+		const ttk = new TtkOptimization(this.props.state, this.props.calcsList);
+		this.setState({
+			data: ttk.output().graphData,
+			id: this.generateId()
 		});
 	}
 
 	render () {
-		// const worker = new Worker(new URL("../src/general.worker.js", import.meta.url));
 		if (this.state.id !== this.generateId()) {
-			this.handleWorker();
+			this.calculate();
 		}
 		const lines = this.props.calcsList.map((calcs, i) => (
 			<Line
