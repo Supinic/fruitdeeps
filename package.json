@@ -12,7 +12,6 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "@svgr/webpack": "^7.0.0",
-    "@zeit/next-workers": "^1.0.1-canary.1",
     "csv-parser": "^3.0.0",
     "next": "latest",
     "prop-types": "^15.8.1",
@@ -20,8 +19,7 @@
     "react-dom": "18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0",
-    "recharts": "^2.5.0",
-    "worker-loader": "^3.0.8"
+    "recharts": "^2.5.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.21.3",
@@ -30,7 +28,6 @@
     "eslint-config-next": "13.3.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-unicorn": "^46.0.0",
-    "sass": "^1.62.0",
-    "worker-plugin": "^5.0.1"
+    "sass": "^1.62.0"
   }
 }
