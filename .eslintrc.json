@@ -16,6 +16,7 @@
     "@next/next/no-img-element": "off",
 
     "mocha/no-mocha-arrows": "off",
+    "mocha/no-setup-in-describe": "off",
 
     "array-bracket-newline": ["warn", "consistent"],
     "array-bracket-spacing": ["warn", "never"],
