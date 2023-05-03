@@ -1,7 +1,5 @@
 {
 	"name": "Combat dummy",
-	"image": "Combat_dummy_(NPC).png",
-	"version": "",
 	"combat": 0,
 	"stats": {
 		"amagic": 0,

@@ -1,0 +1,3621 @@
+[
+  {
+    "description": "Basic - Punching, no gear",
+    "equipment": [],
+    "player": {
+      "prayers": [],
+      "boostList": [],
+      "attackStyleSelected": 1,
+      "spell": null,
+      "stats": {
+        "attack": 99,
+        "strength": 99
+      }
+    },
+    "npc": {
+      "name": "Sotetseg",
+      "version": "Normal"
+    },
+    "expected": {
+      "accuracy": 0.1223,
+      "dps": 0.280,
+      "maxHit": 11
+    }
+  },
+  {
+    "description": "Basic - Whip, piety, super combat",
+    "equipment": ["Abyssal whip"],
+    "player": {
+      "prayers": ["Piety"],
+      "boostList": ["Super combat"],
+      "attackStyleSelected": 1,
+      "spell": null,
+      "stats": {
+        "attack": 99,
+        "strength": 99
+      }
+    },
+    "npc": {
+      "name": "Sotetseg",
+      "version": "Normal"
+    },
+    "expected": {
+      "accuracy": 0.3910,
+      "dps": 2.851,
+      "maxHit": 35
+    }
+  },
+  {
+    "description": "Basic - Sotetseg - learner ToB gear",
+    "equipment": [
+      "Abyssal whip",
+      "Dragon defender",
+      "Void melee helm",
+      "Elite void top",
+      "Elite void robe",
+      "Void knight gloves",
+      "Amulet of fury",
+      "Fire cape",
+      "Berserker ring (i)",
+      "Dragon boots"
+    ],
+    "player": {
+      "prayers": ["Piety"],
+      "boostList": ["Super combat"],
+      "attackStyleSelected": 1,
+      "spell": null,
+      "stats": {
+        "attack": 99,
+        "strength": 99
+      }
+    },
+    "npc": {
+      "name": "Sotetseg",
+      "version": "Normal"
+    },
+    "expected": {
+      "accuracy": 0.5311,
+      "dps": 5.090,
+      "maxHit": 46
+    }
+  },
+  {
+    "description": "Ahrim's set effect (amulet)",
+    "equipment": [
+      "Ahrim's hood (Undamaged)",
+      "Ahrim's robetop (Undamaged)",
+      "Ahrim's robeskirt (Undamaged)",
+      "Ahrim's staff (Undamaged)",
+      "Amulet of the damned (Full)"
+    ],
+    "player": {
+      "prayers": [],
+      "boostList": [],
+      "attackStyleSelected": 1,
+      "spell": "Fire Surge",
+      "stats": {}
+    },
+    "npc": {
+      "name": "Torag the Corrupted",
+      "version": ""
+    },
+    "expected": {
+      "accuracy": 0.9798,
+      "dps": 4.368,
+      "maxHit": 25,
+      "maxHitSpec": 32
+    }
+  },
+  {
+    "description": "Barbarian Assault",
+    "abstract": true,
+    "equipment": [],
+    "npc": {
+      "name": "Penance Ranger"
+    }
+  },
+  {
+    "description": "Rank 1 Melee W1",
+    "parent": "Barbarian Assault",
+    "equipment": [
+      "Abyssal whip"
+    ],
+    "npc": {
+      "version": "Wave 1"
+    },
+    "player": {
+      "misc": {
+        "baRank": 1
+      }
+    },
+    "expected": {
+      "maxHit": 26,
+      "accuracy": 0.9391,
+      "dps": 4.992
+    }
+  },
+  {
+    "description": "Rank 5 Melee W1",
+    "parent": "Barbarian Assault",
+    "equipment": [
+      "Abyssal whip"
+    ],
+    "player": {
+      "misc": {
+        "baRank": 5
+      }
+    },
+    "npc": {
+      "version": "Wave 1"
+    },
+    "expected": {
+      "maxHit": 30,
+      "accuracy": 0.9391,
+      "dps": 6.147
+    }
+  },
+  {
+    "description": "Rank 1 Ranged W1",
+    "parent": "Barbarian Assault",
+    "equipment": [
+      "Magic shortbow (i)",
+      "Barbed arrow"
+    ],
+    "player": {
+      "misc": {
+        "baRank": 1
+      }
+    },
+    "npc": {
+      "version": "Wave 1"
+    },
+    "expected": {
+      "maxHit": 33,
+      "accuracy": 0.9515,
+      "dps": 7.555,
+      "playerRoll": 19795,
+      "npcRoll": 1920
+    }
+  },
+  {
+    "description": "Rank 5 Ranged W1",
+    "parent": "Barbarian Assault",
+    "equipment": [
+      "Magic shortbow (i)",
+      "Barbed arrow"
+    ],
+    "player": {
+      "misc": {
+        "baRank": 5
+      }
+    },
+    "npc": {
+      "version": "Wave 1"
+    },
+    "expected": {
+      "maxHit": 37,
+      "accuracy": 0.9515,
+      "dps": 8.784,
+      "playerRoll": 19795,
+      "npcRoll": 1920
+    }
+  },
+  {
+    "description": "Rank 1 Magic W1",
+    "parent": "Barbarian Assault",
+    "equipment": [],
+    "player": {
+      "spell": "Fire Surge",
+      "misc": {
+        "baRank": 1
+      }
+    },
+    "npc": {
+      "version": "Wave 1"
+    },
+    "expected": {
+      "maxHit": 25,
+      "accuracy": 0.9582,
+      "dps": 3.974,
+      "playerRoll": 6912,
+      "npcRoll": 576
+    }
+  },
+  {
+    "description": "Rank 5 Magic W1",
+    "parent": "Barbarian Assault",
+    "equipment": [],
+    "player": {
+      "spell": "Fire Surge",
+      "misc": {
+        "baRank": 5
+      }
+    },
+    "npc": {
+      "version": "Wave 1"
+    },
+    "expected": {
+      "maxHit": 29,
+      "accuracy": 0.9582,
+      "dps": 4.925,
+      "playerRoll": 6912,
+      "npcRoll": 576
+    }
+  },
+  {
+    "description": "Brimstone ring",
+    "abstract": true,
+    "equipment": ["Brimstone ring"],
+    "npc": {
+      "name": "Dharok the Wretched"
+    }
+  },
+  {
+    "description": "Fire Surge",
+    "parent": "Brimstone ring",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "expected": {
+      "maxHit": 24,
+      "accuracy": 0.9657,
+      "dps": 3.86298,
+      "playerRoll": 7560,
+      "npcRoll": 530
+    }
+  },
+  {
+    "description": "Trident",
+    "parent": "Brimstone ring",
+    "equipment": ["Brimstone ring", "Trident of the seas"],
+    "expected": {
+      "maxHit": 28,
+      "accuracy": 0.9723,
+      "dps": 5.671764,
+      "playerRoll": 9350,
+      "npcRoll": 530
+    }
+  },
+  {
+    "description": "Melee - with ring",
+    "parent": "Brimstone ring",
+    "equipment": ["Abyssal whip", "Brimstone ring"],
+    "expected": {
+      "maxHit": 25,
+      "accuracy": 0.2367,
+      "dps": 1.23257,
+      "playerRoll": 16200,
+      "npcRoll": 34226
+    }
+  },
+  {
+    "description": "Melee - without ring",
+    "parent": "Brimstone ring",
+    "equipment": ["Abyssal whip"],
+    "expected": {
+      "maxHit": 25,
+      "accuracy": 0.2303,
+      "dps": 1.1997105,
+      "playerRoll": 15768,
+      "npcRoll": 34226
+    }
+  },
+  {
+    "description": "Corp",
+    "abstract": true,
+    "npc": {
+      "name": "Corporeal Beast"
+    }
+  },
+  {
+    "description": "Zammy spear - Stab",
+    "parent": "Corp",
+    "player": {
+      "attackStyleSelected": 0
+    },
+    "equipment": ["Zamorakian spear"],
+    "expected": {
+      "maxHit": 23,
+      "accuracy": 0.2834,
+      "dps": 1.357908,
+      "playerRoll": 16092,
+      "npcRoll": 28391
+    }
+  },
+  {
+    "description": "Zammy spear - Slash (halved)",
+    "parent": "Corp",
+    "player": {
+      "attackStyleSelected": 1
+    },
+    "equipment": ["Zamorakian spear"],
+    "expected": {
+      "maxHit": 11,
+      "accuracy": 0.0827,
+      "dps": 0.189554,
+      "playerRoll": 13932,
+      "npcRoll": 84216
+    }
+  },
+  {
+    "description": "Zammy hasta (halved)",
+    "parent": "Corp",
+    "player": {
+      "attackStyleSelected": 0
+    },
+    "equipment": ["Zamorakian hasta"],
+    "expected": {
+      "maxHit": 11,
+      "accuracy": 0.2834,
+      "dps": 0.649434,
+      "playerRoll": 16092,
+      "npcRoll": 28391
+    }
+  },
+  {
+    "description": "Rune crossbow + runite bolts (halved)",
+    "parent": "Corp",
+    "comment": [
+      "Reference DPS calculator (Bitterkoekje, BK) mismatches with the calculations here (FruityDeeps, FD).",
+      "However, I think the calculation here is correct, rather than the one in BK.",
+      "BK calculation: DPS = avg_hit * accuracy; avg_hit for this scenario is 30/2/2 = 7.5,",
+      "this assumes a uniform hit distribution.",
+      "I think however, that Corp's damage reduction halves the \"true\" rolled hit, then floors the number.",
+      "This results in the FD calculation having hits 1-14 being uniformly 2x as probable as each separate hit originally;",
+      "however, the new max hit of 15 is only half as probable.",
+      "Consider: only ⌊30/2⌋ equals 15, but both ⌊29/2] and ⌊28/2⌋ equal 14.",
+      "The rest of the calculation (accuracy, atk/def rolls) are identical, so it is only the max hit",
+      "that creates the difference in DPS (FD 0.2125 versus BK 0.2196)",
+      "Reference picture: https://i.imgur.com/lDdOLFh.png"
+    ],
+    "player": {
+      "attackStyleSelected": 1
+    },
+    "equipment": ["Rune crossbow", "Runite bolts"],
+    "expected": {
+      "maxHit": 15,
+      "accuracy": 0.0878,
+      "dps": 0.2125354,
+      "playerRoll": 16478,
+      "npcRoll": 93786
+    }
+  },
+  {
+    "description": "Fire surge",
+    "parent": "Corp",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "expected": {
+      "maxHit": 24,
+      "accuracy": 0.045,
+      "dps": 0.1799367,
+      "playerRoll": 6912,
+      "npcRoll": 76826
+    }
+  },
+  {
+    "description": "Crystal armour + Bowfa",
+    "equipment": [
+      "Crystal helm",
+      "Crystal body",
+      "Crystal legs",
+      "Ava's assembler",
+      "Necklace of anguish",
+      "Archers ring (i)",
+      "Pegasian boots",
+      "Zaryte vambraces",
+      "Bow of faerdhinen"
+    ],
+    "player": {
+      "prayers": ["Rigour"],
+      "boostList": ["Ranging"],
+      "attackStyleSelected": 1,
+      "spell": null,
+      "stats": {
+        "ranged": 99
+      }
+    },
+    "npc": {
+      "name": "General Graardor",
+      "version": "Normal"
+    },
+    "expected": {
+      "accuracy": 0.6526,
+      "dps": 6.390,
+      "maxHit": 47
+    }
+  },
+  {
+    "description": "Dark bow + dragon arrows",
+    "equipment": [
+      "Dark bow (Regular)",
+      "Dragon arrow"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "accuracy": 0.7949,
+      "dps": 3.47783,
+      "maxHit": 42,
+      "maxList": [21, 21]
+    }
+  },
+  {
+    "description": "Demons: Arclight",
+    "abstract": true,
+    "equipment": ["Arclight"]
+  },
+  {
+    "description": "vs. demon",
+    "parent": "Demons: Arclight",
+    "npc": {
+      "name": "Black demon",
+      "version": "Level 188"
+    },
+    "expected": {
+      "maxHit": 20,
+      "accuracy": 0.7223,
+      "dps": 3.009458,
+      "playerRoll": 18553,
+      "npcRoll": 10304
+    }
+  },
+  {
+    "description": "vs. non-demon",
+    "parent": "Demons: Arclight",
+    "npc": {
+      "name": "Karil the Tainted"
+    },
+    "expected": {
+      "maxHit": 12,
+      "accuracy": 0.3708,
+      "dps": 0.92705,
+      "playerRoll": 10914,
+      "npcRoll": 14715
+    }
+  },
+  {
+    "description": "Demons: Darklight",
+    "abstract": true,
+    "equipment": ["Darklight"]
+  },
+  {
+    "description": "vs. demon",
+    "parent": "Demons: Darklight",
+    "npc": {
+      "name": "Black demon",
+      "version": "Level 188"
+    },
+    "expected": {
+      "maxHit": 20,
+      "accuracy": 0.6238,
+      "dps": 2.079,
+      "playerRoll": 13696,
+      "npcRoll": 10304
+    }
+  },
+  {
+    "description": "vs. non-demon",
+    "parent": "Demons: Darklight",
+    "comment": [
+      "BK DPS sheet incorrectly assumes that Darklight has the same 60% damage bonus against non-demons.",
+      "The max hit of 13 is instead 20 - which is correct for demons, but Karil is not a demon.",
+      "I also checked multiple other non-demonic enemies, but the same is true."
+    ],
+    "npc": {
+      "name": "Karil the Tainted"
+    },
+    "expected": {
+      "maxHit": 13,
+      "accuracy": 0.2908,
+      "dps": 0.630,
+      "playerRoll": 8560,
+      "npcRoll": 14715
+    }
+  },
+  {
+    "description": "Demons: Silverlight",
+    "abstract": true,
+    "equipment": ["Silverlight"]
+  },
+  {
+    "description": "vs. demon",
+    "parent": "Demons: Silverlight",
+    "npc": {
+      "name": "Black demon",
+      "version": "Level 188"
+    },
+    "expected": {
+      "maxHit": 13,
+      "accuracy": 0.6141,
+      "dps": 1.331,
+      "playerRoll": 13353,
+      "npcRoll": 10304
+    }
+  },
+  {
+    "description": "vs. non-demon",
+    "parent": "Demons: Silverlight",
+    "npc": {
+      "name": "Karil the Tainted"
+    },
+    "expected": {
+      "maxHit": 13,
+      "accuracy": 0.2836,
+      "dps": 0.614,
+      "playerRoll": 8346,
+      "npcRoll": 14715
+    }
+  },
+  {
+    "description": "Demons: Holy water",
+    "abstract": true,
+    "equipment": ["Holy water"]
+  },
+  {
+    "description": "vs. demon",
+    "parent": "Demons: Holy water",
+    "npc": {
+      "name": "Black demon",
+      "version": "Level 188"
+    },
+    "expected": {
+      "maxHit": 20,
+      "accuracy": 0.3634,
+      "dps": 2.019,
+      "playerRoll": 7490,
+      "npcRoll": 10304
+    }
+  },
+  {
+    "description": "vs. Nezikchened",
+    "parent": "Demons: Holy water",
+    "npc": {
+      "name": "Nezikchened"
+    },
+    "expected": {
+      "maxHit": 28,
+      "accuracy": 0.3324,
+      "dps": 2.586,
+      "playerRoll": 7490,
+      "npcRoll": 11264
+    }
+  },
+  {
+    "description": "Dharok's set",
+    "abstract": true,
+    "equipment": [
+      "Dharok's helm (Undamaged)",
+      "Dharok's platebody (Undamaged)",
+      "Dharok's platelegs (Undamaged)",
+      "Dharok's greataxe (Undamaged)"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    }
+  },
+  {
+    "description": "99 hp",
+    "parent": "Dharok's set",
+    "player": {
+      "misc": {
+        "currentHitpoints": 99
+      }
+    },
+    "expected": {
+      "maxHit": 29,
+      "accuracy": 0.5455,
+      "dps": 1.883353,
+      "playerRoll": 17869,
+      "npcRoll": 16241
+    }
+  },
+  {
+    "description": "50 hp",
+    "parent": "Dharok's set",
+    "player": {
+      "misc": {
+        "currentHitpoints": 50
+      }
+    },
+    "expected": {
+      "maxHit": 43,
+      "accuracy": 0.5455,
+      "dps": 2.731945,
+      "playerRoll": 17869,
+      "npcRoll": 16241
+    }
+  },
+  {
+    "description": "1 hp",
+    "parent": "Dharok's set",
+    "player": {
+      "misc": {
+        "currentHitpoints": 1
+      }
+    },
+    "expected": {
+      "maxHit": 57,
+      "accuracy": 0.5455,
+      "dps": 3.641151,
+      "playerRoll": 17869,
+      "npcRoll": 16241
+    }
+  },
+  {
+    "description": "99 hp maging",
+    "parent": "Dharok's set",
+    "player": {
+      "spell": "Fire Surge",
+      "misc": {
+        "currentHitpoints": 99
+      }
+    },
+    "expected": {
+      "maxHit": 24,
+      "accuracy": 0.0217,
+      "dps": 0.086781,
+      "playerRoll": 648,
+      "npcRoll": 14933
+    }
+  },
+  {
+    "description": "1 hp maging",
+    "parent": "Dharok's set",
+    "comment": [
+      "BK incorrectly assumes Dharok's set affects spell hits - it doesn't, tested ingame:",
+      "Casting Fire Bolt at a dummy: https://i.imgur.com/7xe4xXB.png"
+    ],
+    "player": {
+      "spell": "Fire Surge",
+      "misc": {
+        "currentHitpoints": 1
+      }
+    },
+    "expected": {
+      "maxHit": 24,
+      "accuracy": 0.0217,
+      "dps": 0.086781,
+      "playerRoll": 648,
+      "npcRoll": 14933
+    }
+  },
+  {
+    "description": "Dragons: DHCB Vorkath",
+    "equipment": [
+      "Dragon hunter crossbow",
+      "Dragon bolts"
+    ],
+    "npc": {
+      "name": "Vorkath",
+      "version": "Post-quest"
+    },
+    "expected": {
+      "maxHit": 38,
+      "accuracy": 0.5462,
+      "dps": 3.459465,
+      "playerRoll": 22116,
+      "npcRoll": 20070
+    }
+  },
+  {
+    "description": "Dragons: DHL Vorkath",
+    "player": {
+      "attackStyleSelected": 0
+    },
+    "equipment": [
+      "Dragon hunter lance"
+    ],
+    "npc": {
+      "name": "Vorkath",
+      "version": "Post-quest"
+    },
+    "expected": {
+      "maxHit": 27,
+      "accuracy": 0.4810,
+      "dps": 2.70586,
+      "playerRoll": 19310,
+      "npcRoll": 20070
+    }
+  },
+  {
+    "description": "Guardians",
+    "abstract": true,
+    "npc": {
+      "name": "Guardian",
+      "version": "Normal"
+    }
+  },
+  {
+    "description": "Crystal pick 99",
+    "parent": "Guardians",
+    "equipment": [
+      "Crystal pickaxe"
+    ],
+    "player": {
+      "attackStyleSelected": 2,
+      "misc": {
+        "mining": 99
+      }
+    },
+    "expected": {
+      "maxHit": 25,
+      "accuracy": 0.7134,
+      "dps": 2.90375,
+      "playerRoll": 10272,
+      "npcRoll": 5886
+    }
+  },
+  {
+    "description": "Crystal pick 61",
+    "parent": "Guardians",
+    "equipment": [
+      "Crystal pickaxe"
+    ],
+    "player": {
+      "attackStyleSelected": 2,
+      "misc": {
+        "mining": 61
+      }
+    },
+    "expected": {
+      "maxHit": 20,
+      "accuracy": 0.7134,
+      "dps": 2.35304,
+      "playerRoll": 10272,
+      "npcRoll": 5886
+    }
+  },
+  {
+    "description": "Bronze pick 1",
+    "parent": "Guardians",
+    "equipment": [
+      "Bronze pickaxe"
+    ],
+    "player": {
+      "attackStyleSelected": 2,
+      "misc": {
+        "mining": 1
+      }
+    },
+    "expected": {
+      "maxHit": 4,
+      "accuracy": 0.5832,
+      "dps": 0.32897,
+      "playerRoll": 7062,
+      "npcRoll": 5886
+    }
+  },
+  {
+    "description": "Bronze pick 1 stab",
+    "parent": "Guardians",
+    "equipment": [
+      "Bronze pickaxe"
+    ],
+    "player": {
+      "attackStyleSelected": 1,
+      "misc": {
+        "mining": 1
+      }
+    },
+    "expected": {
+      "maxHit": 4,
+      "accuracy": 0.2318,
+      "dps": 0.130738,
+      "playerRoll": 7276,
+      "npcRoll": 15696
+    }
+  },
+  {
+    "description": "Non pickaxe melee",
+    "parent": "Guardians",
+    "comment": [
+      "BK does not take into account non-pickaxe or non-melee attacks, result DPS is non-zero (but should be zero)."
+    ],
+    "equipment": [
+      "Inquisitor's mace"
+    ],
+    "expected": {
+      "maxHit": 0,
+      "accuracy": 0.827,
+      "dps": 0,
+      "playerRoll": 17013,
+      "npcRoll": 5886
+    }
+  },
+  {
+    "description": "Ranged",
+    "parent": "Guardians",
+    "equipment": [
+      "Dragon hunter crossbow",
+      "Dragon bolts"
+    ],
+    "expected": {
+      "maxHit": 0,
+      "accuracy": 0.8422,
+      "dps": 0,
+      "playerRoll": 22116,
+      "npcRoll": 6976
+    }
+  },
+  {
+    "description": "Magic",
+    "parent": "Guardians",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "expected": {
+      "maxHit": 0,
+      "accuracy": 0.9536,
+      "dps": 0,
+      "playerRoll": 6912,
+      "npcRoll": 640
+    }
+  },
+  {
+    "description": "Harm staff",
+    "abstract": true,
+    "equipment": [
+      "Harmonised nightmare staff"
+    ],
+    "npc": {
+      "name": "Dharok the Wretched"
+    }
+  },
+  {
+    "description": "Magic",
+    "parent": "Harm staff",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "expected": {
+      "attackSpeed": 4
+    }
+  },
+  {
+    "description": "Non-magic",
+    "parent": "Harm staff",
+    "player": {
+      "attackStyleSelected": 0,
+      "spell": null
+    },
+    "expected": {
+      "attackSpeed": 5
+    }
+  },
+  {
+    "description": "Ice demon",
+    "abstract": true,
+    "npc": {
+      "name": "Ice demon",
+      "version": "Normal"
+    }
+  },
+  {
+    "description": "Melee - bludgeon",
+    "parent": "Ice demon",
+    "comment": [
+      "BK rounds the maximum hit off, FD floors it instead.",
+      "Unsure which approach is correct; however, OSRS usually floors calculations like this.",
+      "Regular max hit of bludgeon is 26, so: round(26/3) = 9; but floor(26/3) = 8"
+    ],
+    "equipment": [
+      "Abyssal bludgeon"
+    ],
+    "expected": {
+      "maxHit": 8
+    }
+  },
+  {
+    "description": "Melee - whip",
+    "parent": "Ice demon",
+    "comment": [
+      "Unlike the bludgeon scenario, this one is unambiguous.",
+      "Regular max hit of whip is 25, so both round(25/3) = 8 and floor(25/3) = 8"
+    ],
+    "equipment": [
+      "Abyssal whip"
+    ],
+    "expected": {
+      "maxHit": 8
+    }
+  },
+  {
+    "description": "Ranged",
+    "parent": "Ice demon",
+    "equipment": [
+      "Dragon crossbow",
+      "Dragon bolts"
+    ],
+    "expected": {
+      "maxHit": 10
+    }
+  },
+  {
+    "description": "Non-fire magic",
+    "parent": "Ice demon",
+    "player": {
+      "spell": "Wind Surge"
+    },
+    "expected": {
+      "maxHit": 7,
+      "accuracy": 0.1649,
+      "dps": 0.1923939
+    }
+  },
+  {
+    "description": "Fire magic",
+    "parent": "Ice demon",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "expected": {
+      "maxHit": 36,
+      "accuracy": 0.1649,
+      "dps": 0.989454
+    }
+  },
+  {
+    "description": "Flames of Zamorak",
+    "parent": "Ice demon",
+    "player": {
+      "spell": "Flames of Zamorak"
+    },
+    "expected": {
+      "maxHit": 30,
+      "accuracy": 0.1649,
+      "dps": 0.82454
+    }
+  },
+  {
+    "description": "Flames of Zamorak + Charge",
+    "parent": "Ice demon",
+    "player": {
+      "spell": "Flames of Zamorak",
+      "misc": {
+        "charge": true
+      }
+    },
+    "expected": {
+      "maxHit": 45,
+      "accuracy": 0.1649,
+      "dps": 1.236818
+    }
+  },
+  {
+    "description": "Inquisitor's set",
+    "abstract": true,
+    "npc": {
+      "name": "Ahrim the Blighted"
+    }
+  },
+  {
+    "description": "Partial",
+    "parent": "Inquisitor's set",
+    "player": {
+      "attackStyleSelected": 2
+    },
+    "equipment": [
+      "Inquisitor's great helm",
+      "Zamorakian hasta"
+    ],
+    "expected": {
+      "maxHit": 24,
+      "accuracy": 0.3768,
+      "dps": 1.884059
+    }
+  },
+  {
+    "description": "Full",
+    "parent": "Inquisitor's set",
+    "player": {
+      "attackStyleSelected": 2
+    },
+    "equipment": [
+      "Inquisitor's great helm",
+      "Inquisitor's hauberk",
+      "Inquisitor's plateskirt",
+      "Zamorakian hasta"
+    ],
+    "expected": {
+      "maxHit": 25,
+      "accuracy": 0.4516,
+      "dps": 2.352329
+    }
+  },
+  {
+    "description": "Full, non-Crush",
+    "parent": "Inquisitor's set",
+    "player": {
+      "attackStyleSelected": 1
+    },
+    "equipment": [
+      "Inquisitor's great helm",
+      "Inquisitor's hauberk",
+      "Inquisitor's plateskirt",
+      "Zamorakian hasta"
+    ],
+    "expected": {
+      "maxHit": 25,
+      "accuracy": 0.4023,
+      "dps": 2.09526
+    }
+  },
+  {
+    "description": "Non-melee",
+    "parent": "Inquisitor's set",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "equipment": [
+      "Inquisitor's great helm",
+      "Inquisitor's hauberk",
+      "Inquisitor's plateskirt"
+    ],
+    "expected": {
+      "maxHit": 24,
+      "accuracy": 0.1410
+    }
+  },
+  {
+    "description": "Karil's set - regular",
+    "comment": [
+      "There is a mismatch between BK and FD - only when the full Amulet + Karil's set is active.",
+      "I have a suspicion this is again caused by the uniform hit spread used in BK, and a proper max-hit based",
+      "approach used in FD",
+      "BK simply boosts the damage by 12.5%, whereas FD makes sure each max-hit possibility is taken into account.",
+      "Will need to test this in-game to make sure it is correct.",
+      "Player/NPC rolls, accuracy and max-hits are correct, while DPS is not.",
+      "BK expected DPS in this scenario: 5.28873, FD: 5.26075",
+      "Reference video: https://www.youtube.com/watch?v=HCYCM0U2JGY&t=24s",
+      "Player hits 22-11 and 19-9 with Karil's + Amulet equipped, so the extra hit is definitely floored, not rounded."
+    ],
+    "equipment": [
+      "Karil's coif (Undamaged)",
+      "Karil's leathertop (Undamaged)",
+      "Karil's leatherskirt (Undamaged)",
+      "Karil's crossbow (Undamaged)",
+      "Amulet of the damned (Full)",
+      "Bolt rack"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 30,
+      "maxList": [20, 10],
+      "accuracy": 0.8462,
+      "dps": 5.26075,
+      "playerRoll": 22684,
+      "npcRoll": 6976
+    }
+  },
+  {
+    "description": "Karil's set - no amulet",
+    "equipment": [
+      "Karil's coif (Undamaged)",
+      "Karil's leathertop (Undamaged)",
+      "Karil's leatherskirt (Undamaged)",
+      "Karil's crossbow (Undamaged)",
+      "Bolt rack"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 20,
+      "accuracy": 0.8386,
+      "dps": 4.658801,
+      "playerRoll": 21614,
+      "npcRoll": 6976
+    }
+  },
+  {
+    "description": "Keris",
+    "abstract": true,
+    "equipment": ["Keris"]
+  },
+  {
+    "description": "vs. KQ",
+    "parent": "Keris",
+    "comment": [
+      "As with other proc effects, there is a mismatch here as well.",
+      "BK assumes a uniform distribution of a 3x average damage increase with a (1/51) chance.",
+      "FD maps the actual hits and probabilities instead.",
+      "BK expected DPS in this scenario: 0.718, FD: 0.730"
+    ],
+    "npc": {
+      "name": "Kalphite Queen",
+      "version": "Crawling"
+    },
+    "expected": {
+      "maxHit": 21,
+      "maxHitSpec": 63,
+      "accuracy": 0.1579,
+      "dps": 0.73007
+    }
+  },
+  {
+    "description": "vs. Scabarite",
+    "parent": "Keris",
+    "comment": [
+      "BK error: Keris does not seem to apply to all scabarites, like Locust rider here.",
+      "It seems these enemies don't have the \"kalphite\" flag as other scabarites do (e.g. Scarab swarm, Giant scarab)",
+      "For the Locust rider, the wiki mentions: \"The Keris dagger and Keris Partisan special effects work against them.\" ",
+      "So FD will apply the keris effect to them."
+    ],
+    "npc": {
+      "name": "Locust rider",
+      "version": "Lancer"
+    },
+    "expected": {
+      "maxHit": 21,
+      "maxHitSpec": 63,
+      "accuracy": 0.3649,
+      "dps": 1.68677
+    }
+  },
+  {
+    "description": "vs. non-proc",
+    "parent": "Keris",
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 16,
+      "maxHitSpec": null
+    }
+  },
+  {
+    "description": "Keris partisan",
+    "abstract": true,
+    "equipment": ["Keris partisan"]
+  },
+  {
+    "description": "vs. KQ",
+    "parent": "Keris partisan",
+    "comment": [
+      "See Keris vs. KQ.",
+      "BK expected DPS in this scenario: 1.0028, FD: 1.0198"
+    ],
+    "npc": {
+      "name": "Kalphite Queen",
+      "version": "Crawling"
+    },
+    "expected": {
+      "maxHit": 25,
+      "maxHitSpec": 75,
+      "accuracy": 0.1853,
+      "dps": 1.0198
+    }
+  },
+  {
+    "description": "vs. Scabarite",
+    "parent": "Keris partisan",
+    "comment": [
+      "See Keris vs. Scabarite."
+    ],
+    "npc": {
+      "name": "Locust rider",
+      "version": "Lancer"
+    },
+    "expected": {
+      "maxHit": 25,
+      "maxHitSpec": 75,
+      "accuracy": 0.4281,
+      "dps": 2.35638
+    }
+  },
+  {
+    "description": "vs. non-proc",
+    "parent": "Keris partisan",
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 19,
+      "maxHitSpec": null
+    }
+  },
+  {
+    "description": "Keris partisan of breaching",
+    "abstract": true,
+    "equipment": ["Keris partisan of breaching"]
+  },
+  {
+    "description": "vs. KQ",
+    "parent": "Keris partisan of breaching",
+    "comment": [
+      "See Keris vs. KQ.",
+      "BK expected DPS in this scenario: 1.0028, FD: 1.0198"
+    ],
+    "npc": {
+      "name": "Kalphite Queen",
+      "version": "Crawling"
+    },
+    "expected": {
+      "maxHit": 25,
+      "maxHitSpec": 75,
+      "accuracy": 0.2464,
+      "dps": 1.35639
+    }
+  },
+  {
+    "description": "vs. Scabarite",
+    "parent": "Keris partisan of breaching",
+    "comment": [
+      "See Keris vs. Scabarite."
+    ],
+    "npc": {
+      "name": "Locust rider",
+      "version": "Lancer"
+    },
+    "expected": {
+      "maxHit": 25,
+      "maxHitSpec": 75,
+      "accuracy": 0.5609,
+      "dps": 3.0873
+    }
+  },
+  {
+    "description": "vs. non-proc",
+    "parent": "Keris partisan of breaching",
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 19,
+      "maxHitSpec": null
+    }
+  },
+  {
+    "description": "Leafy axe",
+    "abstract": true,
+    "equipment": ["Leaf-bladed battleaxe"]
+  },
+  {
+    "description": "Kurask",
+    "parent": "Leafy axe",
+    "npc": {
+      "name": "Kurask",
+      "version": "Normal"
+    },
+    "expected": {
+      "maxHit": 31
+    }
+  },
+  {
+    "description": "Turoth",
+    "parent": "Leafy axe",
+    "npc": {
+      "name": "Turoth",
+      "version": "Level 83"
+    },
+    "expected": {
+      "maxHit": 31
+    }
+  },
+  {
+    "description": "Non-leafy",
+    "parent": "Leafy axe",
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 27
+    }
+  },
+  {
+    "description": "Maging Kurask",
+    "parent": "Leafy axe",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "npc": {
+      "name": "Kurask",
+      "version": "Normal"
+    },
+    "expected": {
+      "maxHit": 24
+    }
+  },
+  {
+    "description": "Maging non-leafy",
+    "parent": "Leafy axe",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 24
+    }
+  },
+  {
+    "description": "God spell without Charge",
+    "player": {
+      "spell": "Flames of Zamorak"
+    },
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 20
+    }
+  },
+  {
+    "description": "God spell with Charge",
+    "player": {
+      "spell": "Flames of Zamorak",
+      "misc": {
+        "charge": true
+      }
+    },
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 30
+    }
+  },
+  {
+    "description": "Chaos gauntlets",
+    "abstract": true,
+    "equipment": ["Chaos gauntlets"],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    }
+  },
+  {
+    "description": "Bolt spell",
+    "parent": "Chaos gauntlets",
+    "player": {
+      "spell": "Fire Bolt"
+    },
+    "expected": {
+      "maxHit": 15
+    }
+  },
+  {
+    "description": "Non-Bolt spell",
+    "parent": "Chaos gauntlets",
+    "player": {
+      "spell": "Fire Strike"
+    },
+    "expected": {
+      "maxHit": 8
+    }
+  },
+  {
+    "description": "Smoke battlestaff",
+    "abstract": true,
+    "comment": [
+      "BK DPS sheet doesn't have changes reflected for the Smoke Battlestaff.",
+      "The staff was buffed from +10 to +12 magic attack in September 2021."
+    ],
+    "equipment": ["Smoke battlestaff"],
+    "npc": {
+      "name": "Karil the Tainted"
+    }
+  },
+  {
+    "description": "Standard",
+    "parent": "Smoke battlestaff",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "expected": {
+      "maxHit": 26,
+      "playerRoll": 9028
+    }
+  },
+  {
+    "description": "Ancient",
+    "parent": "Smoke battlestaff",
+    "player": {
+      "spell": "Ice Barrage"
+    },
+    "expected": {
+      "maxHit": 30,
+      "playerRoll": 8208
+    }
+  },
+  {
+    "description": "Tome of fire",
+    "abstract": true,
+    "equipment": ["Tome of fire"],
+    "npc": {
+      "name": "Karil the Tainted"
+    }
+  },
+  {
+    "description": "Standard, Fire",
+    "parent": "Tome of fire",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "expected": {
+      "maxHit": 36
+    }
+  },
+  {
+    "description": "Standard, non-Fire",
+    "parent": "Tome of fire",
+    "player": {
+      "spell": "Water Surge"
+    },
+    "expected": {
+      "maxHit": 22
+    }
+  },
+  {
+    "description": "Ancient",
+    "parent": "Tome of fire",
+    "player": {
+      "spell": "Ice Barrage"
+    },
+    "expected": {
+      "maxHit": 30
+    }
+  },
+  {
+    "description": "Smoke bstaff + Tome of fire",
+    "equipment": [
+      "Smoke battlestaff",
+      "Tome of fire"
+    ],
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "npc": {
+      "name": "Karil the Tainted"
+    },
+    "expected": {
+      "maxHit": 39,
+      "playerRoll": 9979
+    }
+  },
+  {
+    "description": "Magic dart",
+    "abstract": true,
+    "player": {
+      "spell": "Magic Dart"
+    },
+    "npc": {
+      "name": "Karil the Tainted"
+    }
+  },
+  {
+    "description": "Regular 99",
+    "parent": "Magic dart",
+    "expected": {
+      "maxHit": 19
+    }
+  },
+  {
+    "description": "Regular 50",
+    "parent": "Magic dart",
+    "player": {
+      "stats": {
+        "magic": 50
+      }
+    },
+    "expected": {
+      "maxHit": 15
+    }
+  },
+  {
+    "description": "Slayer's staff (e) 99",
+    "parent": "Magic dart",
+    "equipment": ["Slayer's staff (e)"],
+    "player": {
+      "stats": {
+        "magic": 99
+      }
+    },
+    "expected": {
+      "maxHit": 29
+    }
+  },
+  {
+    "description": "Slayer's staff (e) 50",
+    "parent": "Magic dart",
+    "equipment": ["Slayer's staff (e)"],
+    "player": {
+      "stats": {
+        "magic": 50
+      }
+    },
+    "expected": {
+      "maxHit": 21
+    }
+  },
+  {
+    "description": "Maiden Nylos",
+    "abstract": true,
+    "player": {
+      "spell": "Ice Barrage"
+    },
+    "npc": {
+      "name": "Nylocas Matomenos"
+    }
+  },
+  {
+    "description": "Regular +140",
+    "parent": "Maiden Nylos",
+    "player": {
+      "customBonuses": [0, 0, 0, 140, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "expected": {
+      "accuracy": 1.00
+    }
+  },
+  {
+    "description": "Augury +103",
+    "parent": "Maiden Nylos",
+    "player": {
+      "prayers": ["Augury"],
+      "customBonuses": [0, 0, 0, 103, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "expected": {
+      "accuracy": 1.00
+    }
+  },
+  {
+    "description": "Augury Heart +88",
+    "parent": "Maiden Nylos",
+    "player": {
+      "prayers": ["Augury"],
+      "boostList": ["Imbued heart"],
+      "customBonuses": [0, 0, 0, 88, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "expected": {
+      "accuracy": 1.00
+    }
+  },
+  {
+    "description": "Void +81",
+    "parent": "Maiden Nylos",
+    "equipment": [
+      "Void mage helm",
+      "Elite void top",
+      "Elite void robe",
+      "Void knight gloves"
+    ],
+    "player": {
+      "prayers": ["Augury"],
+      "customBonuses": [0, 0, 0, 81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "expected": {
+      "accuracy": 1.00
+    }
+  },
+  {
+    "description": "Void Augury +54",
+    "parent": "Maiden Nylos",
+    "equipment": [
+      "Void mage helm",
+      "Elite void top",
+      "Elite void robe",
+      "Void knight gloves"
+    ],
+    "player": {
+      "prayers": ["Augury"],
+      "customBonuses": [0, 0, 0, 54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "expected": {
+      "accuracy": 1.00
+    }
+  },
+  {
+    "description": "Void Augury Heart +43",
+    "parent": "Maiden Nylos",
+    "equipment": [
+      "Void mage helm",
+      "Elite void top",
+      "Elite void robe",
+      "Void knight gloves"
+    ],
+    "player": {
+      "prayers": ["Augury"],
+      "boostList": ["Imbued heart"],
+      "customBonuses": [0, 0, 0, 43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    "expected": {
+      "accuracy": 1.00
+    }
+  },
+  {
+    "description": "Non-threshold attack bonus",
+    "parent": "Maiden Nylos",
+    "equipment": ["Kodai wand"],
+    "expected": {
+      "playerRoll": 9936,
+      "accuracy": 0.20
+    }
+  },
+  {
+    "description": "No attack bonus",
+    "parent": "Maiden Nylos",
+    "expected": {
+      "accuracy": 0.00
+    }
+  },
+  {
+    "description": "Negative attack bonus",
+    "parent": "Maiden Nylos",
+    "comment": [
+      "BK sheet does not cap the accuracy with a lower bound.",
+      "Naturally, accuracy can only drop to 0%."
+    ],
+    "equipment": [
+      "Fighter torso"
+    ],
+    "expected": {
+      "accuracy": 0.00
+    }
+  },
+  {
+    "description": "Obsidian armour",
+    "equipment": [
+      "Obsidian helmet",
+      "Obsidian platebody",
+      "Obsidian platelegs",
+      "Tzhaar-ket-om"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 29,
+      "accuracy": 0.4295,
+      "playerRoll": 16948,
+      "dps": 1.482791
+    }
+  },
+  {
+    "description": "Obsidian armour, no obsidian weapon",
+    "equipment": [
+      "Obsidian helmet",
+      "Obsidian platebody",
+      "Obsidian platelegs",
+      "Abyssal whip"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 26,
+      "accuracy": 0.4854,
+      "playerRoll": 15768,
+      "dps": 2.62929
+    }
+  },
+  {
+    "description": "Obby armour, b. neck, no obsidian weapon",
+    "equipment": [
+      "Obsidian helmet",
+      "Obsidian platebody",
+      "Obsidian platelegs",
+      "Berserker necklace",
+      "Abyssal whip"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 27,
+      "accuracy": 0.4522,
+      "playerRoll": 14688,
+      "dps": 2.543405
+    }
+  },
+  {
+    "description": "Obsidian armour + Berserker necklace",
+    "comment": [
+      "There is a minor discrepancy between BK and FD - I attribute this to different damage spread models as above",
+      "e.g. Karil's set and others.",
+      "DPS comparison: BK = 1.676037; FD = 1.712873",
+      "Other values are all corrected, so I'm unsure what other factor could cause this."
+    ],
+    "equipment": [
+      "Berserker necklace",
+      "Obsidian helmet",
+      "Obsidian platebody",
+      "Obsidian platelegs",
+      "Tzhaar-ket-om"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 36,
+      "accuracy": 0.3997,
+      "playerRoll": 15771,
+      "npcRoll": 19729,
+      "dps": 1.712873
+    }
+  },
+  {
+    "description": "Berserker necklace",
+    "comment": [
+      "See above for Berserker necklace."
+    ],
+    "equipment": [
+      "Berserker necklace",
+      "Toktz-xil-ak"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 25,
+      "accuracy": 0.2968,
+      "playerRoll": 10807,
+      "npcRoll": 18203,
+      "dps": 1.5459914
+    }
+  },
+  {
+    "description": "Osmumten's fang",
+    "abstract": true,
+    "equipment": ["Osmumten's fang"]
+  },
+  {
+    "description": "Non-ToA: Ahrim",
+    "parent": "Osmumten's fang",
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHitSpec": 25,
+      "specAcc": 0.6622,
+      "playerRoll": 18083,
+      "dps": 3.200848
+    }
+  },
+  {
+    "description": "Non-ToA: Corp Beast",
+    "parent": "Osmumten's fang",
+    "npc": {
+      "name": "Corporeal Beast"
+    },
+    "expected": {
+      "maxHitSpec": 25,
+      "specAcc": 0.4246,
+      "playerRoll": 18083,
+      "dps": 2.05227
+    }
+  },
+  {
+    "description": "ToA Zebak (0 invo)",
+    "parent": "Osmumten's fang",
+    "npc": {
+      "name": "Zebak",
+      "invocation": 0
+    },
+    "expected": {
+      "maxHitSpec": 25,
+      "specAcc": 0.7606,
+      "playerRoll": 18083,
+      "dps": 3.67603
+    }
+  },
+  {
+    "description": "Osmumten's fang - full gear",
+    "player": {
+      "prayers": ["Piety"],
+      "boostList": ["Smelling salts"]
+    },
+    "equipment": [
+      "Osmumten's fang",
+      "Avernic defender",
+      "Torva full helm (Restored)",
+      "Amulet of torture",
+      "Infernal cape",
+      "Torva platebody (Restored)",
+      "Torva platelegs (Restored)",
+      "Primordial boots",
+      "Ferocious gloves",
+      "Berserker ring (i)"
+    ],
+    "npc": {
+      "name": "Ba-Ba",
+      "invocation": 600
+    },
+    "expected": {
+      "maxHitSpec": 52,
+      "specAcc": 0.6727,
+      "dps": 6.8388667,
+      "playerRoll": 37288
+    }
+  },
+  {
+    "description": "Low defence enemy",
+    "parent": "Osmumten's fang",
+    "npc": {
+      "name": "Rat",
+      "version": "Level 1"
+    },
+    "expected": {
+      "playerRoll": 18083,
+      "npcRoll": 220
+    }
+  },
+  {
+    "description": "Trident of the seas 75",
+    "player": {
+      "stats": {
+        "magic": 75
+      }
+    },
+    "equipment": ["Trident of the seas"],
+    "npc": {
+      "name": "Dharok the Wretched"
+    },
+    "expected": {
+      "maxHit": 20
+    }
+  },
+  {
+    "description": "Trident of the seas 99",
+    "player": {
+      "stats": {
+        "magic": 99
+      }
+    },
+    "equipment": ["Trident of the seas"],
+    "npc": {
+      "name": "Dharok the Wretched"
+    },
+    "expected": {
+      "maxHit": 28
+    }
+  },
+  {
+    "description": "Trident of the swamp 78",
+    "player": {
+      "stats": {
+        "magic": 78
+      }
+    },
+    "equipment": ["Trident of the swamp"],
+    "npc": {
+      "name": "Dharok the Wretched"
+    },
+    "expected": {
+      "maxHit": 24
+    }
+  },
+  {
+    "description": "Trident of the swamp 99",
+    "player": {
+      "stats": {
+        "magic": 99
+      }
+    },
+    "equipment": ["Trident of the swamp"],
+    "npc": {
+      "name": "Dharok the Wretched"
+    },
+    "expected": {
+      "maxHit": 31
+    }
+  },
+  {
+    "description": "Sanguinesti staff 82",
+    "player": {
+      "stats": {
+        "magic": 82
+      }
+    },
+    "equipment": ["Sanguinesti staff"],
+    "npc": {
+      "name": "Dharok the Wretched"
+    },
+    "expected": {
+      "maxHit": 26
+    }
+  },
+  {
+    "description": "Sanguinesti staff 99",
+    "player": {
+      "stats": {
+        "magic": 99
+      }
+    },
+    "equipment": ["Sanguinesti staff"],
+    "npc": {
+      "name": "Dharok the Wretched"
+    },
+    "expected": {
+      "maxHit": 32
+    }
+  },
+  {
+    "description": "Dawnbringer 1",
+    "comment": [
+      "The formula seems to be right for Dawnbringer: floor(magic/6) - 1.",
+      "However, what happens if the player's magic level is 5 or lower? The max hit should theoretically be -1.",
+      "It's most likely lower bound to zero, if anything.",
+      "There is also no hard Magic requirement to enter Theatre of Blood... so I wonder what actually happens!",
+      "In FD, we minimum cap the max hit to zero, presumably as ingame."
+    ],
+    "player": {
+      "stats": {
+        "magic": 1
+      }
+    },
+    "equipment": ["Dawnbringer"],
+    "npc": {
+      "name": "Dharok the Wretched"
+    },
+    "expected": {
+      "maxHit": 0
+    }
+  },
+  {
+    "description": "Dawnbringer 99",
+    "player": {
+      "stats": {
+        "magic": 99
+      }
+    },
+    "equipment": ["Dawnbringer"],
+    "npc": {
+      "name": "Dharok the Wretched"
+    },
+    "expected": {
+      "maxHit": 15
+    }
+  },
+  {
+    "description": "Gauntlet T1 staff",
+    "equipment": ["Crystal staff (basic)"],
+    "npc": {
+      "name": "Corrupted Hunllef"
+    },
+    "expected": {
+      "maxHit": 23
+    }
+  },
+  {
+    "description": "Gauntlet T2 staff",
+    "equipment": ["Crystal staff (attuned)"],
+    "npc": {
+      "name": "Corrupted Hunllef"
+    },
+    "expected": {
+      "maxHit": 31
+    }
+  },
+  {
+    "description": "Gauntlet T3 staff",
+    "equipment": ["Crystal staff (perfected)"],
+    "npc": {
+      "name": "Corrupted Hunllef"
+    },
+    "expected": {
+      "maxHit": 39
+    }
+  },
+  {
+    "description": "Starter staff",
+    "equipment": ["Starter staff"],
+    "npc": {
+      "name": "Corrupted Hunllef"
+    },
+    "expected": {
+      "maxHit": 8
+    }
+  },
+  {
+    "description": "Black salamander",
+    "abstract": true,
+    "equipment": ["Black salamander", "Harralander tar"],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    }
+  },
+  {
+    "description": "Melee",
+    "parent": "Black salamander",
+    "player": {
+      "attackStyleSelected": 0
+    },
+    "expected": {
+      "vertex": "Melee",
+      "maxHit": 23,
+      "attackSpeed": 5,
+      "playerRoll": 13161
+    }
+  },
+  {
+    "description": "Ranged",
+    "parent": "Black salamander",
+    "player": {
+      "attackStyleSelected": 1
+    },
+    "expected": {
+      "vertex": "Ranged",
+      "maxHit": 19,
+      "attackSpeed": 4,
+      "playerRoll": 14231
+    }
+  },
+  {
+    "description": "Magic 70",
+    "parent": "Black salamander",
+    "player": {
+      "attackStyleSelected": 2,
+      "stats": {
+        "magic": 70
+      }
+    },
+    "expected": {
+      "vertex": "Magic",
+      "maxHit": 17,
+      "attackSpeed": 5,
+      "playerRoll": 5056
+    }
+  },
+  {
+    "description": "Magic 99",
+    "parent": "Black salamander",
+    "player": {
+      "attackStyleSelected": 2,
+      "stats": {
+        "magic": 99
+      }
+    },
+    "expected": {
+      "vertex": "Magic",
+      "maxHit": 24,
+      "attackSpeed": 5,
+      "playerRoll": 6912
+    }
+  },
+  {
+    "description": "Black salamander - wrong tar",
+    "equipment": ["Black salamander", "Guam tar"],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 0
+    }
+  },
+  {
+    "description": "Red salamander",
+    "abstract": true,
+    "equipment": ["Red salamander", "Tarromin tar"],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    }
+  },
+  {
+    "description": "Magic 60",
+    "parent": "Red salamander",
+    "player": {
+      "attackStyleSelected": 2,
+      "stats": {
+        "magic": 60
+      }
+    },
+    "expected": {
+      "maxHit": 13
+    }
+  },
+  {
+    "description": "Magic 99",
+    "parent": "Red salamander",
+    "player": {
+      "attackStyleSelected": 2,
+      "stats": {
+        "magic": 99
+      }
+    },
+    "expected": {
+      "maxHit": 22
+    }
+  },
+  {
+    "description": "Orange salamander",
+    "abstract": true,
+    "equipment": ["Orange salamander", "Marrentill tar"],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    }
+  },
+  {
+    "description": "Magic 50",
+    "parent": "Orange salamander",
+    "player": {
+      "attackStyleSelected": 2,
+      "stats": {
+        "magic": 50
+      }
+    },
+    "expected": {
+      "maxHit": 10
+    }
+  },
+  {
+    "description": "Magic 99",
+    "parent": "Orange salamander",
+    "player": {
+      "attackStyleSelected": 2,
+      "stats": {
+        "magic": 99
+      }
+    },
+    "expected": {
+      "maxHit": 19
+    }
+  },
+  {
+    "description": "Swamp lizard",
+    "abstract": true,
+    "equipment": ["Swamp lizard", "Guam tar"],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    }
+  },
+  {
+    "description": "Magic 30",
+    "parent": "Swamp lizard",
+    "player": {
+      "attackStyleSelected": 2,
+      "stats": {
+        "magic": 30
+      }
+    },
+    "expected": {
+      "maxHit": 6
+    }
+  },
+  {
+    "description": "Magic 99",
+    "parent": "Swamp lizard",
+    "player": {
+      "attackStyleSelected": 2,
+      "stats": {
+        "magic": 99
+      }
+    },
+    "expected": {
+      "maxHit": 19
+    }
+  },
+  {
+    "description": "Salve",
+    "abstract": true,
+    "equipment": ["Salve amulet"]
+  },
+  {
+    "description": "Melee vs. undead",
+    "parent": "Salve",
+    "npc": {
+      "name": "Skeleton",
+      "version": "Level 21"
+    },
+    "expected": {
+      "maxHit": 12,
+      "playerRoll": 7989
+    }
+  },
+  {
+    "description": "Melee vs. non-undead",
+    "parent": "Salve",
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 11,
+      "playerRoll": 6848
+    }
+  },
+  {
+    "description": "Ranged",
+    "parent": "Salve",
+    "equipment": ["Salve amulet", "Magic shortbow", "Bronze arrow"],
+    "npc": {
+      "name": "Skeleton",
+      "version": "Level 21"
+    },
+    "expected": {
+      "maxHit": 12,
+      "playerRoll": 14231
+    }
+  },
+  {
+    "description": "Magic",
+    "parent": "Salve",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "npc": {
+      "name": "Skeleton",
+      "version": "Level 21"
+    },
+    "expected": {
+      "maxHit": 24,
+      "playerRoll": 6912
+    }
+  },
+  {
+    "description": "Salve (e)",
+    "abstract": true,
+    "equipment": ["Salve amulet (e)"]
+  },
+  {
+    "description": "Melee",
+    "parent": "Salve (e)",
+    "npc": {
+      "name": "Skeleton",
+      "version": "Level 21"
+    },
+    "expected": {
+      "maxHit": 13,
+      "playerRoll": 8217
+    }
+  },
+  {
+    "description": "Ranged",
+    "parent": "Salve (e)",
+    "equipment": ["Salve amulet", "Magic shortbow", "Bronze arrow"],
+    "npc": {
+      "name": "Skeleton",
+      "version": "Level 21"
+    },
+    "expected": {
+      "maxHit": 12,
+      "playerRoll": 14231
+    }
+  },
+  {
+    "description": "Magic",
+    "parent": "Salve (e)",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "npc": {
+      "name": "Skeleton",
+      "version": "Level 21"
+    },
+    "expected": {
+      "maxHit": 24,
+      "playerRoll": 6912
+    }
+  },
+  {
+    "description": "Salve (i)",
+    "abstract": true,
+    "equipment": ["Salve amulet(i)"]
+  },
+  {
+    "description": "Melee",
+    "parent": "Salve (i)",
+    "npc": {
+      "name": "Skeleton",
+      "version": "Level 21"
+    },
+    "expected": {
+      "maxHit": 12,
+      "playerRoll": 7989
+    }
+  },
+  {
+    "description": "Ranged",
+    "parent": "Salve (i)",
+    "equipment": ["Salve amulet(i)", "Magic shortbow", "Bronze arrow"],
+    "npc": {
+      "name": "Skeleton",
+      "version": "Level 21"
+    },
+    "expected": {
+      "maxHit": 14,
+      "playerRoll": 16602
+    }
+  },
+  {
+    "description": "Magic",
+    "parent": "Salve (i)",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "npc": {
+      "name": "Skeleton",
+      "version": "Level 21"
+    },
+    "expected": {
+      "maxHit": 27,
+      "playerRoll": 7948
+    }
+  },
+  {
+    "description": "Salve (ei)",
+    "abstract": true,
+    "equipment": ["Salve amulet(ei)"]
+  },
+  {
+    "description": "Melee",
+    "parent": "Salve (ei)",
+    "npc": {
+      "name": "Skeleton",
+      "version": "Level 21"
+    },
+    "expected": {
+      "maxHit": 13,
+      "playerRoll": 8217
+    }
+  },
+  {
+    "description": "Ranged",
+    "parent": "Salve (ei)",
+    "equipment": ["Salve amulet(ei)", "Magic shortbow", "Bronze arrow"],
+    "npc": {
+      "name": "Skeleton",
+      "version": "Level 21"
+    },
+    "expected": {
+      "maxHit": 14,
+      "playerRoll": 17077
+    }
+  },
+  {
+    "description": "Magic",
+    "parent": "Salve (ei)",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "npc": {
+      "name": "Skeleton",
+      "version": "Level 21"
+    },
+    "expected": {
+      "maxHit": 28,
+      "playerRoll": 8294
+    }
+  },
+  {
+    "description": "Salve (ei) + Black mask",
+    "equipment": ["Salve amulet(ei)", "Slayer helmet (i)"],
+    "npc": {
+      "name": "Skeleton",
+      "version": "Level 21"
+    },
+    "expected": {
+      "maxHit": 13,
+      "playerRoll": 8217
+    }
+  },
+  {
+    "description": "Scythe",
+    "abstract": true,
+    "equipment": ["Scythe of vitur"]
+  },
+  {
+    "description": "Small",
+    "parent": "Scythe",
+    "comment": [
+      "Small monster sizes are currently not supported, large is default",
+      "Expected maxHit: 24, maxList: [24]"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {}
+  },
+  {
+    "description": "Medium",
+    "parent": "Scythe",
+    "comment": [
+      "Medium monster sizes are currently not supported, large is default",
+      "Expected maxHit: 36, maxList: [24, 12]"
+    ],
+    "npc": {
+      "name": "Hill Giant",
+      "version": "1"
+    },
+    "expected": {}
+  },
+  {
+    "description": "Large",
+    "parent": "Scythe",
+    "npc": {
+      "name": "Vorkath",
+      "version": "Post-quest"
+    },
+    "expected": {
+      "maxHit": 42,
+      "maxList": [24, 12, 6]
+    }
+  },
+  {
+    "description": "Slayer helmet",
+    "abstract": true,
+    "equipment": [
+      "Slayer helmet"
+    ],
+    "npc": {
+      "name": "Black demon",
+      "version": "Level 172"
+    }
+  },
+  {
+    "description": "Melee on task",
+    "parent": "Slayer helmet",
+    "player": {
+      "misc": {
+        "onTask": true
+      }
+    },
+    "expected": {
+      "maxHit": 12,
+      "playerRoll": 7989
+    }
+  },
+  {
+    "description": "Melee off task",
+    "parent": "Slayer helmet",
+    "player": {
+      "misc": {
+        "onTask": false
+      }
+    },
+    "expected": {
+      "maxHit": 11,
+      "playerRoll": 6848
+    }
+  },
+  {
+    "description": "Ranged on task",
+    "parent": "Slayer helmet",
+    "equipment": ["Slayer helmet", "Magic shortbow", "Bronze arrow"],
+    "player": {
+      "misc": {
+        "onTask": true
+      }
+    },
+    "expected": {
+      "maxHit": 12,
+      "playerRoll": 14017
+    }
+  },
+  {
+    "description": "Magic on task",
+    "parent": "Slayer helmet",
+    "player": {
+      "spell": "Fire Surge",
+      "misc": {
+        "onTask": true
+      }
+    },
+    "expected": {
+      "maxHit": 24,
+      "playerRoll": 6264
+    }
+  },
+  {
+    "description": "Slayer helmet (i)",
+    "abstract": true,
+    "equipment": ["Slayer helmet (i)"],
+    "player": {
+      "misc": {
+        "onTask": true
+      }
+    },
+    "npc": {
+      "name": "Black demon",
+      "version": "Level 172"
+    }
+  },
+  {
+    "description": "Melee on task",
+    "parent": "Slayer helmet (i)",
+    "expected": {
+      "maxHit": 12,
+      "playerRoll": 7989
+    }
+  },
+  {
+    "description": "Ranged on task",
+    "parent": "Slayer helmet (i)",
+    "equipment": ["Slayer helmet (i)", "Magic shortbow", "Bronze arrow"],
+    "player": {
+      "misc": {
+        "onTask": true
+      }
+    },
+    "expected": {
+      "maxHit": 13,
+      "playerRoll": 16734
+    }
+  },
+  {
+    "description": "Magic on task",
+    "parent": "Slayer helmet (i)",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "expected": {
+      "maxHit": 27,
+      "playerRoll": 8321
+    }
+  },
+  {
+    "description": "Tumeken's shadow",
+    "abstract": true,
+    "equipment": ["Tumeken's shadow"],
+    "npc": {
+      "name": "Dharok the Wretched"
+    }
+  },
+  {
+    "description": "No gear",
+    "parent": "Tumeken's shadow",
+    "expected": {
+      "maxHit": 34,
+      "playerRoll": 18590
+    }
+  },
+  {
+    "description": "Slayer helmet + gear",
+    "parent": "Tumeken's shadow",
+    "player": {
+      "misc": {
+        "onTask": true
+      }
+    },
+    "equipment": [
+      "Tumeken's shadow",
+      "Slayer helmet (i)",
+      "Occult necklace",
+      "Tormented bracelet",
+      "Imbued zamorak cape"
+    ],
+    "expected": {
+      "maxHit": 58,
+      "playerRoll": 36558
+    }
+  },
+  {
+    "description": "Spellbook",
+    "parent": "Tumeken's shadow",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "expected": {
+      "maxHit": 24,
+      "playerRoll": 10692
+    }
+  },
+  {
+    "description": "Magic gear",
+    "parent": "Tumeken's shadow",
+    "equipment": [
+      "Tumeken's shadow",
+      "Occult necklace",
+      "Tormented bracelet",
+      "Imbued zamorak cape"
+    ],
+    "expected": {
+      "maxHit": 51,
+      "playerRoll": 30800
+    }
+  },
+  {
+    "description": "Negative bonus",
+    "parent": "Tumeken's shadow",
+    "equipment": [
+      "Tumeken's shadow",
+      "Fighter torso",
+      "Ferocious gloves"
+    ],
+    "expected": {
+      "maxHit": 34,
+      "playerRoll": 110
+    }
+  },
+  {
+    "description": "Tumeken's shadow ToA",
+    "abstract": true,
+    "equipment": [
+      "Tumeken's shadow"
+    ],
+    "npc": {
+      "name": "Ba-Ba",
+      "invocation": 0
+    }
+  },
+  {
+    "description": "No gear",
+    "parent": "Tumeken's shadow ToA",
+    "expected": {
+      "maxHit": 34,
+      "playerRoll": 22440
+    }
+  },
+  {
+    "description": "Magic gear",
+    "parent": "Tumeken's shadow ToA",
+    "equipment": [
+      "Tumeken's shadow",
+      "Occult necklace",
+      "Tormented bracelet",
+      "Imbued zamorak cape"
+    ],
+    "expected": {
+      "maxHit": 57,
+      "playerRoll": 38720
+    }
+  },
+  {
+    "description": "Max mage",
+    "parent": "Tumeken's shadow ToA",
+    "player": {
+      "prayers": ["Augury"],
+      "boostList": ["Smelling salts"]
+    },
+    "equipment": [
+      "Tumeken's shadow",
+      "Occult necklace",
+      "Tormented bracelet",
+      "Imbued zamorak cape",
+      "Ancestral hat",
+      "Ancestral robe top",
+      "Ancestral robe bottom",
+      "Eternal boots",
+      "Seers ring (i)"
+    ],
+    "expected": {
+      "maxHit": 80,
+      "playerRoll": 118236
+    }
+  },
+  {
+    "description": "Max mage + Slayer helmet",
+    "parent": "Tumeken's shadow ToA",
+    "player": {
+      "prayers": ["Augury"],
+      "boostList": ["Smelling salts"]
+    },
+    "equipment": [
+      "Tumeken's shadow",
+      "Slayer helmet (i)",
+      "Occult necklace",
+      "Tormented bracelet",
+      "Imbued zamorak cape",
+      "Ancestral robe top",
+      "Ancestral robe bottom",
+      "Eternal boots",
+      "Seers ring (i)"
+    ],
+    "expected": {
+      "maxHit": 88,
+      "playerRoll": 132130
+    }
+  },
+  {
+    "description": "Negative bonus",
+    "parent": "Tumeken's shadow ToA",
+    "equipment": [
+      "Tumeken's shadow",
+      "Fighter torso"
+    ],
+    "expected": {
+      "maxHit": 34,
+      "playerRoll": 4840
+    }
+  },
+  {
+    "description": "Twisted bow",
+    "abstract": true,
+    "equipment": ["Twisted bow", "Dragon arrow"]
+  },
+  {
+    "description": "Dharok 1 magic",
+    "parent": "Twisted bow",
+    "comment": [
+      "Rounding errors occur in this example, and I'm unclear on which way is correct.",
+      "BK assumes enemy level 1 magic results in 41% accuracy of base, FD assumes 40%.",
+      "Unfortunately, the only formula source (Twitter @ModKieren) does not mention any rounding.",
+      "P.S. this rounding mess only happens at really low magic levels, so honestly it doesn't matter all that much..."
+    ],
+    "npc": {
+      "name": "Dharok the Wretched"
+    },
+    "expected": {}
+  },
+  {
+    "description": "Graardor 80 magic",
+    "parent": "Twisted bow",
+    "npc": {
+      "name": "General Graardor",
+      "version": "Normal"
+    },
+    "expected": {
+      "maxHit": 28,
+      "playerRoll": 12187
+    }
+  },
+  {
+    "description": "K'ril 200 magic",
+    "parent": "Twisted bow",
+    "npc": {
+      "name": "K'ril Tsutsaroth",
+      "version": "Normal"
+    },
+    "expected": {
+      "maxHit": 45,
+      "playerRoll": 18496
+    }
+  },
+  {
+    "description": "Zilyana 300 magic (cap 250)",
+    "parent": "Twisted bow",
+    "npc": {
+      "name": "Commander Zilyana",
+      "version": "Normal"
+    },
+    "expected": {
+      "maxHit": 51,
+      "playerRoll": 20073
+    }
+  },
+  {
+    "description": "Olm's head CM 375 magic (cap 350)",
+    "parent": "Twisted bow",
+    "npc": {
+      "name": "Great Olm",
+      "version": "Head (Challenge Mode)"
+    },
+    "expected": {
+      "maxHit": 59,
+      "playerRoll": 20073
+    }
+  },
+  {
+    "description": "Zuk 550 magic (cap 250)",
+    "parent": "Twisted bow",
+    "npc": {
+      "name": "TzKal-Zuk"
+    },
+    "expected": {
+      "maxHit": 51,
+      "playerRoll": 20073
+    }
+  },
+  {
+    "description": "Ivandis flail",
+    "equipment": ["Ivandis flail"],
+    "npc": {
+      "name": "Vampyre Juvenile",
+      "version": "Burgh de Rott"
+    },
+    "expected": {
+      "maxHit": 21,
+      "playerRoll": 13482
+    }
+  },
+  {
+    "description": "Ivandis flail vs. Non-vampyre",
+    "equipment": ["Ivandis flail"],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 18,
+      "playerRoll": 13482
+    }
+  },
+  {
+    "description": "Blisterwood sickle",
+    "equipment": ["Blisterwood sickle"],
+    "npc": {
+      "name": "Vampyre Juvenile",
+      "version": "Burgh de Rott"
+    },
+    "expected": {
+      "maxHit": 19,
+      "playerRoll": 11459
+    }
+  },
+  {
+    "description": "Blisterwood sickle vs. Non-vampyre",
+    "equipment": ["Blisterwood sickle"],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 17,
+      "playerRoll": 10914
+    }
+  },
+  {
+    "description": "Blisterwood flail",
+    "comment": [
+      "BK DPS chart is incorrect here, it does not apply the 5% accuracy bonus against vampyres.",
+      "Expected player roll: 14830, BK: 14124 (same as base accuracy)"
+    ],
+    "equipment": ["Blisterwood flail"],
+    "npc": {
+      "name": "Vampyre Juvenile",
+      "version": "Burgh de Rott"
+    },
+    "expected": {
+      "maxHit": 23,
+      "playerRoll": 14830
+    }
+  },
+  {
+    "description": "Blisterwood flail vs. Non-vampyre",
+    "equipment": ["Blisterwood flail"],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 19,
+      "playerRoll": 14124
+    }
+  },
+  {
+    "description": "Verac's set",
+    "abstract": true,
+    "equipment": [
+      "Verac's helm (Undamaged)",
+      "Verac's brassard (Undamaged)",
+      "Verac's plateskirt (Undamaged)",
+      "Verac's flail (Undamaged)"
+    ]
+  },
+  {
+    "description": "vs. Ahrim (low def)",
+    "parent": "Verac's set",
+    "comment": [
+      "DPS discrepancy - most likely stemming from different set effect approaches (as seen in e.g. Karil's set)",
+      "BK DPS: 2.138196; FD DPS: 2.179863"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 23,
+      "maxHitSpec": 24,
+      "playerRoll": 15622,
+      "rawAcc": 0.3959
+    }
+  },
+  {
+    "description": "vs. Ahrim (high def)",
+    "parent": "Verac's set",
+    "comment": [
+      "DPS discrepancy - just like above.",
+      "BK DPS: 1.563006; FD DPS: 1.6046727"
+    ],
+    "npc": {
+      "name": "General Graardor",
+      "version": "Normal"
+    },
+    "expected": {
+      "maxHit": 23,
+      "maxHitSpec": 24,
+      "playerRoll": 15622,
+      "rawAcc": 0.1958
+    }
+  },
+  {
+    "description": "Maging",
+    "parent": "Verac's set",
+    "comment": [
+      "BK incorrectly assumes Verac's set applies while maging - similar to Dharok's set."
+    ],
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "npc": {
+      "name": "Dharok the Wretched"
+    },
+    "expected": {
+      "maxHit": 24,
+      "playerRoll": 3348,
+      "dps": 3.682293
+    }
+  },
+  {
+    "description": "Verzik P1 Scythe",
+    "equipment": [
+      "Scythe of vitur"
+    ],
+    "npc": {
+      "name": "Verzik Vitur",
+      "combat": 1040
+    },
+    "expected": {
+      "maxHit": 26,
+      "maxList": [10, 10, 6],
+      "dps": 3.09462
+    }
+  },
+  {
+    "description": "Verzik P1 MSB",
+    "comment": [
+      "DPS discrepancy: Probably because of rounding or different capping algorithm?",
+      "BK DPS: 0.763888, FD DPS: 0.698460"
+    ],
+    "equipment": [
+      "Magic shortbow",
+      "Rune arrow"
+    ],
+    "npc": {
+      "name": "Verzik Vitur",
+      "combat": 1040
+    },
+    "expected": {
+      "maxHit": 3
+    }
+  },
+  {
+    "description": "Verzik P1 Mage",
+    "comment": [
+      "DPS discrepancy: Probably because of rounding or different capping algorithm?",
+      "BK DPS: 0.4666667, FD DPS: 0.3843772"
+    ],
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "npc": {
+      "name": "Verzik Vitur",
+      "combat": 1040
+    },
+    "expected": {
+      "maxHit": 3
+    }
+  },
+  {
+    "description": "Melee Void",
+    "abstract": true,
+    "equipment": [
+      "Abyssal whip",
+      "Void melee helm",
+      "Void knight top",
+      "Void knight robe",
+      "Void knight gloves"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    }
+  },
+  {
+    "description": "Melee",
+    "parent": "Melee Void",
+    "expected": {
+      "maxHit": 27,
+      "playerRoll": 17228
+    }
+  },
+  {
+    "description": "Non-melee",
+    "parent": "Melee Void",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "expected": {
+      "maxHit": 24,
+      "playerRoll": 6912
+    }
+  },
+  {
+    "description": "Elite Melee Void",
+    "equipment": [
+      "Abyssal whip",
+      "Void melee helm",
+      "Elite void top",
+      "Elite void robe",
+      "Void knight gloves"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 27,
+      "playerRoll": 17228
+    }
+  },
+  {
+    "description": "Ranged Void",
+    "abstract": true,
+    "equipment": [
+      "Twisted bow",
+      "Dragon arrow",
+      "Void ranger helm",
+      "Void knight top",
+      "Void knight robe",
+      "Void knight gloves"
+    ],
+    "npc": {
+      "name": "Commander Zilyana",
+      "version": "Normal"
+    }
+  },
+  {
+    "description": "Ranged",
+    "parent": "Ranged Void",
+    "expected": {
+      "maxHit": 55,
+      "playerRoll": 21949
+    }
+  },
+  {
+    "description": "Non-ranged",
+    "parent": "Melee Void",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "expected": {
+      "maxHit": 24,
+      "playerRoll": 6912
+    }
+  },
+  {
+    "description": "Elite Ranged Void",
+    "equipment": [
+      "Twisted bow",
+      "Dragon arrow",
+      "Void ranger helm",
+      "Elite void top",
+      "Elite void robe",
+      "Void knight gloves"
+    ],
+    "npc": {
+      "name": "Commander Zilyana",
+      "version": "Normal"
+    },
+    "expected": {
+      "maxHit": 58,
+      "playerRoll": 21949
+    }
+  },
+  {
+    "description": "Magic Void",
+    "abstract": true,
+    "equipment": [
+      "Sanguinesti staff",
+      "Void mage helm",
+      "Void knight top",
+      "Void knight robe",
+      "Void knight gloves"
+    ],
+    "npc": {
+      "name": "Dharok the Wretched"
+    }
+  },
+  {
+    "description": "Powered staff",
+    "parent": "Magic Void",
+    "expected": {
+      "maxHit": 32,
+      "playerRoll": 13706
+    }
+  },
+  {
+    "description": "Spellbook",
+    "parent": "Magic Void",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "expected": {
+      "maxHit": 24,
+      "playerRoll": 13528
+    }
+  },
+  {
+    "description": "Non-magic",
+    "parent": "Magic Void",
+    "equipment": [
+      "Abyssal whip",
+      "Void mage helm",
+      "Void knight top",
+      "Void knight robe",
+      "Void knight gloves"
+    ],
+    "expected": {
+      "maxHit": 25,
+      "playerRoll": 15768
+    }
+  },
+  {
+    "description": "Elite Magic Void",
+    "abstract": true,
+    "equipment": [
+      "Sanguinesti staff",
+      "Void mage helm",
+      "Elite void top",
+      "Elite void robe",
+      "Void knight gloves"
+    ],
+    "npc": {
+      "name": "Dharok the Wretched"
+    }
+  },
+  {
+    "description": "Powered staff",
+    "parent": "Elite Magic Void",
+    "expected": {
+      "maxHit": 32,
+      "playerRoll": 13706
+    }
+  },
+  {
+    "description": "Spellbook",
+    "parent": "Elite Magic Void",
+    "player": {
+      "spell": "Fire Surge"
+    },
+    "expected": {
+      "maxHit": 24,
+      "playerRoll": 13528
+    }
+  },
+  {
+    "description": "Wilderness",
+    "abstract": true,
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "player": {
+      "misc": {
+        "wilderness": true
+      }
+    }
+  },
+  {
+    "description": "Viggora's chainmace",
+    "parent": "Wilderness",
+    "equipment": ["Viggora's chainmace"],
+    "expected": {
+      "maxHit": 33,
+      "playerRoll": 21025
+    }
+  },
+  {
+    "description": "Ursine chainmace",
+    "parent": "Wilderness",
+    "equipment": ["Ursine chainmace"],
+    "expected": {
+      "maxHit": 36,
+      "playerRoll": 21667
+    }
+  },
+  {
+    "description": "Craw's bow",
+    "parent": "Wilderness",
+    "equipment": ["Craw's bow"],
+    "expected": {
+      "maxHit": 31,
+      "playerRoll": 22309
+    }
+  },
+  {
+    "description": "Webweaver bow",
+    "parent": "Wilderness",
+    "equipment": ["Webweaver bow"],
+    "expected": {
+      "maxHit": 33,
+      "playerRoll": 23914
+    }
+  },
+  {
+    "description": "Thammaron's sceptre",
+    "parent": "Wilderness",
+    "equipment": ["Thammaron's sceptre"],
+    "comment": [
+      "BK has incorrect magic attack bonus values for Thammaron's Sceptre.",
+      "Expected: 15, BK: 20; Accuracy: Expected: 13035, BK: 13860"
+    ],
+    "expected": {
+      "maxHit": 37,
+      "playerRoll": 13035
+    }
+  },
+  {
+    "description": "Accursed sceptre",
+    "parent": "Wilderness",
+    "equipment": ["Accursed sceptre"],
+    "comment": [
+      "BK doesn't apply the 50% accuracy bonus of Accursed sceptre.",
+      "Expected: 14190, BK: 9460"
+    ],
+    "expected": {
+      "maxHit": 40,
+      "playerRoll": 14190
+    }
+  },
+  {
+    "description": "Non-wilderness",
+    "abstract": true,
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "player": {
+      "misc": {
+        "wilderness": false
+      }
+    }
+  },
+  {
+    "description": "Viggora's chainmace",
+    "parent": "Non-wilderness",
+    "equipment": ["Viggora's chainmace"],
+    "expected": {
+      "maxHit": 22,
+      "playerRoll": 14017
+    }
+  },
+  {
+    "description": "Ursine chainmace",
+    "parent": "Non-wilderness",
+    "equipment": ["Ursine chainmace"],
+    "expected": {
+      "maxHit": 24,
+      "playerRoll": 14445
+    }
+  },
+  {
+    "description": "Craw's bow",
+    "parent": "Non-wilderness",
+    "equipment": ["Craw's bow"],
+    "expected": {
+      "maxHit": 21,
+      "playerRoll": 14873
+    }
+  },
+  {
+    "description": "Webweaver bow",
+    "parent": "Non-wilderness",
+    "equipment": ["Webweaver bow"],
+    "expected": {
+      "maxHit": 22,
+      "playerRoll": 15943
+    }
+  },
+  {
+    "description": "Thammaron's sceptre",
+    "parent": "Non-wilderness",
+    "comment": [
+      "BK has incorrect magic attack bonus values for Thammaron's Sceptre.",
+      "Expected: 15, BK: 20; Accuracy: Expected: 8690; BK: 9240"
+    ],
+    "equipment": ["Thammaron's sceptre"],
+    "expected": {
+      "maxHit": 25,
+      "playerRoll": 8690
+    }
+  },
+  {
+    "description": "Accursed sceptre",
+    "parent": "Non-wilderness",
+    "equipment": ["Accursed sceptre"],
+    "expected": {
+      "maxHit": 27,
+      "playerRoll": 9460
+    }
+  },
+  {
+    "description": "Zulrah with max mage",
+    "comment": [
+      "DPS mismatch: likely based on different capped damage calculations.",
+      "BK: 9.480178, FD: 9.5145095"
+    ],
+    "player": {
+      "boostList": ["Saturated heart"]
+    },
+    "npc": {
+      "name": "Zulrah",
+      "version": "Serpentine"
+    },
+    "equipment": [
+      "Tumeken's shadow",
+      "Occult necklace",
+      "Tormented bracelet",
+      "Imbued zamorak cape",
+      "Ancestral hat",
+      "Ancestral robe top",
+      "Ancestral robe bottom",
+      "Seers ring (i)",
+      "Eternal boots"
+    ],
+    "expected": {
+      "maxHit": 50,
+      "playerRoll": 67281
+    }
+  },
+  {
+    "description": "Diamond bolts",
+    "equipment": [
+      "Dragon crossbow",
+      "Diamond bolts (e)"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 28,
+      "maxHitSpec": 32,
+      "playerRoll": 16906,
+      "specChance": 0.11,
+      "dps": 3.8829
+    }
+  },
+  {
+    "description": "Diamond bolts (no diary)",
+    "equipment": [
+      "Dragon crossbow",
+      "Diamond bolts (e)"
+    ],
+    "player": {
+      "misc": {
+        "kandarinHard": false
+      }
+    },
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 28,
+      "maxHitSpec": 32,
+      "playerRoll": 16906,
+      "specChance": 0.10,
+      "dps": 3.866603
+    }
+  },
+  {
+    "description": "Diamond bolts (corp)",
+    "equipment": [
+      "Dragon crossbow",
+      "Diamond bolts (e)"
+    ],
+    "npc": {
+      "name": "Corporeal Beast"
+    },
+    "expected": {
+      "maxHit": 14,
+      "maxHitSpec": 16,
+      "specChance": 0.11
+    }
+  },
+  {
+    "description": "Dragonstone bolts",
+    "equipment": [
+      "Dragon crossbow",
+      "Dragonstone bolts (e)"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 30,
+      "maxHitSpec": 49,
+      "specChance": 0.066
+    }
+  },
+  {
+    "description": "Dragonstone bolts vs. dragons",
+    "comment": [
+      "BK DPS chart applies this special effect to enemies immune to dragonfire.",
+      "This is clearly not the case."
+    ],
+    "equipment": [
+      "Dragon crossbow",
+      "Dragonstone bolts (e)"
+    ],
+    "npc": {
+      "name": "Vorkath",
+      "version": "Post-quest"
+    },
+    "expected": {
+      "maxHit": 30,
+      "maxHitSpec": null,
+      "specChance": 0.066
+    }
+  },
+  {
+    "description": "Jade bolts",
+    "equipment": [
+      "Dragon crossbow",
+      "Jade bolts (e)"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 16,
+      "maxHitSpec": 16,
+      "specChance": 0.066
+    }
+  },
+  {
+    "description": "Jade bolts (no diary)",
+    "player": {
+      "misc": {
+        "kandarinHard": false
+      }
+    },
+    "equipment": [
+      "Dragon crossbow",
+      "Jade bolts (e)"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "specChance": 0.06
+    }
+  },
+  {
+    "description": "Onyx bolts",
+    "equipment": [
+      "Rune crossbow",
+      "Onyx bolts (e)"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 31,
+      "maxHitSpec": 37,
+      "eHealing": 0.4066,
+      "specChance": 0.121
+    }
+  },
+  {
+    "description": "Onyx bolts (no diary)",
+    "equipment": [
+      "Rune crossbow",
+      "Onyx bolts (e)"
+    ],
+    "player": {
+      "misc": {
+        "kandarinHard": false
+      }
+    },
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "specChance": 0.11
+    }
+  },
+  {
+    "description": "Opal bolts",
+    "equipment": [
+      "Rune crossbow",
+      "Opal bolts (e)"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 13,
+      "maxHitSpec": 22,
+      "specChance": 0.055
+    }
+  },
+  {
+    "description": "Pearl bolts (regular)",
+    "equipment": [
+      "Rune crossbow",
+      "Pearl bolts (e)"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 19,
+      "maxHitSpec": 23,
+      "specChance": 0.066
+    }
+  },
+  {
+    "description": "Pearl bolts (Fire giant)",
+    "equipment": [
+      "Rune crossbow",
+      "Pearl bolts (e)"
+    ],
+    "npc": {
+      "name": "Fire giant",
+      "version": "Level 86"
+    },
+    "expected": {
+      "maxHit": 19,
+      "maxHitSpec": 25,
+      "specChance": 0.066
+    }
+  },
+  {
+    "description": "Pearl bolts (Vorkath)",
+    "equipment": [
+      "Rune crossbow",
+      "Pearl bolts (e)"
+    ],
+    "npc": {
+      "name": "Vorkath",
+      "version": "Post-quest"
+    },
+    "expected": {
+      "maxHit": 19,
+      "maxHitSpec": 25,
+      "specChance": 0.066
+    }
+  },
+  {
+    "description": "Ruby bolts (750 HP)",
+    "comment": [
+      "DPS mismatch - probably caused by different calculation approaches",
+      "BK DPS: 3.8006948; FD DPS: 3.989201"
+    ],
+    "equipment": [
+      "Rune crossbow",
+      "Ruby bolts (e)"
+    ],
+    "npc": {
+      "name": "Vorkath",
+      "version": "Post-quest"
+    },
+    "expected": {
+      "maxHit": 28,
+      "maxHitSpec": 100,
+      "specChance": 0.066
+    }
+  },
+  {
+    "description": "Ruby bolts (100 HP)",
+    "equipment": [
+      "Rune crossbow",
+      "Ruby bolts (e)"
+    ],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 28,
+      "maxHitSpec": 20
+    }
+  },
+  {
+    "description": "Ruby bolts (no diary)",
+    "equipment": [
+      "Rune crossbow",
+      "Ruby bolts (e)"
+    ],
+    "player": {
+      "misc": {
+        "kandarinHard": false
+      }
+    },
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "specChance": 0.06
+    }
+  },
+  {
+    "description": "Ruby bolts (Corp)",
+    "equipment": [
+      "Rune crossbow",
+      "Ruby bolts (e)"
+    ],
+    "npc": {
+      "name": "Corporeal Beast"
+    },
+    "expected": {
+      "maxHit": 14,
+      "maxHitSpec": 50
+    }
+  }
+]

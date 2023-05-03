@@ -1,0 +1,80 @@
+[
+	{
+		"property": "maxHit",
+		"name": "Maximum hit",
+		"comparison": "strict",
+		"places": null
+	},
+	{
+		"property": "maxList",
+		"name": "Maximum hit list",
+		"comparison": "deep",
+		"places": null
+	},
+	{
+		"property": "maxHitSpec",
+		"name": "Special maximum hit",
+		"comparison": "strict",
+		"places": null
+	},
+	{
+		"property": "attackSpeed",
+		"name": "Attack speed",
+		"comparison": "strict",
+		"places": null
+	},
+	{
+		"property": "specChance",
+		"name": "Special effect proc chance",
+		"comparison": "loose",
+		"places": 4
+	},
+	{
+		"property": "dps",
+		"name": "Damage per second",
+		"comparison": "loose",
+		"places": 3
+	},
+	{
+		"property": "accuracy",
+		"name": "Accuracy",
+		"comparison": "loose",
+		"places": 4
+	},
+	{
+		"property": "rawAcc",
+		"name": "Raw accuracy",
+		"comparison": "loose",
+		"places": 4
+	},
+	{
+		"property": "specAcc",
+		"name": "Special/proc accuracy",
+		"comparison": "loose",
+		"places": 4
+	},
+	{
+		"property": "eHealing",
+		"name": "Effective healing per second",
+		"comparison": "loose",
+		"places": 4
+	},
+	{
+		"property": "vertex",
+		"name": "Vertex of the attack",
+		"comparison": "strict",
+		"places": null
+	},
+	{
+		"property": "playerRoll",
+		"name": "Offensive accuracy roll",
+		"comparison": "strict",
+		"places": null
+	},
+	{
+		"property": "npcRoll",
+		"name": "Defensive accuracy roll",
+		"comparison": "strict",
+		"places": null
+	}
+]

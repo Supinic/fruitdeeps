@@ -7,7 +7,9 @@
     "start": "next start",
     "lint": "eslint --fix ./",
     "fetch-items": "node importstuff/itempopulate.mjs",
-    "fetch-npcs": "node importstuff/npcpopulate.mjs"
+    "fetch-npcs": "node importstuff/npcpopulate.mjs",
+    "test": "mocha ./tests --recursive --exit",
+    "coverage": "c8 mocha ./tests --recursive --exit"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -25,6 +27,7 @@
     "@babel/eslint-parser": "^7.21.3",
     "@babel/plugin-syntax-import-assertions": "^7.20.0",
     "@babel/preset-react": "^7.18.6",
+    "c8": "^7.13.0",
     "eslint": "^8.38.0",
     "eslint-config-next": "13.3.0",
     "eslint-plugin-mocha": "^10.1.0",
