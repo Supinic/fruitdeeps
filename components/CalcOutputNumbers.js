@@ -114,7 +114,7 @@ export class CalcOutputNumbers extends Component {
 		if (this.props.calcs.maxList.length > 1) {
 			for (let i = 0; i < this.props.calcs.maxList.length; i++) {
 				rows.push(
-					<tr key="max-list">
+					<tr key={`max-list-${i}`}>
 						<td>Max hit <span className="sub-text">(hit {i + 1})</span></td>
 						<td>{hpLimit(this.props.calcs.maxList[i], hp)}</td>
 					</tr>
