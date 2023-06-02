@@ -200,10 +200,10 @@ export class AttackerStats extends Component {
 					{potionInput.slice(5, 7)}
 				</div>
 				<div>
-					{potionInput.slice(7, 10)}
+					{potionInput.slice(7, 11)}
 				</div>
 				<div>
-					{potionInput.slice(10)}
+					{potionInput.slice(11)}
 				</div>
 			</div>
 		</div>);
