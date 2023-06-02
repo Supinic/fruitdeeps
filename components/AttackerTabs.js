@@ -8,6 +8,7 @@ import { AttackerPrayers } from "./AttackerPrayers.js";
 import { AttackerSpells } from "./AttackerSpells.js";
 import { AttackerImport } from "./AttackerImport.js";
 import { AttackerRelics } from "./AttackerRelics.js";
+import { AttackerPresets } from "./AttackerPresets.js";
 // import Image from "next/image";
 
 class Tab extends Component {
@@ -51,7 +52,7 @@ export class AttackerTabs extends Component {
 
 	render () {
 		const tab = this.state.tabSelected;
-		const displayed = new Array(6).fill("none");
+		const displayed = new Array(7).fill("none");
 		displayed[tab] = "block";
 
 		const displayBox = (
@@ -72,6 +73,9 @@ export class AttackerTabs extends Component {
 					<AttackerRelics player={this.props.player} setPlayer={this.props.setPlayer}/>
 				</div>
 				<div style={{ display: displayed[5] }}>
+					<AttackerPresets player={this.props.player} setTab={this.setTab} setPlayer={this.props.setPlayer}/>
+				</div>
+				<div style={{ display: displayed[6] }}>
 					<AttackerImport player={this.props.player} setPlayer={this.props.setPlayer}/>
 				</div>
 			</div>
@@ -113,6 +117,12 @@ export class AttackerTabs extends Component {
 					</Tab>
 					<Tab
 						tab="5"
+						tabSelected={this.state.tabSelected}
+						setTab={this.setTab}
+						imgSrc="/assets/svg/combat_icon.svg">
+					</Tab>
+					<Tab
+						tab="6"
 						tabSelected={this.state.tabSelected}
 						setTab={this.setTab}
 						imgSrc="/assets/svg/export_icon.svg">
