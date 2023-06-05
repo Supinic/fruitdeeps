@@ -149,7 +149,7 @@ function AttackerPresets (props) {
 			presetsArray.push(preset);
 		}
 
-		_setPresets(presetsArray);
+		_setPresets([...presetsArray]);
 		input.value = "";
 
 		mappedCustomPresets.set(preset.name, mapPreset(preset));
