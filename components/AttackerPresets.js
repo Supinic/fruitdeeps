@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import Player from "../lib/Player.js";
@@ -6,12 +6,12 @@ import items from "../public/assets/items.json" assert { type: "json" };
 import { presets } from "./builtin-presets.js";
 import searchFilter from "../lib/itemFinder.js";
 
-for (const item of presets) {
-	if (!item.equipmentIdentifiers) {
-		continue;
+const mapEquipmentIdentifiers = (identifiers) => {
+	if (!Array.isArray(identifiers)) {
+		return [];
 	}
 
-	item.equipment = item.equipmentIdentifiers.map(i => {
+	const mapped = identifiers.map(i => {
 		const [result] = searchFilter(i, items);
 		if (!result) {
 			throw new Error(`No item found: ${i}`);
@@ -19,35 +19,81 @@ for (const item of presets) {
 
 		return result;
 	});
-}
 
-export class AttackerPresets extends Component {
-	static propTypes = {
-		player: PropTypes.instanceOf(Player),
-		setPlayer: PropTypes.func,
-		setTab: PropTypes.func
-	};
+	return mapped.filter(Boolean);
+};
 
-	constructor (props) {
-		super(props);
+const mapPreset = (preset) => ({
+	name: preset.name,
+	created: preset.created,
+	equipment: mapEquipmentIdentifiers(preset.equipmentIdentifiers ?? [])
+});
 
-		this.elements = presets.map((i, ind) => {
-			if (i.separator) {
-				return (
-					<br key={ind} />
-				);
-			}
+const useLocalStorage = (storageKey, fallbackState) => {
+	const [value, setValue] = React.useState([]);
 
-			return (
-				<button key={ind} onClick={() => this.changeSetup(ind)}>{i.name}</button>
-			);
-		});
+	React.useEffect(() => {
+		const initialPresetsState = globalThis.localStorage.getItem(storageKey);
+		const parsedPresets = (initialPresetsState)
+			? JSON.parse(initialPresetsState)
+			: fallbackState;
+
+		setValue(parsedPresets);
+	}, []);
+
+	React.useEffect(() => {
+		globalThis.localStorage.setItem(storageKey, JSON.stringify(value));
+	}, [value, storageKey]);
+
+	return [value, setValue];
+};
+
+const useForceUpdate = () => {
+	const [value, setState] = React.useState(true);
+	return () => setState(!value);
+};
+
+for (const item of presets) {
+	if (!item.equipmentIdentifiers) {
+		continue;
 	}
 
-	changeSetup (index) {
-		const player = this.props.player;
-		const preset = presets[index];
-		if (preset.name === "Clear") {
+	item.equipment = mapEquipmentIdentifiers(item.equipmentIdentifiers);
+}
+
+let elements = null;
+const mappedCustomPresets = new Map();
+const renderedCustomPresets = new Map();
+
+function AttackerPresets (props) {
+	const saveCustomPresetInput = (
+		<input
+			ref={React.createRef()}
+			className="input-invisible"
+			type="text"
+			placeholder="Save current set as..."
+			onKeyDown={(evt) => saveCustomPreset(evt, props.player)}
+		/>
+	);
+
+	elements ??= presets.map((i, ind) => {
+		if (i.separator) {
+			return (
+				<br key={ind} />
+			);
+		}
+
+		return (
+			<button key={ind} onClick={() => changeSetup(presets[ind])}>{i.name}</button>
+		);
+	});
+
+	const forceUpdate = useForceUpdate();
+	const [_presets, _setPresets] = useLocalStorage("custom-presets", []);
+
+	const { player } = props;
+	const changeSetup = (preset) => {
+		if (preset.clear) {
 			player.clearEquipment();
 			player.clearPrayers();
 			player.clearBoosts();
@@ -75,16 +121,105 @@ export class AttackerPresets extends Component {
 			}
 		}
 
-		this.props.setPlayer(player.minimize());
-		this.props.setTab(0);
+		props.setPlayer(player.minimize());
+		props.setTab(0);
+	};
+
+	const saveCustomPreset = (evt, player) => {
+		if (evt.key !== "Enter") {
+			return;
+		}
+
+		const input = saveCustomPresetInput.ref.current;
+		const itemIds = Object.values(player.equipment).map(i => i.id).filter(Boolean);
+
+		const presetsArray = _presets;
+		let preset = presetsArray.find(i => i.name === input.value);
+		if (preset) {
+			preset.equipmentIdentifiers = itemIds;
+			preset.created = Date.now();
+		}
+		else {
+			preset = {
+				name: input.value,
+				equipmentIdentifiers: itemIds,
+				created: Date.now()
+			};
+
+			presetsArray.push(preset);
+		}
+
+		_setPresets(presetsArray);
+		input.value = "";
+
+		mappedCustomPresets.set(preset.name, mapPreset(preset));
+		forceUpdate();
+	};
+
+	const clearCustomPresets = () => {
+		_setPresets([]);
+	};
+
+	if (_presets.length === 0) {
+		mappedCustomPresets.clear();
+		renderedCustomPresets.clear();
+	}
+	else {
+		for (const customPreset of _presets) {
+			const { name } = customPreset;
+			const isMapped = mappedCustomPresets.has(name);
+			if (!isMapped) {
+				mappedCustomPresets.set(name, mapPreset(customPreset));
+			}
+
+			const existing = renderedCustomPresets.get(name);
+			if (existing) {
+				continue;
+			}
+
+			renderedCustomPresets.set(name, (
+				<button onClick={() => changeSetup(mappedCustomPresets.get(name))}>
+					{name}
+				</button>
+			));
+		}
+
+		for (const [name] of renderedCustomPresets) {
+			const existing = _presets.some(i => i.name === name);
+			if (existing) {
+				continue;
+			}
+
+			renderedCustomPresets.delete(name);
+		}
 	}
 
-	render () {
-		return (
-			<div className="highlight-section flex-container-vertical">
-				<h3>Apply setup preset</h3>
-				{...this.elements}
-			</div>
-		);
-	}
+	const customPresetSeparator = (renderedCustomPresets.size > 0)
+		? <><br/><h4>Custom presets</h4></>
+		: null;
+
+	const removeAllCustomPresetsElement = (renderedCustomPresets.size > 0)
+		? <><br/><button onClick={clearCustomPresets}>Remove all custom presets</button></>
+		: null;
+
+	return (
+		<div className="highlight-section flex-container-vertical">
+			<h3>Apply setup preset</h3>
+			{...elements}
+			{customPresetSeparator}
+			{...renderedCustomPresets.values()}
+			{removeAllCustomPresetsElement}
+			<br/>
+			<h4>Save current setup</h4>
+			{saveCustomPresetInput}
+		</div>
+	);
 }
+
+AttackerPresets.propTypes = {
+	player: PropTypes.instanceOf(Player),
+	setPlayer: PropTypes.func,
+	setTab: PropTypes.func
+};
+
+export default AttackerPresets;

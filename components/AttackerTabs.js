@@ -8,7 +8,7 @@ import { AttackerPrayers } from "./AttackerPrayers.js";
 import { AttackerSpells } from "./AttackerSpells.js";
 import { AttackerImport } from "./AttackerImport.js";
 import { AttackerRelics } from "./AttackerRelics.js";
-import { AttackerPresets } from "./AttackerPresets.js";
+import AttackerPresets from "./AttackerPresets.js";
 // import Image from "next/image";
 
 class Tab extends Component {
@@ -79,7 +79,6 @@ export class AttackerTabs extends Component {
 					<AttackerImport player={this.props.player} setPlayer={this.props.setPlayer}/>
 				</div>
 			</div>
-
 		);
 
 		return (

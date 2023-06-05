@@ -1,6 +1,7 @@
 export const presets = [
 	{
-		name: "Clear"
+		name: "Clear current setup",
+		clear: true
 	},
 	{
 		separator: true

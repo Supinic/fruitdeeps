@@ -11,7 +11,7 @@ const GenericEquipmentProperty = PropTypes.shape({
 
 const WeaponEquipmentProperty = PropTypes.shape({
 	name: PropTypes.string,
-	slot: PropTypes.oneOf(["1h", "2h"]),
+	slot: PropTypes.oneOf(["weapon", "1h", "2h"]),
 	bonuses: BonusesProperty,
 	category: PropTypes.string,
 	speed: PropTypes.number
