@@ -69,6 +69,7 @@ function AttackerPresets (props) {
 	const saveCustomPresetInput = (
 		<input
 			ref={React.createRef()}
+			maxLength="30"
 			className="input-invisible"
 			type="text"
 			placeholder="Save current set as..."
@@ -89,7 +90,7 @@ function AttackerPresets (props) {
 	});
 
 	const forceUpdate = useForceUpdate();
-	const [_presets, _setPresets] = useLocalStorage("custom-presets", []);
+	const [customPresets, setCustomPresets] = useLocalStorage("custom-presets", []);
 
 	const { player } = props;
 	const changeSetup = (preset) => {
@@ -125,31 +126,56 @@ function AttackerPresets (props) {
 		props.setTab(0);
 	};
 
+	const removeSetup = (evt, name) => {
+		evt.preventDefault();
+
+		const index = customPresets.findIndex(i => i.name === name);
+		if (index === -1) {
+			return;
+		}
+
+		const result = globalThis.confirm(`Really remove preset "${name}"?`);
+		if (!result) {
+			return;
+		}
+
+		const copy = [...customPresets];
+		copy.splice(index, 1);
+
+		setCustomPresets(copy);
+		mappedCustomPresets.delete(name);
+		renderedCustomPresets.delete(name);
+	};
+
 	const saveCustomPreset = (evt, player) => {
 		if (evt.key !== "Enter") {
 			return;
 		}
 
 		const input = saveCustomPresetInput.ref.current;
-		const itemIds = Object.values(player.equipment).map(i => i.id).filter(Boolean);
+		const name = input.value.trim();
+		if (!name) {
+			globalThis.alert("Invalid preset name!");
+			return;
+		}
 
-		const presetsArray = _presets;
-		let preset = presetsArray.find(i => i.name === input.value);
+		const itemIds = Object.values(player.equipment).map(i => i.id).filter(Boolean);
+		let preset = customPresets.find(i => i.name === name);
 		if (preset) {
 			preset.equipmentIdentifiers = itemIds;
 			preset.created = Date.now();
 		}
 		else {
 			preset = {
-				name: input.value,
+				name,
 				equipmentIdentifiers: itemIds,
 				created: Date.now()
 			};
 
-			presetsArray.push(preset);
+			customPresets.push(preset);
 		}
 
-		_setPresets([...presetsArray]);
+		setCustomPresets([...customPresets]);
 		input.value = "";
 
 		mappedCustomPresets.set(preset.name, mapPreset(preset));
@@ -157,15 +183,18 @@ function AttackerPresets (props) {
 	};
 
 	const clearCustomPresets = () => {
-		_setPresets([]);
+		const result = globalThis.confirm("Really remove all of your custom presets?");
+		if (result) {
+			setCustomPresets([]);
+		}
 	};
 
-	if (_presets.length === 0) {
+	if (customPresets.length === 0) {
 		mappedCustomPresets.clear();
 		renderedCustomPresets.clear();
 	}
 	else {
-		for (const customPreset of _presets) {
+		for (const customPreset of customPresets) {
 			const { name } = customPreset;
 			const isMapped = mappedCustomPresets.has(name);
 			if (!isMapped) {
@@ -178,14 +207,17 @@ function AttackerPresets (props) {
 			}
 
 			renderedCustomPresets.set(name, (
-				<button onClick={() => changeSetup(mappedCustomPresets.get(name))}>
+				<button
+					onClick={() => changeSetup(mappedCustomPresets.get(name))}
+					onContextMenu={(evt) => removeSetup(evt, name)}
+				>
 					{name}
 				</button>
 			));
 		}
 
 		for (const [name] of renderedCustomPresets) {
-			const existing = _presets.some(i => i.name === name);
+			const existing = customPresets.some(i => i.name === name);
 			if (existing) {
 				continue;
 			}
@@ -195,7 +227,7 @@ function AttackerPresets (props) {
 	}
 
 	const customPresetSeparator = (renderedCustomPresets.size > 0)
-		? <><br/><h4>Custom presets</h4></>
+		? <><br/><h4>Custom presets (right click to remove)</h4></>
 		: null;
 
 	const removeAllCustomPresetsElement = (renderedCustomPresets.size > 0)
