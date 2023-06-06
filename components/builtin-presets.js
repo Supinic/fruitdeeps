@@ -56,12 +56,7 @@ export const presets = [
 			"Dharok's greataxe",
 			"Dharok's platebody",
 			"Dharok's platelegs",
-			"Dharok's helm",
-			"Amulet of torture",
-			"Infernal cape",
-			"Ferocious gloves",
-			"Primordial boots",
-			"Berserker ring (i)"
+			"Dharok's helm"
 		]
 	},
 	{
@@ -70,12 +65,7 @@ export const presets = [
 			"Verac's flail",
 			"Verac's brassard",
 			"Verac's plateskirt",
-			"Verac's helm",
-			"Amulet of torture",
-			"Infernal cape",
-			"Ferocious gloves",
-			"Primordial boots",
-			"Berserker ring (i)"
+			"Verac's helm"
 		]
 	},
 	{
@@ -153,6 +143,15 @@ export const presets = [
 			"Barrows gloves",
 			"Amulet of fury",
 			"Archers ring (i)"
+		]
+	},
+	{
+		name: "Bowfa",
+		equipmentIdentifiers: [
+			"Bow of faerdhinen",
+			23971, // "Crystal helm",
+			23975, // "Crystal body",
+			23979 // "Crystal legs"
 		]
 	},
 	{
