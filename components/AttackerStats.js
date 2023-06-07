@@ -118,7 +118,7 @@ export class AttackerStats extends Component {
 	}
 
 	render () {
-		const potionInput = boostList.map((boost, i) => (
+		const boostInput = boostList.map((boost, i) => (
 			<button
 				key={i}
 				value={boost}
@@ -194,16 +194,16 @@ export class AttackerStats extends Component {
 			<div>
 				<h3>Boosts:</h3>
 				<div>
-					{potionInput.slice(0, 5)}
+					{boostInput.slice(0, 5)}
 				</div>
 				<div>
-					{potionInput.slice(5, 7)}
+					{boostInput.slice(5, 7)}
 				</div>
 				<div>
-					{potionInput.slice(7, 11)}
+					{boostInput.slice(7, 11)}
 				</div>
 				<div>
-					{potionInput.slice(11)}
+					{boostInput.slice(11)}
 				</div>
 			</div>
 		</div>);
