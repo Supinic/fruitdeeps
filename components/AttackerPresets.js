@@ -77,7 +77,7 @@ function AttackerPresets (props) {
 		/>
 	);
 
-	elements ??= presets.map((i, ind) => {
+	elements = presets.map((i, ind) => {
 		if (i.separator) {
 			return (
 				<br key={ind} />
@@ -85,15 +85,14 @@ function AttackerPresets (props) {
 		}
 
 		return (
-			<button key={ind} onClick={() => changeSetup(presets[ind])}>{i.name}</button>
+			<button key={ind} onClick={() => changeSetup(props.player, presets[ind])}>{i.name}</button>
 		);
 	});
 
 	const forceUpdate = useForceUpdate();
 	const [customPresets, setCustomPresets] = useLocalStorage("custom-presets", []);
 
-	const { player } = props;
-	const changeSetup = (preset) => {
+	const changeSetup = (player, preset) => {
 		if (preset.clear) {
 			player.clearEquipment();
 			player.clearPrayers();
@@ -194,6 +193,8 @@ function AttackerPresets (props) {
 		renderedCustomPresets.clear();
 	}
 	else {
+		renderedCustomPresets.clear();
+
 		for (const customPreset of customPresets) {
 			const { name } = customPreset;
 			const isMapped = mappedCustomPresets.has(name);
@@ -201,14 +202,9 @@ function AttackerPresets (props) {
 				mappedCustomPresets.set(name, mapPreset(customPreset));
 			}
 
-			const existing = renderedCustomPresets.get(name);
-			if (existing) {
-				continue;
-			}
-
 			renderedCustomPresets.set(name, (
 				<button
-					onClick={() => changeSetup(mappedCustomPresets.get(name))}
+					onClick={() => changeSetup(props.player, mappedCustomPresets.get(name))}
 					onContextMenu={(evt) => removeSetup(evt, name)}
 				>
 					{name}
