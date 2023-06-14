@@ -13,7 +13,6 @@
   "unconventionalWeaponAttackStyles": [
     {
       "name": "Abyssal bludgeon",
-      "category": "Blunt",
       "attackStyles": [
         { "name": "Pound", "type": "Crush", "style": "Aggressive" },
         { "name": "Pummel", "type": "Crush", "style": "Aggressive" },

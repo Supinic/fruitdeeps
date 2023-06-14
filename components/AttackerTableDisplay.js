@@ -209,7 +209,7 @@ export class AttackerTableDisplay extends Component {
 							<tr>
 								<td>Category</td>
 								<td className="color-grey">
-									{player.equipment.weapon.category}
+									{player.equipment.weapon.category ?? player.equipment.weapon.name}
 								</td>
 							</tr>
 							<tr>
