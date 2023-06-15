@@ -5,6 +5,7 @@ export const MonsterProperty = PropTypes.shape({
 	image: PropTypes.string,
 	version: PropTypes.string,
 	versionNumber: PropTypes.number,
+	size: PropTypes.number,
 	combat: PropTypes.number,
 	invocation: PropTypes.number,
 	stats: PropTypes.shape({
