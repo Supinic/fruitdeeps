@@ -2401,27 +2401,25 @@
   {
     "description": "Small",
     "parent": "Scythe",
-    "comment": [
-      "Small monster sizes are currently not supported, large is default",
-      "Expected maxHit: 24, maxList: [24]"
-    ],
     "npc": {
       "name": "Ahrim the Blighted"
     },
-    "expected": {}
+    "expected": {
+      "maxHit": 24,
+      "maxList": [24]
+    }
   },
   {
     "description": "Medium",
     "parent": "Scythe",
-    "comment": [
-      "Medium monster sizes are currently not supported, large is default",
-      "Expected maxHit: 36, maxList: [24, 12]"
-    ],
     "npc": {
       "name": "Hill Giant",
       "version": "1"
     },
-    "expected": {}
+    "expected": {
+      "maxHit": 36,
+      "maxList": [24, 12]
+    }
   },
   {
     "description": "Large",
