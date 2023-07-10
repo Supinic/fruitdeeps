@@ -114,6 +114,7 @@ export class AttackerStats extends Component {
 		else {
 			player.addBoost(e.target.value);
 		}
+
 		this.props.setPlayer(player.minimize());
 	}
 
