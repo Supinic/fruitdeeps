@@ -50,7 +50,7 @@ fs.createReadStream("./importstuff/wiki_monster_data.csv")
 		const rawAttributes = row.attributes.split(",").map(i => i.trim()).filter(Boolean);
 		for (const attribute of rawAttributes) {
 			if (attribute.includes("vampyre")) {
-				attributes.add("vampyre")
+				attributes.add("vampyre");
 			}
 
 			attributes.add(attribute);
