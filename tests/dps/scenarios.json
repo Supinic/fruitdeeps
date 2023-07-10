@@ -3615,5 +3615,36 @@
       "maxHit": 14,
       "maxHitSpec": 50
     }
+  },
+  {
+    "description": "Colossal blade vs. small",
+    "equipment": ["Colossal blade"],
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHit": 30
+    }
+  },
+  {
+    "description": "Colossal blade vs. huge",
+    "equipment": ["Colossal blade"],
+    "npc": {
+      "name": "Sarachnis"
+    },
+    "expected": {
+      "maxHit": 38
+    }
+  },
+  {
+    "description": "Colossal blade vs. gigantic (capped)",
+    "equipment": ["Colossal blade"],
+    "npc": {
+      "name": "Zebak",
+      "invocation": 0
+    },
+    "expected": {
+      "maxHit": 38
+    }
   }
 ]
