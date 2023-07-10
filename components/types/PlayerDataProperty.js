@@ -16,7 +16,6 @@ const definition = {
 		charge: PropTypes.bool,
 		tier3relic: PropTypes.bool,
 		tier6relic: PropTypes.bool,
-		mining: PropTypes.number,
 		baRank: PropTypes.number,
 		manualSpeed: PropTypes.number
 	}),
@@ -29,7 +28,8 @@ const definition = {
 		magic: PropTypes.number,
 		hitpoints: PropTypes.number,
 		prayer: PropTypes.number,
-		defence: PropTypes.number
+		defence: PropTypes.number,
+		mining: PropTypes.number
 	})
 };
 

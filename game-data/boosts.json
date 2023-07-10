@@ -167,5 +167,13 @@
         "flat": 5
       }
     }
+  },
+  {
+    "name": "Pickaxe spec",
+    "effects": {
+      "mining": {
+        "flat": 3
+      }
+    }
   }
 ]

@@ -175,6 +175,14 @@ export class AttackerStats extends Component {
 						/>
 					</tr>
 					<tr>
+						<StatPicker
+							stat="mining"
+							imgSrc="/assets/svg/mining.svg"
+							player={this.props.player}
+							setPlayer={this.props.setPlayer}
+						/>
+					</tr>
+					<tr>
 						<HpPicker
 							imgSrc="/assets/svg/hitpoints_icon.svg"
 							player={this.props.player}
@@ -203,7 +211,10 @@ export class AttackerStats extends Component {
 					{boostInput.slice(7, 11)}
 				</div>
 				<div>
-					{boostInput.slice(11)}
+					{boostInput.slice(11, 14)}
+				</div>
+				<div>
+					{boostInput.slice(14)}
 				</div>
 			</div>
 		</div>);
