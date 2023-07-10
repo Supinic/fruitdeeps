@@ -736,7 +736,7 @@
     ],
     "player": {
       "attackStyleSelected": 2,
-      "misc": {
+      "stats": {
         "mining": 99
       }
     },
@@ -756,7 +756,7 @@
     ],
     "player": {
       "attackStyleSelected": 2,
-      "misc": {
+      "stats": {
         "mining": 61
       }
     },
@@ -776,7 +776,7 @@
     ],
     "player": {
       "attackStyleSelected": 2,
-      "misc": {
+      "stats": {
         "mining": 1
       }
     },
@@ -796,7 +796,7 @@
     ],
     "player": {
       "attackStyleSelected": 1,
-      "misc": {
+      "stats": {
         "mining": 1
       }
     },
