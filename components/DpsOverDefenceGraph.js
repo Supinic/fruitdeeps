@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
-	LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Label, ResponsiveContainer, ReferenceLine
+	CartesianGrid,
+	Label,
+	Line,
+	LineChart,
+	Legend,
+	ReferenceLine,
+	ResponsiveContainer,
+	Tooltip,
+	XAxis,
+	YAxis
 } from "recharts";
 
 import { CalcsProperty } from "./types/CalcsProperty.js";
