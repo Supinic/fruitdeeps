@@ -6,9 +6,35 @@ import {
 
 import { CalcsProperty } from "./types/CalcsProperty.js";
 import { StateProperty } from "./types/StateProperty.js";
-import { DpsDefence } from "../lib/dps/overhit/DpsDefence.js";
+
+import {
+	getDefenceReductionPoints,
+	createDamageDefenceGraphData
+} from "../lib/dps/overhit/DpsDefence.js";
 
 const colors = ["#9EFF74", "#74C7FF", "#FF8274", "#EEEEEE", "#D574FF", "#FFAC74", "#74F1FF"];
+
+const createDefenceReductionLine = (label, defence, colour = "#f00") => (
+	<ReferenceLine
+		key={label}
+		x={defence}
+		stroke={colour}
+		style={{ strokeDasharray: "15,10" }}
+	>
+		<Label
+			value={label}
+			angle="-90"
+			dx={-14}
+			dy={18}
+			position="insideTop"
+			fill="#eeeeee"
+			style={{
+				fontFamily: "Roboto Slab",
+				fontSize: "1em"
+			}}
+		/>
+	</ReferenceLine>
+);
 
 export class DpsOverDefenceGraph extends Component {
 	static propTypes = {
@@ -46,9 +72,12 @@ export class DpsOverDefenceGraph extends Component {
 			return;
 		}
 
-		const def = new DpsDefence(this.props.state, this.props.calcsList);
+		const dpsList = this.props.calcsList;
+		const { playerList, monster } = this.props.state;
+		const { graphData } = createDamageDefenceGraphData(playerList, dpsList, monster);
+
 		this.setState({
-			data: def.output().graphData,
+			data: graphData,
 			id: this.generateId()
 		});
 	}
@@ -70,57 +99,18 @@ export class DpsOverDefenceGraph extends Component {
 			/>
 		));
 
-		const dwhLines = [];
-		const def = this.props.state.monster.stats.def;
-		let dwhDef = def;
-		for (let i = 0; i < 5; i++) {
-			if (Math.trunc((dwhDef * 3) / 10) > 0) {
-				dwhDef = dwhDef - Math.trunc((dwhDef * 3) / 10);
-				dwhLines.push(
-					<ReferenceLine
-						key={i}
-						x={dwhDef}
-						stroke="#ff8274"
-						style={{ strokeDasharray: "15,10" }}
-					>
-						<Label
-							value={`${i + 1} dwh`}
-							angle="-90"
-							dx={-14}
-							dy={18}
-							position="insideTop"
-							fill="#eeeeee"
-							style={{
-								fontFamily: "Roboto Slab",
-								fontSize: "0.75em"
-							}}
-						/>
-					</ReferenceLine>
-				);
-			}
+		const baseDefence = this.props.state.monster.stats.def;
+		const specialLines = [];
+		const specialDefencePoints = getDefenceReductionPoints(baseDefence);
+
+		let index = 1;
+		for (const value of specialDefencePoints.dwh) {
+			const label = `${index} dwh`;
+			specialLines.push(createDefenceReductionLine(label, value, "#ff8274"));
+			index++;
 		}
 
-		dwhLines.push(
-			<ReferenceLine
-				key="last"
-				x={Math.max(def - Math.floor(def / 10) - 1, 0)}
-				stroke="#eeeeee"
-				style={{ strokeDasharray: "15,10" }}
-			>
-				<Label
-					value="vuln"
-					angle="-90"
-					dx={-14}
-					dy={18}
-					position="insideTop"
-					fill="#eeeeee"
-					style={{
-						fontFamily: "Roboto Slab",
-						fontSize: "0.75em"
-					}}
-				/>
-			</ReferenceLine>
-		);
+		specialLines.push(createDefenceReductionLine("vuln", specialDefencePoints.vuln, "#74f1ff"));
 
 		return (
 			<div>
@@ -186,7 +176,7 @@ export class DpsOverDefenceGraph extends Component {
 								stroke="#ddd"
 								type="number"
 								reversed="true"
-								domain={[0, def]}
+								domain={[0, baseDefence]}
 							>
 								<Label
 									value="Defence"
@@ -216,7 +206,7 @@ export class DpsOverDefenceGraph extends Component {
 							</YAxis>
 							<Tooltip className="highlight-section"/>
 							<Legend verticalAlign="top"/>
-							{dwhLines}
+							{specialLines}
 							{lines}
 						</LineChart>
 					</ResponsiveContainer>
