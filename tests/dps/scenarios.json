@@ -2936,6 +2936,7 @@
     "expected": {
       "maxHit": 26,
       "maxList": [10, 10, 6],
+      "playerRoll": 18618,
       "dps": 3.09462
     }
   },

@@ -5,6 +5,7 @@ const Newtroost = {
 	image: "Sotetseg.png",
 	version: "",
 	combat: 995,
+	size: 5,
 	stats: {
 		amagic: 0,
 		arange: 0,
