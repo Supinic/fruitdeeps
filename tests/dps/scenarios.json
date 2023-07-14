@@ -2937,7 +2937,22 @@
       "maxHit": 26,
       "maxList": [10, 10, 6],
       "playerRoll": 18618,
-      "dps": 3.09462
+      "dps": 3.00748
+    }
+  },
+  {
+    "description": "Verzik P1 Whip",
+    "equipment": [
+      "Abyssal whip"
+    ],
+    "npc": {
+      "name": "Verzik Vitur",
+      "combat": 1040
+    },
+    "expected": {
+      "maxHit": 10,
+      "playerRoll": 15768,
+      "dps": 1.626548
     }
   },
   {
