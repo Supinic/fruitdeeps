@@ -95,8 +95,8 @@ const itemNames = itemList.map((item) => item.name);
 
 const fetchSlotItems = async (slot) => {
 	console.log(`Fetching items for slot: ${slot}`);
-	const slotFetch = await fetch(`https://raw.githubusercontent.com/0xNeffarion/osrsreboxed-db/master/docs/items-json-slot/items-${slot}.json`);
 
+	const slotFetch = await fetch(`https://osrsbox.ivr.ovh/items-json-slot/items-${slot}.json`);
 	const slotData = await slotFetch.json();
 
 	for (const [itemID, itemMeta] of Object.entries(slotData)) {
