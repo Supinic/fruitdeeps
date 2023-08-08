@@ -17,7 +17,7 @@ export const presets = [
 			"Infernal cape",
 			"Ferocious gloves",
 			"Primordial boots",
-			"Berserker ring (i)"
+			"Bellator ring"
 		]
 	},
 	{
@@ -83,7 +83,7 @@ export const presets = [
 			"Pegasian boots",
 			"Zaryte vambraces",
 			"Necklace of anguish",
-			"Archers ring (i)"
+			"Venator ring"
 		]
 	},
 	{
@@ -97,7 +97,7 @@ export const presets = [
 			"Pegasian boots",
 			"Zaryte vambraces",
 			"Necklace of anguish",
-			"Archers ring (i)"
+			"Venator ring"
 		]
 	},
 	{
@@ -112,7 +112,7 @@ export const presets = [
 			"Pegasian boots",
 			"Zaryte vambraces",
 			"Necklace of anguish",
-			"Archers ring (i)"
+			"Venator ring"
 		]
 	},
 	{
@@ -167,7 +167,7 @@ export const presets = [
 			"Ancestral hat",
 			"Ancestral robe top",
 			"Ancestral robe bottom",
-			"Seers ring (i)",
+			"Magus ring",
 			"Eternal boots"
 		]
 	},
@@ -182,7 +182,7 @@ export const presets = [
 			"Ancestral hat",
 			"Ancestral robe top",
 			"Ancestral robe bottom",
-			"Seers ring (i)",
+			"Magus ring",
 			"Eternal boots"
 		]
 	},
