@@ -2,7 +2,7 @@ import fs from "fs/promises";
 
 console.log("Fetching OSRS Box data...");
 
-const response = await fetch("https://osrsbox.ivr.ovh/monsters-complete.json");
+const response = await fetch("https://osrsbox.leppunen.dev/monsters-complete.json");
 
 /** @type {OsrsBoxMonsterData[]} */
 const json = await response.json();
