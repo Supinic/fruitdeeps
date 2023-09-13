@@ -137,7 +137,7 @@ const parseStats = (data, versionId) => {
 	if (versionId) {
 		result.name ??= data[`name${versionId}`]?.[0];
 		result.version_number = versionId;
-		result.version = data[`version${versionId}`];
+		result.version = data[`version${versionId}`][0];
 		imageArray = data[`image${versionId}`];
 	}
 
