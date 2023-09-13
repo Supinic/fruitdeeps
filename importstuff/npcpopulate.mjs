@@ -175,20 +175,22 @@ const parseInfobox = (infobox) => {
 	return result.filter(i => i.image);
 }
 
-const parsePluralInfobox = (infobox) => {
+const parsePluralInfobox = (infobox,) => {
 	const { parameters } = infobox;
 	const itemKeys = Object.keys(parameters).filter(i => i.startsWith("item"));
+	const result = [];
+
 	for (const itemKey of itemKeys) {
 		const subInfobox = parameters[itemKey][0];
 		if (subInfobox.name === "infobox monster") {
-			return parseInfobox(subInfobox);
+			result.push(...parseInfobox(subInfobox));
 		}
 		else if (subInfobox.name === "switch infobox" || subInfobox.name === "multi infobox") {
-			return parsePluralInfobox(subInfobox);
+			result.push(...parsePluralInfobox(subInfobox));
 		}
 	}
 
-	return [];
+	return result;
 }
 
 console.log(`Parsing monster pages...`);
@@ -202,17 +204,24 @@ catch {
 
 const existingFiles = await readdir("./importstuff/wiki-cache");
 
+const bannedTemplates = [
+	"clan cup",
+	"deadman: apocalypse"
+];
+
+let skipped = 0;
 let i = 1;
 const npcData = [];
+
 for (const pageId of pageIds) {
 	if (i % 100 === 0) {
 		console.log(`Parsed ${i}/${pageIds.size} pages`);
 	}
 
-	let infobox;
+	let ast;
 	if (existingFiles.includes(`${pageId}.json`)) {
 		const jsonModule = await import(`./wiki-cache/${pageId}.json`, { assert: { type: "json" }});
-		infobox = jsonModule.default;
+		ast = jsonModule.default;
 	}
 	else {
 		const searchParams = getDetailParams(pageId);
@@ -220,12 +229,22 @@ for (const pageId of pageIds) {
 		const json = await response.json();
 
 		const source = json.parse.wikitext["*"];
-		const ast = parse(source);
-		infobox = ast.find(i => i && typeof i.name === "string" && i.name.includes("infobox"));
+		ast = parse(source);
 
-		await writeFile(`./importstuff/wiki-cache/${pageId}.json`, JSON.stringify(infobox));
+		await writeFile(`./importstuff/wiki-cache/${pageId}.json`, JSON.stringify(ast));
 	}
 
+	let skip = false;
+	for (const templateName of bannedTemplates) {
+		skip ||= ast.find(i => i.type === "template" && i.name === templateName);
+	}
+
+	if (skip) {
+		skipped++;
+		continue;
+	}
+
+	const infobox = ast.find(i => i && typeof i.name === "string" && i.name.includes("infobox"));
 	if (infobox.name === "infobox monster") {
 		npcData.push(...parseInfobox(infobox));
 	}
@@ -236,7 +255,7 @@ for (const pageId of pageIds) {
 	i++;
 }
 
-console.log(`Parsed ${npcData.length} monsters.`);
+console.log(`Parsed ${npcData.length} monsters, skipped ${skipped} monsters.`);
 
 await writeFile("./public/assets/npcs.json", JSON.stringify(npcData));
 console.log("JSON written - all done!");
