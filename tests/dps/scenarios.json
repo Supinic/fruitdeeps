@@ -97,7 +97,7 @@
     },
     "npc": {
       "name": "Torag the Corrupted",
-      "version": ""
+      "version": null
     },
     "expected": {
       "accuracy": 0.9798,
