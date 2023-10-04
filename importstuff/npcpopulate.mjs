@@ -85,6 +85,7 @@ const baseStats = [
 ];
 
 const numericStats = [
+	"hitpoints",
 	"att",
 	"str",
 	"def",
