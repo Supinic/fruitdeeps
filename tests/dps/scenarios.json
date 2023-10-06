@@ -97,7 +97,7 @@
     },
     "npc": {
       "name": "Torag the Corrupted",
-      "version": ""
+      "version": null
     },
     "expected": {
       "accuracy": 0.9798,
@@ -417,8 +417,7 @@
       }
     },
     "npc": {
-      "name": "General Graardor",
-      "version": "Normal"
+      "name": "General Graardor"
     },
     "expected": {
       "accuracy": 0.6526,
@@ -1540,7 +1539,8 @@
       "spell": "Ice Barrage"
     },
     "npc": {
-      "name": "Nylocas Matomenos"
+      "name": "Nylocas Matomenos",
+      "version": "Normal Mode Maiden"
     }
   },
   {
@@ -1838,7 +1838,7 @@
     "parent": "Osmumten's fang",
     "npc": {
       "name": "Rat",
-      "version": "Level 1"
+      "version": "Regular"
     },
     "expected": {
       "playerRoll": 18083,
@@ -2733,8 +2733,7 @@
     "description": "Graardor 80 magic",
     "parent": "Twisted bow",
     "npc": {
-      "name": "General Graardor",
-      "version": "Normal"
+      "name": "General Graardor"
     },
     "expected": {
       "maxHit": 28,
@@ -2745,8 +2744,7 @@
     "description": "K'ril 200 magic",
     "parent": "Twisted bow",
     "npc": {
-      "name": "K'ril Tsutsaroth",
-      "version": "Normal"
+      "name": "K'ril Tsutsaroth"
     },
     "expected": {
       "maxHit": 45,
@@ -2757,8 +2755,7 @@
     "description": "Zilyana 300 magic (cap 250)",
     "parent": "Twisted bow",
     "npc": {
-      "name": "Commander Zilyana",
-      "version": "Normal"
+      "name": "Commander Zilyana"
     },
     "expected": {
       "maxHit": 51,
@@ -2781,7 +2778,8 @@
     "description": "Zuk 550 magic (cap 250)",
     "parent": "Twisted bow",
     "npc": {
-      "name": "TzKal-Zuk"
+      "name": "TzKal-Zuk",
+      "version": "Normal"
     },
     "expected": {
       "maxHit": 51,
@@ -2896,8 +2894,7 @@
       "BK DPS: 1.563006; FD DPS: 1.6046727"
     ],
     "npc": {
-      "name": "General Graardor",
-      "version": "Normal"
+      "name": "General Graardor"
     },
     "expected": {
       "maxHit": 23,
@@ -3052,8 +3049,7 @@
       "Void knight gloves"
     ],
     "npc": {
-      "name": "Commander Zilyana",
-      "version": "Normal"
+      "name": "Commander Zilyana"
     }
   },
   {
@@ -3086,8 +3082,7 @@
       "Void knight gloves"
     ],
     "npc": {
-      "name": "Commander Zilyana",
-      "version": "Normal"
+      "name": "Commander Zilyana"
     },
     "expected": {
       "maxHit": 58,

@@ -12,7 +12,6 @@ Fruitdeeps is very easy to run locally.
 
 In a command line, run the following commands:
 
-
 Clone the repo
 
 ``` 
@@ -21,12 +20,12 @@ git clone https://github.com/markbrandly/fruitdeeps.git
 
 Install packages
 ```
-npm i
+yarn 
 ```
 
 Run the dev server
 ```
-npm run dev
+yarn run dev
 ```
 
 That's it! Fruitdeeps should be available locally at http://localhost:3000
@@ -40,18 +39,10 @@ Npc info is scraped from the wiki using the py package mw-parser
 To update items, simply navigate to the `fruitdeeps/` folder and run the following command:
 
 ```
-node importstuff/itempopulate.js
+yarn run fetch-items
 ```
 
-To update Npcs, run the following two commands
+To update NPCs, run the following command:
 
 ```
-python importstuff/dump_monster_stats_csv.py
-node importstuff/npcpopulate.js
-```
-
-You may need to install python packages to run the python script. Also, you will likely need to be in module mode. To switch to module mode, open the file `package.json` and add
-
-```
-"type": "module"
-```
+yarn run fetch-npcs
