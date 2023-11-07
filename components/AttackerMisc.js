@@ -54,7 +54,7 @@ export class AttackerMisc extends Component {
 							<td>
 								<input
 									type="checkbox"
-									id="onTaskToggle"
+									id="wildernessToggle"
 									checked={this.props.player.misc.wilderness}
 									onChange={this.toggleWilderness}
 								/>
@@ -66,7 +66,7 @@ export class AttackerMisc extends Component {
 							<td>
 								<input
 									type="checkbox"
-									id="onTaskToggle"
+									id="kandarinHardToggle"
 									checked={this.props.player.misc.kandarinHard}
 									onChange={this.toggleKandarin}
 								/>

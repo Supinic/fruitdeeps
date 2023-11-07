@@ -3,21 +3,24 @@ import PropTypes from "prop-types";
 
 import { AttackerMisc } from "./AttackerMisc.js";
 import Player from "../lib/Player.js";
+import leaguesData from "../game-data/leagues4.json" assert { type: "json" };
 
-const Tier3relic = (props) => (<div>
+const { combatRelics, playerMiscProperty } = leaguesData;
+
+const League4CombatRelic = (props) => (<div>
 	<input
 		type="checkbox"
-		id={`${props.relicName}-select`}
-		checked={props.player.misc.tier3relic === props.relicName}
-		value={props.relicName}
+		id={`${props.relicId}-select`}
+		checked={props.player.misc[playerMiscProperty] === props.relicId}
+		value={props.relicId}
 		onChange={props.setRelic}
 	/>
-	<label htmlFor={`${props.relicName}-select`}>{props.relicName}</label>
+	<label htmlFor={`${props.relicId}-select`}>{combatRelics[props.relicId]}</label>
 </div>);
 
-Tier3relic.propTypes = {
+League4CombatRelic.propTypes = {
 	player: PropTypes.instanceOf(Player),
-	relicName: PropTypes.string,
+	relicId: PropTypes.string,
 	setRelic: PropTypes.func
 };
 
@@ -32,8 +35,7 @@ export class AttackerRelics extends Component {
 		super(props);
 		this.importRef = React.createRef();
 
-		this.setT3Relic = this.setT3Relic.bind(this);
-		this.toggleT6Relic = this.toggleT6Relic.bind(this);
+		this.setLeagues4CombatRelic = this.setLeagues4CombatRelic.bind(this);
 	}
 
 	setMisc (attribute, value) {
@@ -42,21 +44,12 @@ export class AttackerRelics extends Component {
 		this.props.setPlayer(player.minimize());
 	}
 
-	setT3Relic (e) {
+	setLeagues4CombatRelic (e) {
 		if (e.target.checked) {
-			this.setMisc("tier3relic", e.target.value);
+			this.setMisc(playerMiscProperty, e.target.value);
 		}
 		else {
-			this.setMisc("tier3relic", null);
-		}
-	}
-
-	toggleT6Relic (e) {
-		if (e.target.checked) {
-			this.setMisc("tier6relic", true);
-		}
-		else {
-			this.setMisc("tier6relic", false);
+			this.setMisc(playerMiscProperty, null);
 		}
 	}
 
@@ -64,20 +57,11 @@ export class AttackerRelics extends Component {
 		return (<div className="highlight-section flex-container-vertical">
 			<AttackerMisc player={this.props.player} setMisc={this.setMisc.bind(this)}/>
 			<div>
-				<h3>Relics</h3>
+				<h3>Leagues 4 relics</h3>
 				<div>
-					<Tier3relic player={this.props.player} relicName="Quick Shot" setRelic={this.setT3Relic}/>
-					<Tier3relic player={this.props.player} relicName="Fluid Strike" setRelic={this.setT3Relic}/>
-					<Tier3relic player={this.props.player} relicName="Double Cast" setRelic={this.setT3Relic}/>
-				</div>
-				<div>
-					<input
-						type="checkbox"
-						id={"t6-select"}
-						checked={this.props.player.misc.tier6relic}
-						onChange={this.toggleT6Relic}
-					/>
-					<label htmlFor={"t6-select"}>Tier 6</label>
+					<League4CombatRelic player={this.props.player} relicId="Magic" setRelic={this.setLeagues4CombatRelic}/>
+					<League4CombatRelic player={this.props.player} relicId="Melee" setRelic={this.setLeagues4CombatRelic}/>
+					<League4CombatRelic player={this.props.player} relicId="Ranged" setRelic={this.setLeagues4CombatRelic}/>
 				</div>
 			</div>
 		</div>);
