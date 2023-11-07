@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 
 import { BonusesProperty } from "./BonusesProperty.js";
 import { EquipmentSlotProperty } from "./EquipmentSlotProperty.js";
+import leaguesData from "../../game-data/leagues4.json" assert { type: "json" };
 
 const definition = {
 	attackStyleSelected: PropTypes.number,
@@ -14,10 +15,10 @@ const definition = {
 		currentHitpoints: PropTypes.number,
 		kandarinHard: PropTypes.bool,
 		charge: PropTypes.bool,
-		tier3relic: PropTypes.bool,
-		tier6relic: PropTypes.bool,
 		baRank: PropTypes.number,
-		manualSpeed: PropTypes.number
+		manualSpeed: PropTypes.number,
+		boltProcChanceList: PropTypes.objectOf(PropTypes.boolean),
+		[leaguesData.playerMiscProperty]: PropTypes.string
 	}),
 	spell: PropTypes.string,
 	prayerList: PropTypes.arrayOf(PropTypes.string),

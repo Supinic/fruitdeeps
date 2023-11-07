@@ -1,0 +1,8 @@
+{
+  "combatRelics": {
+    "Magic": "Superior Sorcerer",
+    "Melee": "Brawler's Resolve",
+    "Ranged": "Archer's Embrace"
+  },
+  "playerMiscProperty": "league4CombatRelic"
+}
