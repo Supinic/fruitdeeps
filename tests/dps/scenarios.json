@@ -1765,7 +1765,7 @@
     "equipment": ["Osmumten's fang"]
   },
   {
-    "description": "Non-ToA: Ahrim",
+    "description": "Non-ToA: Ahrim - Stab",
     "parent": "Osmumten's fang",
     "npc": {
       "name": "Ahrim the Blighted"
@@ -1775,6 +1775,22 @@
       "specAcc": 0.6622,
       "playerRoll": 18083,
       "dps": 3.200848
+    }
+  },
+  {
+    "description": "Non-ToA: Ahrim - Slash",
+    "parent": "Osmumten's fang",
+    "player": {
+      "attackStyleSelected": 2
+    },
+    "npc": {
+      "name": "Ahrim the Blighted"
+    },
+    "expected": {
+      "maxHitSpec": 25,
+      "accuracy": 0.4579,
+      "playerRoll": 14873,
+      "dps": 2.213
     }
   },
   {
